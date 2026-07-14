@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<!--
+  =====================================================================
+  САЙТ ФОТОСТУДИИ — MOMENTA
+  =====================================================================
+  Это один файл: HTML + CSS + JS вместе, ничего больше подключать не нужно.
+  Файл разбит на понятные блоки-комментарии, ищите их по названию:
+
+    1. <head>            — SEO, шрифты, вся CSS-стилистика (переменные вверху)
+    2. HEADER             — шапка сайта / меню
+    3. HERO               — первый экран
+    4. ABOUT              — блок "О нас"
+    5. SERVICES           — направления съёмки
+    6. PACKAGES           — три пакета услуг
+    7. BOOKING            — форма записи
+    8. FOOTER             — подвал
+    9. SCRIPT             — вся логика (анимации + отправка формы)
+
+  Что чаще всего захочется поменять — ищите пометки "РЕДАКТИРУЙТЕ ЗДЕСЬ".
+  =====================================================================
+-->
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Фотостудия MOMENTA — портретная съёмка, Love Story и праздничные фотосессии</title>
+  <meta name="description"
+    content="Фотостудия MOMENTA — 8 лет опыта. Портретная съёмка, Love Story и съёмка дня рождения. Авторская обработка, полное сопровождение, три пакета услуг от 9 000 ₽. Онлайн-запись на съёмку.">
+  <meta name="keywords"
+    content="фотостудия, фотосессия Москва, портретная съёмка, love story фотосессия, съёмка дня рождения, заказать фотосессию, фотограф, студийная съёмка, MOMENTA">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/">
+  <meta property="og:title" content="MOMENTA — фотостудия с 8-летним опытом">
+  <meta property="og:description" content="Портрет, Love Story и съёмка дня рождения. Три пакета услуг. Онлайн-запись.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#FAF7F1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* =====================================================================
+     ЦВЕТА И ШРИФТЫ — РЕДАКТИРУЙТЕ ЗДЕСЬ
+     Все цвета сайта завязаны на эти переменные. Поменяйте значение
+     одной переменной — изменится весь сайт разом.
+     --wine   — главный акцентный цвет (сейчас глубокий бордовый)
+     --gold   — второй акцент (используется на "Gold" пакете и мелких деталях)
+     --bg     — фон страницы
+     ===================================================================== */
+    :root {
+      --bg: #FAF7F1;
+      /* основной фон сайта (светлый) */
+      --bg-soft: #F1E9DD;
+      /* фон "полосатых" секций (чуть темнее) */
+      --ink: #221D1A;
+      /* основной цвет текста */
+      --ink-soft: #786C5D;
+      /* приглушённый цвет текста (описания) */
+      --wine: #7B1F2B;
+      /* главный акцент — бордовый */
+      --wine-dark: #521219;
+      /* тёмный бордовый — для hover-состояний */
+      --gold: #AD8952;
+      /* второй акцент — золото */
+      --gold-light: #D9BD8B;
+      /* светлое золото — для свечения/бликов */
+      --line: #E7DCC9;
+      /* цвет тонких линий-разделителей */
+      --card: #FFFFFF;
+      /* фон карточек */
+      --shadow: 0 20px 50px -25px rgba(34, 29, 26, 0.35);
+      --shadow-lg: 0 30px 70px -20px rgba(82, 18, 25, 0.35);
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(18px, 4vw, 32px);
+      position: relative;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--wine);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--wine);
+    }
+
+    /* Плавное появление элементов при прокрутке.
+     Любому блоку с классом .reveal при попадании во вьюпорт JS добавит
+     класс .is-visible — тогда он проявится и сместится вверх. */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s var(--ease), transform .8s var(--ease);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1.is-visible {
+      transition-delay: .1s;
+    }
+
+    .reveal-delay-2.is-visible {
+      transition-delay: .2s;
+    }
+
+    .reveal-delay-3.is-visible {
+      transition-delay: .3s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* Тонкая зернистая текстура — добавляет "фотографического" ощущения
+     тёмным поверхностям (герой, выделенный пакет). Это SVG-шум, без картинок. */
+    .grain {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .grain::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: .18;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    /* ВАЖНО: кнопки всегда должны быть чётко видны — не полагаемся на hover.
+     У каждого варианта кнопки есть собственный фон/обводка в состоянии покоя,
+     hover лишь усиливает контраст. Это исправляет проблему "кнопка видна
+     только при наведении мыши" (актуально и на тач-экранах, где hover нет). */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 34px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1.5px solid var(--ink);
+      cursor: pointer;
+      transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .2s ease, box-shadow .3s ease;
+      background: rgba(34, 29, 26, 0.045);
+      /* лёгкая заливка — кнопка видна и без наведения */
+      color: var(--ink);
+    }
+
+    .btn:hover {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .btn-primary {
+      background: var(--wine);
+      border-color: var(--wine);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--wine-dark);
+      border-color: var(--wine-dark);
+    }
+
+    .btn-ghost {
+      background: rgba(34, 29, 26, 0.045);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    /* ===== 2. HEADER ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 247, 241, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      transition: box-shadow .3s ease;
+    }
+
+    header.scrolled {
+      box-shadow: 0 8px 30px -20px rgba(34, 29, 26, .4);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      letter-spacing: .14em;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: var(--wine);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      position: relative;
+      font-size: 13px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color .25s;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--wine);
+      transition: width .3s var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--wine);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .burger span {
+      width: 24px;
+      height: 1px;
+      background: var(--ink);
+      display: block;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    /* ===== 3. HERO ===== */
+    .hero {
+      padding: 96px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Мягкие декоративные пятна света на фоне всей hero-секции */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      right: -160px;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(123, 31, 43, .08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 54px);
+      margin: 18px 0 22px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--wine);
+      position: relative;
+    }
+
+    .hero p.lead {
+      color: var(--ink-soft);
+      font-size: 17px;
+      max-width: 460px;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .hero-stat b {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+    }
+
+    .hero-stat span {
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: .04em;
+    }
+
+    /* Декоративная "фото-рамка" вместо реального фото — сделана полностью
+     через CSS-градиенты, движущийся луч света и зерно, чтобы не использовать
+     чужие/сгенерированные фотографии людей. Замените на <img> при желании —
+     см. комментарий внутри блока .frame ниже. */
+    .frame {
+      position: relative;
+      aspect-ratio: 4/5;
+      border-radius: 2px;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 90% at 78% 15%, rgba(255, 255, 255, .10), transparent 55%),
+        linear-gradient(155deg, #3a0f16 0%, #521219 32%, #2a0a0f 62%, #17070a 100%);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Анимированный диагональный луч света, "гуляющий" по кадру */
+    .frame::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, .16) 48%, transparent 56%),
+        linear-gradient(115deg, transparent 62%, rgba(255, 255, 255, .07) 68%, transparent 76%);
+      animation: sweep 9s ease-in-out infinite;
+    }
+
+    @keyframes sweep {
+
+      0%,
+      100% {
+        transform: translateX(-6%) translateY(-2%);
+      }
+
+      50% {
+        transform: translateX(6%) translateY(2%);
+      }
+    }
+
+    .frame-corner {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: 1.5px solid rgba(255, 255, 255, .75);
+      z-index: 3;
+    }
+
+    .frame-corner.tl {
+      top: 18px;
+      left: 18px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .frame-corner.tr {
+      top: 18px;
+      right: 18px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .frame-corner.bl {
+      bottom: 18px;
+      left: 18px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .frame-corner.br {
+      bottom: 18px;
+      right: 18px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .frame-caption {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3;
+      color: #F4EFE7;
+    }
+
+    .frame-caption .eyebrow {
+      color: var(--gold);
+    }
+
+    .frame-caption .eyebrow::before {
+      background: var(--gold);
+    }
+
+    .frame-caption h3 {
+      color: #fff;
+      font-size: 22px;
+      margin-top: 6px;
+    }
+
+    /* Плавающий бейдж поверх фото-рамки — маленькая деталь, добавляющая объём */
+    .floating-badge {
+      position: absolute;
+      top: 28px;
+      right: -18px;
+      z-index: 4;
+      background: #fff;
+      color: var(--ink);
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: floaty 5s ease-in-out infinite;
+    }
+
+    .floating-badge b {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--wine);
+    }
+
+    .floating-badge span {
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: .03em;
+      display: block;
+      max-width: 100px;
+      line-height: 1.3;
+    }
+
+    @keyframes floaty {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @media (max-width:920px) {
+      .floating-badge {
+        display: none;
+      }
+    }
+
+    /* ===== Общие блоки секций ===== */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-alt {
+      background: var(--bg-soft);
+      position: relative;
+    }
+
+    /* Лёгкий точечный паттерн на "полосатых" секциях — убирает плоскую пустоту фона */
+    .section-alt::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .5;
+      pointer-events: none;
+      background-image: radial-gradient(var(--line) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+    }
+
+    .section-alt .container {
+      z-index: 1;
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(26px, 4.2vw, 38px);
+      margin-top: 14px;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      margin-top: 16px;
+      font-size: 16px;
+    }
+
+    /* ===== 4. ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .about-item {
+      background: var(--bg);
+      padding: 36px 30px;
+      transition: background .3s ease;
+    }
+
+    .about-item:hover {
+      background: #fff;
+    }
+
+    .about-item b {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      color: var(--wine);
+      display: block;
+    }
+
+    .about-item span {
+      font-size: 13px;
+      color: var(--ink-soft);
+      display: block;
+      margin-top: 8px;
+      letter-spacing: .02em;
+    }
+
+    /* ===== 5. SERVICES (Направления) ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 40px 34px;
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s ease;
+      position: relative;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--wine);
+    }
+
+    .service-num {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: .1em;
+    }
+
+    .service-card h3 {
+      font-size: 23px;
+      margin: 16px 0 12px;
+    }
+
+    .service-card p {
+      color: var(--ink-soft);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .service-list {
+      list-style: none;
+    }
+
+    .service-list li {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      padding: 6px 0 6px 20px;
+      position: relative;
+      border-top: 1px dashed var(--line);
+    }
+
+    .service-list li:first-child {
+      border-top: none;
+    }
+
+    .service-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* ===== 6. PACKAGES ===== */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .pkg {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 44px 34px 34px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+    }
+
+    .pkg:not(.featured):hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .pkg.featured {
+      background: linear-gradient(180deg, #2A0A0F, #3a0f16);
+      border-color: var(--wine-dark);
+      color: #F4EFE7;
+      transform: translateY(-14px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .pkg.featured:hover {
+      transform: translateY(-20px);
+    }
+
+    .pkg.featured .ink-soft-txt {
+      color: #CBB9A9;
+    }
+
+    .pkg.featured h3,
+    .pkg.featured .price {
+      color: #fff;
+    }
+
+    .pkg.featured .eyebrow {
+      color: var(--gold);
+    }
+
+    .pkg.featured .eyebrow::before {
+      background: var(--gold);
+    }
+
+    .pkg-tag {
+      position: absolute;
+      top: -13px;
+      right: 34px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+    }
+
+    .pkg h3 {
+      font-size: 15px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .price {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 6vw, 44px);
+      margin: 14px 0 6px;
+    }
+
+    .price sup {
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    .pkg-intro {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      margin-bottom: 18px;
+    }
+
+    .pkg.featured .pkg-intro {
+      color: #CBB9A9;
+    }
+
+    .pkg hr {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 8px 0 22px;
+    }
+
+    .pkg.featured hr {
+      border-top-color: rgba(255, 255, 255, .18);
+    }
+
+    .pkg-label {
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+
+    .pkg.featured .pkg-label {
+      color: #CBB9A9;
+    }
+
+    .pkg ul {
+      list-style: none;
+      margin-bottom: 26px;
+    }
+
+    .pkg ul li {
+      font-size: 14.5px;
+      padding: 8px 0 8px 26px;
+      position: relative;
+      color: var(--ink);
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .pkg.featured ul li {
+      color: #EFE7DC;
+      border-bottom-color: rgba(255, 255, 255, .12);
+    }
+
+    .pkg ul li:last-child {
+      border-bottom: none;
+    }
+
+    .pkg ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      color: var(--gold);
+      font-size: 13px;
+    }
+
+    /* Блок "оплачивается отдельно" — оформлен как заметная плашка с рамкой,
+     чтобы клиент точно не спутал эти услуги с тем, что уже включено в пакет. */
+    .extra-box {
+      border: 1px dashed var(--line);
+      background: rgba(173, 137, 82, 0.06);
+      padding: 16px 16px 4px;
+      margin-bottom: 26px;
+    }
+
+    .extra-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .pkg.featured .extra-box {
+      border-color: rgba(255, 255, 255, .2);
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .pkg .extra {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin-bottom: 0;
+    }
+
+    .pkg.featured .extra {
+      color: #CBB9A9;
+    }
+
+    .pkg .extra li {
+      border-bottom-color: rgba(0, 0, 0, .08);
+    }
+
+    .pkg.featured .extra li {
+      border-bottom-color: rgba(255, 255, 255, .1);
+    }
+
+    .pkg .extra li::before {
+      content: "+";
+      color: var(--gold);
+    }
+
+    .pkg.featured .extra li::before {
+      color: var(--gold-light);
+    }
+
+    .pkg .btn {
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .pkg.featured .btn {
+      border-color: #fff;
+      color: #fff;
+      background: rgba(255, 255, 255, .10);
+    }
+
+    .pkg.featured .btn:hover {
+      background: #fff;
+      color: var(--wine-dark);
+    }
+
+    /* ===== 7. BOOKING ===== */
+    .booking {
+      background: var(--wine);
+      color: #F4EFE7;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .booking::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      left: -10%;
+      width: 60%;
+      height: 160%;
+      background: radial-gradient(circle, rgba(255, 255, 255, .06), transparent 65%);
+      pointer-events: none;
+    }
+
+    .booking .section-head h2 {
+      color: #fff;
+    }
+
+    .booking .section-head p {
+      color: #E3C9C9;
+    }
+
+    .booking .eyebrow {
+      color: var(--gold);
+    }
+
+    .booking .eyebrow::before {
+      background: var(--gold);
+    }
+
+    .booking-wrap {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 60px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .booking-info p {
+      color: #E3C9C9;
+      font-size: 15px;
+      margin-top: 16px;
+    }
+
+    .booking-info .info-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 26px;
+      font-size: 15px;
+    }
+
+    .booking-info .info-row b {
+      display: block;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .booking-info .info-row a,
+    .booking-info .info-row span {
+      color: #E3C9C9;
+      font-size: 13px;
+    }
+
+    .booking-info .info-row a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 2px;
+      color: var(--ink);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .field input,
+    .field select {
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 10px 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: transparent;
+      outline: none;
+      transition: border-color .25s;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--wine);
+    }
+
+    .field.full {
+      grid-column: 1/-1;
+    }
+
+    .consent {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      margin: 22px 0 24px;
+    }
+
+    .consent input {
+      margin-top: 3px;
+    }
+
+    .consent a {
+      color: var(--wine);
+      text-decoration: underline;
+    }
+
+    .form-submit {
+      width: 100%;
+    }
+
+    .form-msg {
+      margin-top: 16px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .form-msg.ok {
+      color: #2E6B3E;
+      display: block;
+    }
+
+    .form-msg.err {
+      color: #9E2B2B;
+      display: block;
+    }
+
+    /* ===== 8. FOOTER ===== */
+    footer {
+      padding: 64px 0 32px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    footer .logo {
+      margin-bottom: 14px;
+    }
+
+    footer p {
+      color: var(--ink-soft);
+      font-size: 14px;
+      max-width: 320px;
+    }
+
+    footer h4 {
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer ul li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    footer ul li a:hover {
+      color: var(--wine);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+
+    /* ===========================================================
+     АДАПТИВНОСТЬ — три уровня:
+     1) до 1080px  — планшеты альбомная / небольшие ноутбуки
+     2) до 920px   — планшеты портретная / переход на мобильное меню
+     3) до 480px   — телефоны
+     Меняйте только числа внутри блоков ниже, структура не пострадает.
+     =========================================================== */
+    @media (max-width:1080px) {
+      .hero-grid {
+        gap: 44px;
+      }
+
+      .about-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pkg.featured {
+        grid-column: 1/-1;
+        transform: none;
+      }
+    }
+
+    @media (max-width:920px) {
+      section {
+        padding: 76px 0;
+      }
+
+      .hero {
+        padding: 64px 0 56px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        flex-wrap: wrap;
+        row-gap: 18px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .packages-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pkg.featured {
+        transform: none;
+      }
+
+      .pkg.featured:hover {
+        transform: translateY(-8px);
+      }
+
+      .booking-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        flex-direction: column;
+        padding: 20px 32px;
+        gap: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width:600px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width:480px) {
+      .logo {
+        font-size: 18px;
+      }
+
+      .nav {
+        padding: 16px 0;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: .24em;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .hero-stats {
+        gap: 22px;
+      }
+
+      .hero-stat b {
+        font-size: 22px;
+      }
+
+      .service-card,
+      .pkg {
+        padding: 28px 22px 24px;
+      }
+
+      form {
+        padding: 26px 20px;
+      }
+
+      .pkg-tag {
+        right: 22px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== 2. HEADER — логотип, меню, кнопка "Забронировать" ===== -->
+  <header id="siteHeader">
+    <div class="container nav">
+      <!-- РЕДАКТИРУЙТЕ ЗДЕСЬ: название студии -->
+      <div class="logo">MOMENTA</div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">О нас</a>
+        <a href="#services">Направления</a>
+        <a href="#packages">Пакеты</a>
+        <a href="#booking">Контакты</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#booking" class="btn btn-primary">Забронировать</a>
+      </div>
+      <button class="burger" aria-label="Меню" id="burgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== 3. HERO — первый экран ===== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">Фотостудия · 8 лет опыта</p>
+          <h1>Ваш момент.<br><em>Ваша история.</em></h1>
+          <p class="lead">Студия MOMENTA — портретная съёмка, Love Story и праздничные фотосессии. Сильное портфолио,
+            авторская обработка и техника, которая не подведёт в важный день.</p>
+          <div class="hero-actions">
+            <a href="#booking" class="btn btn-primary">Записаться на съёмку</a>
+            <a href="#packages" class="btn btn-ghost">Смотреть пакеты</a>
+          </div>
+          <div class="hero-stats">
+            <!-- data-count запускает анимацию "подсчёта" чисел при появлении на экране -->
+            <div class="hero-stat"><b><span data-count="8">0</span> лет</b><span>на рынке фотографии</span></div>
+            <div class="hero-stat"><b><span data-count="500">0</span>+</b><span>завершённых съёмок</span></div>
+            <div class="hero-stat"><b><span data-count="3">0</span></b><span>пакета услуг под любой запрос</span></div>
+          </div>
+        </div>
+
+        <!-- Декоративная рамка вместо фото. Чтобы вставить настоящее фото портфолио:
+           1) добавьте внутрь .frame тег <img src="ваше-фото.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+           2) уменьшите opacity фонового градиента через CSS, если фото и так тёмное -->
+        <div class="frame grain reveal reveal-delay-2">
+          <div class="frame-corner tl"></div>
+          <div class="frame-corner tr"></div>
+          <div class="frame-corner bl"></div>
+          <div class="frame-corner br"></div>
+          <div class="frame-caption">
+            <p class="eyebrow">Портфолио студии</p>
+            <h3>Фотография, которая остаётся</h3>
+          </div>
+          <div class="floating-badge">
+            <b>500+</b>
+            <span>довольных клиентов студии</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. ABOUT — "О нас" ===== -->
+    <section id="about" class="section-alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">О студии</p>
+          <h2>8 лет создаём кадры,<br>которые хочется пересматривать</h2>
+          <p>Мы — команда фотографов и ретушёров с сильным портфолио, профессиональным оборудованием и насмотренностью,
+            которая помогает находить идею даже там, где её, кажется, нет. Работаем в своей студии и на выезде.</p>
+        </div>
+        <div class="about-grid reveal">
+          <div class="about-item"><b><span data-count="8">0</span> лет</b><span>опыта в портретной и коммерческой
+              съёмке</span></div>
+          <div class="about-item"><b><span data-count="500">0</span>+</b><span>проведённых фотосессий</span></div>
+          <div class="about-item"><b>100%</b><span>авторская цветокоррекция и обработка</span></div>
+          <div class="about-item"><b>1–4 ч</b><span>гибкая длительность съёмки под ваш пакет</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. SERVICES — Направления съёмки =====
+       РЕДАКТИРУЙТЕ ЗДЕСЬ: тексты описаний и пункты списков под каждым направлением -->
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Направления</p>
+          <h2>Чем мы занимаемся</h2>
+          <p>Три ключевых направления съёмки — каждое со своей идеей, светом и подходом к позированию. Перед съёмкой мы
+            всегда обсуждаем референсы и настроение, чтобы результат совпал с тем, что вы себе представляли.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <span class="service-num">Направление · 01</span>
+            <h3>День рождения</h3>
+            <p>Атмосферная праздничная съёмка, которая сохранит эмоции дня рождения — искренний смех, объятия близких,
+              торт со свечами и ту самую суету праздника, которую хочется пересматривать спустя годы. Снимаем в студии с
+              декором и реквизитом или выезжаем на вашу локацию.</p>
+            <ul class="service-list">
+              <li>Подбор декора и цветовой гаммы под тематику праздника</li>
+              <li>Групповые и индивидуальные кадры с гостями</li>
+              <li>Лёгкая постановка без "деревянных" поз — только живые эмоции</li>
+            </ul>
+          </div>
+          <div class="service-card reveal reveal-delay-1">
+            <span class="service-num">Направление · 02</span>
+            <h3>Love Story</h3>
+            <p>Тёплая и живая съёмка для пар: естественные эмоции, доверительная атмосфера и кадры, которые расскажут
+              историю ваших отношений — от первого взгляда до объятий в закатном свете. Отлично подходит как
+              самостоятельная съёмка или как подготовка к свадьбе.</p>
+            <ul class="service-list">
+              <li>Помощь в раскрепощении перед камерой — работаем без неловкости</li>
+              <li>Съёмка в студии, в городе или на природе на ваш выбор</li>
+              <li>Кадры для приглашений, соцсетей и фотокниги</li>
+            </ul>
+          </div>
+          <div class="service-card reveal reveal-delay-2">
+            <span class="service-num">Направление · 03</span>
+            <h3>Портрет</h3>
+            <p>Индивидуальная студийная съёмка с проработкой образа, света и позирования. Подходит для личного архива,
+              обновления соцсетей, делового портрета или подарка близкому человеку — подбираем свет и ракурсы, которые
+              подчёркивают именно вас.</p>
+            <ul class="service-list">
+              <li>Разбор образов и поз ещё до начала съёмки</li>
+              <li>Студийный свет с мягким и контрастным рисунком на выбор</li>
+              <li>Авторская ретушь без "пластикового" эффекта</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. PACKAGES — Пакеты услуг =====
+       РЕДАКТИРУЙТЕ ЗДЕСЬ: цены, пункты списков и вступительные строки .pkg-intro -->
+    <section id="packages" class="section-alt">
+      <div class="container">
+        <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+          <p class="eyebrow" style="justify-content:center;">Пакеты услуг</p>
+          <h2>Выберите свой формат</h2>
+          <p style="margin-left:auto;margin-right:auto;">Три пакета — от короткой съёмки для соцсетей до полного дня с
+            сопровождением и видео. Обратите внимание: аренда студии/локации, макияж и укладка, а также выезд за город —
+            это дополнительные услуги, они не входят в стоимость пакета и оплачиваются отдельно по факту.</p>
+        </div>
+        <div class="packages-grid">
+
+          <div class="pkg reveal">
+            <h3>Silver</h3>
+            <div class="price">9 000<sup>₽</sup></div>
+            <p class="pkg-intro">Компактная съёмка для тех, кто хочет быстро и без лишних затрат обновить портфолио или
+              получить пару ярких кадров для соцсетей.</p>
+            <hr>
+            <p class="pkg-label">В пакет входит</p>
+            <ul>
+              <li>Съёмка — 1 час</li>
+              <li>10 фото в авторской обработке</li>
+              <li>Весь исходный материал</li>
+              <li>Помощь в подборе идеи и позирования</li>
+            </ul>
+            <div class="extra-box">
+              <p class="extra-note">⚠ Оплачивается отдельно</p>
+              <ul class="extra">
+                <li>Студия / локация</li>
+                <li>Макияж и укладка</li>
+                <li>Выезд за город</li>
+              </ul>
+            </div>
+            <a href="#booking" class="btn btn-ghost pkg-select" data-pkg="Silver">Выбрать Silver</a>
+          </div>
+
+          <div class="pkg featured reveal reveal-delay-1">
+            <span class="pkg-tag">Популярный</span>
+            <h3>Gold</h3>
+            <div class="price">14 000<sup>₽</sup></div>
+            <p class="pkg-intro">Наш самый сбалансированный формат: больше времени на съёмку, больше кадров и готовое
+              видео Reels — оптимально по цене и результату.</p>
+            <hr>
+            <p class="pkg-label">В пакет входит</p>
+            <ul>
+              <li>Съёмка — 2 часа</li>
+              <li>15 фото в авторской обработке</li>
+              <li>Весь исходный материал</li>
+              <li>1 видео Reels</li>
+              <li>Помощь в подборе образа и позирования</li>
+            </ul>
+            <div class="extra-box">
+              <p class="extra-note">⚠ Оплачивается отдельно</p>
+              <ul class="extra">
+                <li>Студия / локация</li>
+                <li>Макияж и укладка</li>
+                <li>Выезд за город</li>
+              </ul>
+            </div>
+            <a href="#booking" class="btn pkg-select" data-pkg="Gold">Выбрать Gold</a>
+          </div>
+
+          <div class="pkg reveal reveal-delay-2">
+            <h3>Premium</h3>
+            <div class="price">20 000<sup>₽</sup></div>
+            <p class="pkg-intro">Полноценный съёмочный день с концепцией под ключ — для тех, кто хочет продуманный
+              образ, несколько локаций и максимум материала на выходе.</p>
+            <hr>
+            <p class="pkg-label">В пакет входит</p>
+            <ul>
+              <li>Съёмка — до 4 часов</li>
+              <li>30 фото в авторской обработке</li>
+              <li>Весь исходный материал</li>
+              <li>3 видео Reels</li>
+              <li>Помощь в создании концепции съёмки</li>
+              <li>Полное сопровождение в процессе подготовки</li>
+            </ul>
+            <div class="extra-box">
+              <p class="extra-note">⚠ Оплачивается отдельно</p>
+              <ul class="extra">
+                <li>Студия / локация</li>
+                <li>Макияж и укладка</li>
+                <li>Выезд за город</li>
+              </ul>
+            </div>
+            <a href="#booking" class="btn btn-ghost pkg-select" data-pkg="Premium">Выбрать Premium</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. BOOKING — форма записи =====
+       РЕДАКТИРУЙТЕ ЗДЕСЬ: телефон/почта в блоке .booking-info,
+       и FORM_ENDPOINT в самом низу файла (в <script>), чтобы заявки реально приходили -->
+    <section id="booking" class="booking">
+      <div class="container booking-wrap">
+        <div class="booking-info reveal">
+          <p class="eyebrow">Запись на съёмку</p>
+          <h2 style="color:#fff;font-size:34px;margin-top:14px;">Забронируйте дату</h2>
+          <p>Заполните форму — мы свяжемся с вами в течение дня, чтобы подтвердить дату, обсудить идею съёмки и пакет.
+          </p>
+          <div class="info-row">
+            <div>
+              <b>Телефон</b>
+              <a href="tel:+79891156946">+7 (989) 115-69-46</a>
+            </div>
+          </div>
+          <div class="info-row">
+            <div>
+              <b>Почта</b>
+              <a href="mailto:hello@momenta-studio.ru">hello@momenta-studio.ru</a>
+            </div>
+          </div>
+          <div class="info-row">
+            <div>
+              <b>Студия</b>
+              <span>Москва · съёмка в студии и на выезде</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="bookingForm" autocomplete="on" class="reveal reveal-delay-1">
+          <div class="form-row">
+            <div class="field">
+              <label for="firstName">Имя *</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="field">
+              <label for="lastName">Фамилия *</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="middleName">Отчество *</label>
+              <input type="text" id="middleName" name="middleName" required>
+            </div>
+            <div class="field">
+              <label for="pkgSelect">Пакет *</label>
+              <!-- Три пакета услуг — соответствуют карточкам в разделе "Пакеты" -->
+              <select id="pkgSelect" name="package" required>
+                <option value="" disabled selected>Выберите пакет</option>
+                <option value="Silver — 9 000 ₽">Silver — 9 000 ₽</option>
+                <option value="Gold — 14 000 ₽">Gold — 14 000 ₽</option>
+                <option value="Premium — 20 000 ₽">Premium — 20 000 ₽</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="shootType">Тип съёмки *</label>
+              <!-- Три направления съёмки, плюс "Другое" — на случай нестандартного запроса -->
+              <select id="shootType" name="shootType" required>
+                <option value="" disabled selected>Выберите вариант</option>
+                <option value="День рождения">День рождения</option>
+                <option value="Love Story">Love Story</option>
+                <option value="Портрет">Портрет</option>
+                <option value="Другое">Другое / не определился(ась)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="shootDate">Дата съёмки *</label>
+              <input type="date" id="shootDate" name="shootDate" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">Телефон *</label>
+              <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field full">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" id="consent" name="consent" required>
+            <span>Я согласен(на) на обработку персональных данных в соответствии с 152-ФЗ «О персональных данных» и <a
+                href="#">политикой конфиденциальности</a>. *</span>
+          </label>
+
+          <button type="submit" class="btn btn-primary form-submit">Отправить заявку</button>
+          <p class="form-msg" id="formMsg"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 8. FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo">MOMENTA</div>
+          <p>Фотостудия MOMENTA: портреты, Love Story и праздничные съёмки. 8 лет опыта, сильное портфолио и авторская
+            обработка.</p>
+        </div>
+        <div>
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#services">Направления</a></li>
+            <li><a href="#packages">Пакеты</a></li>
+            <li><a href="#booking">Запись</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Контакты</h4>
+          <ul>
+            <li><a href="tel:+79891156946">+7 (989) 115-69-46</a></li>
+            <li><a href="mailto:hello@momenta-studio.ru">hello@momenta-studio.ru</a></li>
+            <li>Москва</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 MOMENTA. Все права защищены.</span>
+        <span>ИП Иванов И. И. · ИНН 000000000000</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== 9. SCRIPT — анимации, меню, форма ===== -->
+  <script>
+    /* ---------- Мобильное меню ---------- */
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    /* ---------- Тень у шапки при прокрутке ---------- */
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    /* ---------- Появление блоков при прокрутке (.reveal) ---------- */
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealItems.forEach(item => revealObserver.observe(item));
+
+    /* ---------- Анимация подсчёта чисел (8 лет, 500+ клиентов и т.п.) ---------- */
+    const counters = document.querySelectorAll('[data-count]');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const duration = 1200;
+        const start = performance.now();
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        countObserver.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(c => countObserver.observe(c));
+
+    /* ---------- Клик по "Выбрать пакет" — подставляет пакет в форму записи ---------- */
+    document.querySelectorAll('.pkg-select').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pkgName = btn.getAttribute('data-pkg'); // "Silver" / "Gold" / "Premium"
+        const select = document.getElementById('pkgSelect');
+        [...select.options].forEach(opt => {
+          if (opt.value.startsWith(pkgName)) select.value = opt.value;
+        });
+      });
+    });
+
+    /* ---------- Минимальная дата съёмки — сегодня ---------- */
+    document.getElementById('shootDate').min = new Date().toISOString().split('T')[0];
+
+    /* ---------- Отправка формы бронирования ----------
+       ВАЖНО: чтобы заявки реально приходили вам на почту и сохранялись,
+       зарегистрируйте бесплатный аккаунт на https://formspree.io,
+       создайте форму и замените YOUR_FORM_ID ниже на её ID.
+       Пока это не сделано, форма только показывает сообщение об ошибке
+       и просит связаться по телефону — данные никуда не теряются молча. */
+    const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+    const form = document.getElementById('bookingForm');
+    const msg = document.getElementById('formMsg');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      msg.className = 'form-msg';
+      msg.textContent = '';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const data = new FormData(form);
+      const submitBtn = form.querySelector('.form-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Отправляем...';
+
+      try {
+        const response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          msg.textContent = 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.';
+          msg.className = 'form-msg ok';
+          form.reset();
+          document.getElementById('shootDate').min = new Date().toISOString().split('T')[0];
+        } else {
+          throw new Error('Ошибка отправки');
+        }
+      } catch (err) {
+        msg.textContent = 'Не удалось отправить форму. Позвоните нам напрямую: +7 (989) 115-69-46.';
+        msg.className = 'form-msg err';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Отправить заявку';
+      }
+    });
+  </script>
+</body>
+
+</html>
