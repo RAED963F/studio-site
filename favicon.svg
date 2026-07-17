@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B1F2B"/>
+      <stop offset="100%" stop-color="#43101A"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <!-- viewfinder corner brackets — echoes the .frame-corner motif used on the site -->
+  <g stroke="#D9BD8B" stroke-width="18" stroke-linecap="round" fill="none">
+    <path d="M132 176 V132 H176"/>
+    <path d="M380 176 V132 H336"/>
+    <path d="M132 336 V380 H176"/>
+    <path d="M380 336 V380 H336"/>
+  </g>
+  <circle cx="256" cy="256" r="30" fill="#D9BD8B"/>
+</svg>

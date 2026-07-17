@@ -35,15 +35,6 @@
   <meta property="og:description" content="Портрет, Love Story и съёмка дня рождения. Три пакета услуг. Онлайн-запись.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#FAF7F1">
-  <!-- ФАВИКОН (иконка вкладки браузера) — 5 готовых файлов лежат рядом с этим index.html.
-     Просто положите их в ту же папку на сервере — переименовывать не нужно,
-     имена ниже уже совпадают с файлами: favicon.svg, favicon.ico,
-     favicon-32x32.png, favicon-16x16.png, apple-touch-icon.png -->
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="favicon-16x16.png" type="image/png" sizes="16x16">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -399,32 +390,16 @@
       border-top: 1px solid var(--line);
     }
 
-    /* Каждая цифра (8 лет / 500+ / 3) всегда одного размера — размер задаётся
-     только на .stat-num, а не зависит от того, что стоит рядом (лет / + / %).
-     Приписка (лет, +, %, ч) всегда меньше и отдельным элементом .stat-suffix. */
-    .stat-num {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-      line-height: 1;
+    .hero-stat b {
+      display: block;
       font-family: 'Playfair Display', serif;
       font-size: 28px;
-      color: var(--ink);
     }
 
-    .stat-suffix {
-      font-size: 16px;
-      font-weight: 500;
-      font-family: 'Jost', sans-serif;
-    }
-
-    .stat-label {
-      display: block;
-      margin-top: 8px;
+    .hero-stat span {
       font-size: 12px;
       color: var(--ink-soft);
-      letter-spacing: .03em;
-      max-width: 150px;
+      letter-spacing: .04em;
     }
 
     /* Декоративная "фото-рамка" вместо реального фото — сделана полностью
@@ -634,13 +609,19 @@
       background: #fff;
     }
 
-    .about-item .stat-num {
+    .about-item b {
+      font-family: 'Playfair Display', serif;
       font-size: 34px;
       color: var(--wine);
+      display: block;
     }
 
-    .about-item .stat-label {
-      max-width: none;
+    .about-item span {
+      font-size: 13px;
+      color: var(--ink-soft);
+      display: block;
+      margin-top: 8px;
+      letter-spacing: .02em;
     }
 
     /* ===== 5. SERVICES (Направления) ===== */
@@ -1271,12 +1252,8 @@
         gap: 22px;
       }
 
-      .stat-num {
+      .hero-stat b {
         font-size: 22px;
-      }
-
-      .about-item .stat-num {
-        font-size: 26px;
       }
 
       .service-card,
@@ -1335,18 +1312,9 @@
           </div>
           <div class="hero-stats">
             <!-- data-count запускает анимацию "подсчёта" чисел при появлении на экране -->
-            <div class="hero-stat">
-              <div class="stat-num"><span data-count="8">0</span><span class="stat-suffix">лет</span></div>
-              <span class="stat-label">на рынке фотографии</span>
-            </div>
-            <div class="hero-stat">
-              <div class="stat-num"><span data-count="500">0</span><span class="stat-suffix">+</span></div>
-              <span class="stat-label">завершённых съёмок</span>
-            </div>
-            <div class="hero-stat">
-              <div class="stat-num"><span data-count="3">0</span></div>
-              <span class="stat-label">пакета услуг под любой запрос</span>
-            </div>
+            <div class="hero-stat"><b><span data-count="8">0</span> лет</b><span>на рынке фотографии</span></div>
+            <div class="hero-stat"><b><span data-count="500">0</span>+</b><span>завершённых съёмок</span></div>
+            <div class="hero-stat"><b><span data-count="3">0</span></b><span>пакета услуг под любой запрос</span></div>
           </div>
         </div>
 
@@ -1380,22 +1348,11 @@
             которая помогает находить идею даже там, где её, кажется, нет. Работаем в своей студии и на выезде.</p>
         </div>
         <div class="about-grid reveal">
-          <div class="about-item">
-            <div class="stat-num"><span data-count="8">0</span><span class="stat-suffix">лет</span></div>
-            <span class="stat-label">опыта в портретной и коммерческой съёмке</span>
-          </div>
-          <div class="about-item">
-            <div class="stat-num"><span data-count="500">0</span><span class="stat-suffix">+</span></div>
-            <span class="stat-label">проведённых фотосессий</span>
-          </div>
-          <div class="about-item">
-            <div class="stat-num">100<span class="stat-suffix">%</span></div>
-            <span class="stat-label">авторская цветокоррекция и обработка</span>
-          </div>
-          <div class="about-item">
-            <div class="stat-num">1–4<span class="stat-suffix">ч</span></div>
-            <span class="stat-label">гибкая длительность съёмки под ваш пакет</span>
-          </div>
+          <div class="about-item"><b><span data-count="8">0</span> лет</b><span>опыта в портретной и коммерческой
+              съёмке</span></div>
+          <div class="about-item"><b><span data-count="500">0</span>+</b><span>проведённых фотосессий</span></div>
+          <div class="about-item"><b>100%</b><span>авторская цветокоррекция и обработка</span></div>
+          <div class="about-item"><b>1–4 ч</b><span>гибкая длительность съёмки под ваш пакет</span></div>
         </div>
       </div>
     </section>
@@ -1545,13 +1502,8 @@
     </section>
 
     <!-- ===== 7. BOOKING — форма записи =====
-       Форма подключена к Web3Forms (https://web3forms.com) — сервис бесплатно
-       пересылает заявки вам на почту, без своего сервера и базы данных.
-       РЕДАКТИРУЙТЕ ЗДЕСЬ: телефон/почта в блоке .booking-info ниже.
-       Ключ доступа (access_key) уже вставлен — он привязан к вашему аккаунту
-       Web3Forms (форма "studio-site"), заявки будут приходить на почту,
-       указанную при регистрации на web3forms.com. Проверить/сменить
-       получателя можно на вкладке Settings в личном кабинете Web3Forms. -->
+       РЕДАКТИРУЙТЕ ЗДЕСЬ: телефон/почта в блоке .booking-info,
+       и FORM_ENDPOINT в самом низу файла (в <script>), чтобы заявки реально приходили -->
     <section id="booking" class="booking">
       <div class="container booking-wrap">
         <div class="booking-info reveal">
@@ -1580,12 +1532,6 @@
         </div>
 
         <form id="bookingForm" autocomplete="on" class="reveal reveal-delay-1">
-          <!-- Служебные поля Web3Forms: не показываются пользователю -->
-          <input type="hidden" name="access_key" value="00c5a37f-0aa8-4b6b-b69d-b5a1ea2c5c8f">
-          <input type="hidden" name="subject" value="Новая заявка на съёмку — сайт MOMENTA">
-          <input type="hidden" name="from_name" value="Сайт MOMENTA — форма записи">
-          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-
           <div class="form-row">
             <div class="field">
               <label for="firstName">Имя *</label>
@@ -1751,12 +1697,11 @@
     document.getElementById('shootDate').min = new Date().toISOString().split('T')[0];
 
     /* ---------- Отправка формы бронирования ----------
-       Подключено к Web3Forms. Ключ доступа (access_key) уже лежит в скрытом
-       поле формы выше (input name="access_key"). Web3Forms сам пересылает
-       каждую заявку вам на почту и сохраняет её во вкладке Submissions
-       в личном кабинете web3forms.com — отдельно ничего настраивать не нужно.
-       Если понадобится сменить получателя или создать новый ключ — это
-       делается в личном кабинете Web3Forms, во вкладке Settings. */
+       ВАЖНО: чтобы заявки реально приходили вам на почту и сохранялись,
+       зарегистрируйте бесплатный аккаунт на https://formspree.io,
+       создайте форму и замените YOUR_FORM_ID ниже на её ID.
+       Пока это не сделано, форма только показывает сообщение об ошибке
+       и просит связаться по телефону — данные никуда не теряются молча. */
     const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 
     const form = document.getElementById('bookingForm');
@@ -1772,22 +1717,27 @@
         return;
       }
 
-      // Web3Forms принимает JSON — собираем все поля формы в обычный объект
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
+      const data = new FormData(form);
+      data.append("access_key", "00c5a37f-0aa8-4b6b-b69d-b5a1ea2c5c8f");
+      data.append("subject", "Новая заявка с сайта MOMENTA");
+      data.append("from_name", "MOMENTA Studio");
+      
       const submitBtn = form.querySelector('.form-submit');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Отправляем...';
 
       try {
         const response = await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const result = await response.json();
+  method: "POST",
+  body: data,
+  headers: {
+    Accept: "application/json"
+  }
+});
 
-        if (response.ok && result.success) {
+const result = await response.json();
+
+if (result.success) {
           msg.textContent = 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.';
           msg.className = 'form-msg ok';
           form.reset();
