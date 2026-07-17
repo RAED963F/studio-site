@@ -576,6 +576,8 @@
     /* ===== Общие блоки секций ===== */
     section {
       padding: 100px 0;
+      position: relative;
+      overflow: hidden;
     }
 
     .section-alt {
@@ -703,6 +705,367 @@
       position: absolute;
       left: 0;
       color: var(--gold);
+    }
+
+    /* =====================================================================
+     ФОНОВЫЕ ЭФФЕКТЫ (лёгкое "дыхание" и световое пятно за курсором)
+     Полностью декоративные, не мешают контенту (pointer-events:none) и
+     отключаются, если у посетителя включена настройка "уменьшить анимации".
+     ===================================================================== */
+    .bg-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .28;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes drift {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(24px, -18px) scale(1.08);
+      }
+    }
+
+    .bg-blob {
+      animation: drift 22s ease-in-out infinite;
+    }
+
+    .bg-blob.b2 {
+      animation-duration: 28s;
+      animation-direction: reverse;
+    }
+
+    /* Световое пятно, мягко следующее за курсором по всей странице.
+     Двигается через CSS-переменные --spot-x/--spot-y, которые обновляет
+     JS в конце файла. Полностью на заднем плане, текста не касается. */
+    #cursorSpot {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(480px circle at var(--spot-x, 50%) var(--spot-y, 15%), rgba(173, 137, 82, .14), transparent 65%);
+      transition: opacity .4s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bg-blob {
+        animation: none;
+      }
+
+      #cursorSpot {
+        display: none;
+      }
+    }
+
+    @media (hover:none) {
+      #cursorSpot {
+        display: none;
+      }
+
+      /* на тач-экранах курсора нет — прячем эффект */
+    }
+
+    /* =====================================================================
+     ПОРТФОЛИО — бегущая лента фотографий (карусель без остановки)
+     РЕДАКТИРУЙТЕ ЗДЕСЬ: количество фото и путь к папке задаются переменными
+     GALLERY_FOLDER и TOTAL_IMAGES в самом низу файла, в <script>.
+     Файлы должны называться 1.jpg, 2.jpg … 25.jpg и лежать в папке photos/
+     рядом с этим index.html. Если фото пока не хватает — на его месте
+     аккуратно появится плейсхолдер с номером, ничего не "поломается".
+     ===================================================================== */
+    .portfolio {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-marquee {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 8px 0 4px;
+    }
+
+    /* Плавное затухание по краям ленты — классический приём для каруселей портфолио */
+    .portfolio-marquee::before,
+    .portfolio-marquee::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: min(120px, 12%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .portfolio-marquee::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--bg), transparent);
+    }
+
+    .portfolio-marquee::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--bg), transparent);
+    }
+
+    .portfolio-row {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .portfolio-row.dir-left {
+      animation: marquee-left 46s linear infinite;
+    }
+
+    .portfolio-row.dir-right {
+      animation: marquee-right 52s linear infinite;
+      margin-top: 20px;
+    }
+
+    .portfolio-row:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-left {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes marquee-right {
+      from {
+        transform: translateX(-50%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .portfolio-row {
+        animation: none;
+        overflow-x: auto;
+      }
+    }
+
+    .portfolio-frame {
+      position: relative;
+      flex: 0 0 auto;
+      width: 190px;
+      aspect-ratio: 4/5;
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(160deg, #2a0a0f, #43101a);
+      box-shadow: 0 14px 30px -18px rgba(34, 29, 26, .45);
+      transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+    }
+
+    .portfolio-frame:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: var(--shadow-lg);
+      z-index: 2;
+    }
+
+    .portfolio-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(55%) sepia(6%) contrast(1.03);
+      transition: filter .6s ease, transform .8s ease;
+    }
+
+    .portfolio-frame:hover img {
+      filter: grayscale(0%) sepia(0%);
+      transform: scale(1.07);
+    }
+
+    .portfolio-corner {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid rgba(255, 255, 255, .85);
+      opacity: 0;
+      transition: opacity .3s ease;
+      z-index: 2;
+    }
+
+    .portfolio-frame:hover .portfolio-corner {
+      opacity: 1;
+    }
+
+    .portfolio-corner.tl {
+      top: 8px;
+      left: 8px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .portfolio-corner.tr {
+      top: 8px;
+      right: 8px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .portfolio-corner.bl {
+      bottom: 8px;
+      left: 8px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .portfolio-corner.br {
+      bottom: 8px;
+      right: 8px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .portfolio-zoom {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(.6);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .14);
+      border: 1px solid rgba(255, 255, 255, .6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+      z-index: 2;
+    }
+
+    .portfolio-frame:hover .portfolio-zoom {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Если файл фото ещё не добавлен — вместо "битой" картинки показываем
+     аккуратную плашку с номером, дизайн не рушится */
+    .portfolio-frame.img-missing img {
+      display: none;
+    }
+
+    .portfolio-frame.img-missing::before {
+      content: "Фото " attr(data-index);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-align: center;
+      padding: 10px;
+    }
+
+    @media (max-width:600px) {
+      .portfolio-frame {
+        width: 140px;
+      }
+    }
+
+    /* ---- Лайтбокс (увеличенный просмотр фото) ---- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(23, 7, 10, .94);
+      padding: 24px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 88vw;
+      max-height: 78vh;
+      border-radius: 2px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .lightbox-close,
+    .lightbox-nav {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .35);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background .25s ease;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, .22);
+    }
+
+    .lightbox-close {
+      top: 22px;
+      right: 22px;
+    }
+
+    .lightbox-nav.prev {
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox-nav.next {
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox-count {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #F4EFE7;
+      font-size: 12.5px;
+      letter-spacing: .1em;
+    }
+
+    @media (max-width:600px) {
+      .lightbox-nav {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+      }
     }
 
     /* ===== 6. PACKAGES ===== */
@@ -1301,6 +1664,9 @@
 </head>
 
 <body>
+  <!-- Лёгкое световое пятно, следующее за курсором — чисто декоративное,
+     управляется через JS в конце файла (обновляет --spot-x/--spot-y) -->
+  <div id="cursorSpot" aria-hidden="true"></div>
 
   <!-- ===== 2. HEADER — логотип, меню, кнопка "Забронировать" ===== -->
   <header id="siteHeader">
@@ -1372,6 +1738,8 @@
 
     <!-- ===== 4. ABOUT — "О нас" ===== -->
     <section id="about" class="section-alt">
+      <div class="bg-blob" style="width:340px;height:340px;background:var(--wine);top:-120px;left:-100px;"></div>
+      <div class="bg-blob b2" style="width:260px;height:260px;background:var(--gold);bottom:-100px;right:-80px;"></div>
       <div class="container">
         <div class="section-head reveal">
           <p class="eyebrow">О студии</p>
@@ -1403,7 +1771,8 @@
     <!-- ===== 5. SERVICES — Направления съёмки =====
        РЕДАКТИРУЙТЕ ЗДЕСЬ: тексты описаний и пункты списков под каждым направлением -->
     <section id="services">
-      <div class="container">
+      <div class="bg-blob" style="width:300px;height:300px;background:var(--gold);top:-80px;right:-60px;"></div>
+      <div class="container" style="z-index:1;">
         <div class="section-head reveal">
           <p class="eyebrow">Направления</p>
           <h2>Чем мы занимаемся</h2>
@@ -1450,6 +1819,36 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== 5.5 PORTFOLIO — бегущая лента фотографий =====
+       РЕДАКТИРУЙТЕ ЗДЕСЬ: положите 25 файлов 1.jpg … 25.jpg в папку "photos"
+       рядом с index.html. Ничего в разметке ниже менять не нужно — карточки
+       и лайтбокс строит JS в конце файла (переменные GALLERY_FOLDER и
+       TOTAL_IMAGES). Если фото пока меньше 25 — на пустых местах аккуратно
+       появится плашка с номером, сайт не "сломается". -->
+    <section id="portfolio" class="portfolio">
+      <div class="container" style="z-index:1;position:relative;">
+        <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+          <p class="eyebrow" style="justify-content:center;">Портфолио</p>
+          <h2>Избранные кадры</h2>
+          <p style="margin-left:auto;margin-right:auto;">25 кадров из разных съёмок — портреты, Love Story и праздники.
+            Наведите курсор, чтобы остановить ленту, и нажмите на кадр, чтобы открыть его крупнее.</p>
+        </div>
+      </div>
+      <div class="portfolio-marquee reveal">
+        <div class="portfolio-row dir-left" id="portfolioRow1"></div>
+        <div class="portfolio-row dir-right" id="portfolioRow2"></div>
+      </div>
+    </section>
+
+    <!-- Лайтбокс — открывается по клику на любое фото портфолио -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button>
+      <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Предыдущее фото">‹</button>
+      <img id="lightboxImg" src="" alt="Увеличенное фото из портфолио MOMENTA">
+      <button class="lightbox-nav next" id="lightboxNext" aria-label="Следующее фото">›</button>
+      <div class="lightbox-count" id="lightboxCount"></div>
+    </div>
 
     <!-- ===== 6. PACKAGES — Пакеты услуг =====
        РЕДАКТИРУЙТЕ ЗДЕСЬ: цены, пункты списков и вступительные строки .pkg-intro -->
@@ -1803,6 +2202,101 @@
         submitBtn.textContent = 'Отправить заявку';
       }
     });
+
+    /* =====================================================================
+       ПОРТФОЛИО — генерация бегущей ленты + лайтбокс
+       РЕДАКТИРУЙТЕ ЗДЕСЬ:
+         GALLERY_FOLDER — папка с фото (должна лежать рядом с index.html)
+         TOTAL_IMAGES   — сколько фото реально показывать (у вас будет 25)
+       Файлы должны называться 1.jpg, 2.jpg … 25.jpg. Если какого-то файла
+       нет — вместо ошибки аккуратно покажется плашка с номером.
+       ===================================================================== */
+    const GALLERY_FOLDER = "photos/";
+    const TOTAL_IMAGES = 25;
+
+    const row1 = document.getElementById('portfolioRow1');
+    const row2 = document.getElementById('portfolioRow2');
+
+    function makeFrame(n) {
+      const div = document.createElement('div');
+      div.className = 'portfolio-frame';
+      div.dataset.index = n;
+      div.innerHTML =
+        '<img src="' + GALLERY_FOLDER + n + '.jpg" alt="Фото из портфолио MOMENTA — кадр ' + n + '" loading="lazy">' +
+        '<span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>' +
+        '<span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>' +
+        '<span class="portfolio-zoom">＋</span>';
+      div.querySelector('img').addEventListener('error', function () { div.classList.add('img-missing'); });
+      div.addEventListener('click', function () { openLightbox(n); });
+      return div;
+    }
+
+    function buildPortfolio() {
+      const half = Math.ceil(TOTAL_IMAGES / 2);
+      const firstHalf = Array.from({ length: half }, (_, i) => i + 1);
+      const secondHalf = Array.from({ length: TOTAL_IMAGES - half }, (_, i) => i + half + 1);
+      // Каждый набор дублируется дважды подряд — благодаря этому анимация
+      // "-50%" зацикливается без видимого шва.
+      [firstHalf, firstHalf].flat().forEach(n => row1.appendChild(makeFrame(n)));
+      [secondHalf, secondHalf].flat().forEach(n => row2.appendChild(makeFrame(n)));
+    }
+    buildPortfolio();
+
+    /* ---- Лайтбокс ---- */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCount = document.getElementById('lightboxCount');
+    let lightboxIndex = 1;
+
+    function updateLightbox() {
+      lightboxImg.src = GALLERY_FOLDER + lightboxIndex + '.jpg';
+      lightboxCount.textContent = lightboxIndex + ' / ' + TOTAL_IMAGES;
+    }
+    function openLightbox(n) {
+      lightboxIndex = n;
+      updateLightbox();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function showPrev() { lightboxIndex = (lightboxIndex === 1 ? TOTAL_IMAGES : lightboxIndex - 1); updateLightbox(); }
+    function showNext() { lightboxIndex = (lightboxIndex === TOTAL_IMAGES ? 1 : lightboxIndex + 1); updateLightbox(); }
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', function (e) { e.stopPropagation(); showPrev(); });
+    document.getElementById('lightboxNext').addEventListener('click', function (e) { e.stopPropagation(); showNext(); });
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+
+    /* =====================================================================
+       СВЕТОВОЕ ПЯТНО ЗА КУРСОРОМ — лёгкий фоновый эффект
+       Просто следит за мышью и двигает CSS-переменные --spot-x/--spot-y.
+       На тач-устройствах и при "уменьшить анимации" элемент скрыт через CSS.
+       ===================================================================== */
+    const cursorSpot = document.getElementById('cursorSpot');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (cursorSpot && !prefersReducedMotion) {
+      let spotTicking = false;
+      window.addEventListener('mousemove', function (e) {
+        if (spotTicking) return;
+        spotTicking = true;
+        requestAnimationFrame(function () {
+          const xPct = (e.clientX / window.innerWidth) * 100;
+          const yPct = (e.clientY / window.innerHeight) * 100;
+          cursorSpot.style.setProperty('--spot-x', xPct + '%');
+          cursorSpot.style.setProperty('--spot-y', yPct + '%');
+          spotTicking = false;
+        });
+      });
+    }
   </script>
 </body>
 
