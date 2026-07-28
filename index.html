@@ -8,7 +8,7 @@
 
     1. <head>            — SEO, шрифты, вся CSS-стилистика (переменные вверху)
     2. HEADER             — шапка сайта / меню
-    3. HERO               — первый экран
+    3. HERO               — первый экран  
     4. ABOUT              — блок "О нас"
     5. SERVICES           — направления съёмки
     6. PACKAGES           — три пакета услуг
@@ -440,6 +440,7 @@
         radial-gradient(120% 90% at 78% 15%, rgba(255, 255, 255, .10), transparent 55%),
         linear-gradient(155deg, #3a0f16 0%, #521219 32%, #2a0a0f 62%, #17070a 100%);
       box-shadow: var(--shadow-lg);
+      
     }
 
     /* Анимированный диагональный луч света, "гуляющий" по кадру */
@@ -1720,6 +1721,7 @@
            1) добавьте внутрь .frame тег <img src="ваше-фото.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
            2) уменьшите opacity фонового градиента через CSS, если фото и так тёмное -->
         <div class="frame grain reveal reveal-delay-2">
+          <img src="cover-main.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="frame-corner tl"></div>
           <div class="frame-corner tr"></div>
           <div class="frame-corner bl"></div>
@@ -2222,7 +2224,7 @@
       div.className = 'portfolio-frame';
       div.dataset.index = n;
       div.innerHTML =
-        '<img src="' + GALLERY_FOLDER + n + '.jpg" alt="Фото из портфолио MOMENTA — кадр ' + n + '" loading="lazy">' +
+        '<img src="' + GALLERY_FOLDER + n + '.webp" alt="Фото из портфолио MOMENTA — кадр ' + n + '" loading="lazy">' +
         '<span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>' +
         '<span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>' +
         '<span class="portfolio-zoom">＋</span>';
@@ -2249,7 +2251,7 @@
     let lightboxIndex = 1;
 
     function updateLightbox() {
-      lightboxImg.src = GALLERY_FOLDER + lightboxIndex + '.jpg';
+      lightboxImg.src = GALLERY_FOLDER + lightboxIndex + '.webp';
       lightboxCount.textContent = lightboxIndex + ' / ' + TOTAL_IMAGES;
     }
     function openLightbox(n) {
