@@ -1,5 +1,57 @@
-User-agent: *
+# =====================================================================
+#  robots.txt — фотостудия MOMENTA
+#  Разместить строго в корне сайта: https://www.momentaphoto.ru/robots.txt
+#  РЕДАКТИРУЙТЕ ЗДЕСЬ: домен, если основное зеркало без www.
+# =====================================================================
 
+User-agent: *
 Allow: /
+Allow: /photos/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Служебные и параметрические адреса — не нужны в индексе
+Disallow: /*?*utm_
+Disallow: /*?*yclid=
+Disallow: /*?*gclid=
+Disallow: /*?*from=
+Disallow: /*?*_openstat=
+Disallow: /*?*replytocom=
+Disallow: /cgi-bin/
+Disallow: /*.json$
+Disallow: /site.webmanifest
+
+# ---------------------------------------------------------------------
+# Яндекс. Clean-param склеивает адреса с метками в один — это
+# принципиально надёжнее, чем Disallow: страница остаётся доступной,
+# а весь накопленный вес переходит на канонический адрес.
+# Директива Host не указывается: Яндекс отказался от неё в 2018 году,
+# главное зеркало задаётся 301-редиректом и rel="canonical".
+# Crawl-delay также не указывается: Яндекс её больше не учитывает,
+# скорость обхода настраивается в Яндекс.Вебмастере.
+# ---------------------------------------------------------------------
+User-agent: Yandex
+Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&from&_openstat&gclid
+
+# ---------------------------------------------------------------------
+# Агрессивные SEO-краулеры: экономят трафик и нагрузку на хостинг.
+# На индексацию в Яндексе, Google и Bing никак не влияет.
+# ---------------------------------------------------------------------
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
 
 Sitemap: https://www.momentaphoto.ru/sitemap.xml
