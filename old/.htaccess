@@ -1,0 +1,116 @@
+# =====================================================================
+#  .htaccess — фотостудия MOMENTA (Apache 2.4+)
+#  Кладётся в корень сайта, рядом с index.html.
+#  Если хостинг на Nginx — эквивалентный конфиг лежит в конце файла
+#  SEO-audit-MOMENTA.md, Приложение Г.
+#  РЕДАКТИРУЙТЕ ЗДЕСЬ: домен, если основное зеркало без www.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+#  1. ОДНО ГЛАВНОЕ ЗЕРКАЛО (склейка дублей)
+#  Без этих правил один и тот же сайт доступен по четырём адресам:
+#  http://, https://, с www и без — для поисковой системы это четыре
+#  разных сайта с одинаковым контентом. Ссылочный вес размывается.
+# ---------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTP -> HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://www.momentaphoto.ru/$1 [R=301,L]
+
+  # без www -> с www
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^(.*)$ https://www.momentaphoto.ru/$1 [R=301,L]
+
+  # /index.html -> / (устраняет дубль главной страницы)
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
+
+  # приведение к единому слешу на конце для каталогов
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_URI} !(/$|\.)
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+# ---------------------------------------------------------------------
+#  2. СЖАТИЕ
+#  index.html весит ~120 КБ в исходном виде и ~25 КБ после Brotli.
+#  Это напрямую ускоряет FCP и LCP.
+# ---------------------------------------------------------------------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript application/javascript application/json application/ld+json image/svg+xml application/manifest+json
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/ld+json image/svg+xml application/manifest+json
+</IfModule>
+
+# ---------------------------------------------------------------------
+#  3. КЭШИРОВАНИЕ
+#  HTML не кэшируем надолго (правки должны доезжать до пользователя),
+#  статику — на год: повторные визиты становятся мгновенными.
+# ---------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 0 seconds"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/avif                "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType image/x-icon              "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType application/manifest+json "access plus 1 week"
+  ExpiresByType application/xml           "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|webp|avif|jpg|jpeg|png|svg|ico|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # -------------------------------------------------------------------
+  #  4. ЗАГОЛОВКИ БЕЗОПАСНОСТИ
+  #  Прямыми факторами ранжирования они не являются, но влияют на SEO
+  #  косвенно: снижают риск попадания в Safe Browsing и в предупреждения
+  #  Яндекса о небезопасном сайте, что мгновенно обваливает трафик.
+  # -------------------------------------------------------------------
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+
+  # CSP. ВНИМАНИЕ: на сайте есть инлайновые <style> и <script>, поэтому
+  # 'unsafe-inline' пока обязателен. После выноса стилей и скриптов
+  # в отдельные файлы (Фаза 6/10) замените его на nonce или хэши.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://mc.yandex.ru; connect-src 'self' https://api.web3forms.com https://mc.yandex.ru; frame-src https://mc.yandex.ru; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'"
+</IfModule>
+
+# ---------------------------------------------------------------------
+#  5. ПРАВИЛЬНЫЕ MIME-ТИПЫ
+#  Без них WebP/AVIF/webmanifest могут отдаваться как text/plain,
+#  и браузер откажется их обрабатывать.
+# ---------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType image/webp                  .webp
+  AddType image/avif                  .avif
+  AddType application/manifest+json   .webmanifest
+  AddType application/ld+json         .jsonld
+  AddType font/woff2                  .woff2
+</IfModule>
+
+# ---------------------------------------------------------------------
+#  6. КОДИРОВКА И СТРАНИЦА 404
+#  РЕДАКТИРУЙТЕ ЗДЕСЬ: создайте 404.html — сейчас при опечатке в адресе
+#  пользователь видит системную страницу сервера без навигации на сайт.
+# ---------------------------------------------------------------------
+AddDefaultCharset UTF-8
+ErrorDocument 404 /404.html

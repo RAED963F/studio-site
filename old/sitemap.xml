@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap.xml — фотостудия MOMENTA
+  Разместить в корне: https://www.momentaphoto.ru/sitemap.xml
+  РЕДАКТИРУЙТЕ ЗДЕСЬ: дату lastmod при каждом значимом обновлении страницы
+  и список изображений, когда портфолио изменится.
+  Расширение image: даёт Яндекс.Картинкам и Google Images прямой список
+  фотографий с подписями — без него 25 кадров портфолио индексируются
+  медленнее и без контекста.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://www.momentaphoto.ru/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/1.webp</image:loc>
+      <image:title>Портрет — работа №1 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №1 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/2.webp</image:loc>
+      <image:title>Love Story — работа №2 фотостудии MOMENTA</image:title>
+      <image:caption>Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №2 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/3.webp</image:loc>
+      <image:title>День рождения — работа №3 фотостудии MOMENTA</image:title>
+      <image:caption>Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №3 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/4.webp</image:loc>
+      <image:title>Портрет — работа №4 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №4 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/5.webp</image:loc>
+      <image:title>Love Story — работа №5 фотостудии MOMENTA</image:title>
+      <image:caption>Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №5 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/6.webp</image:loc>
+      <image:title>День рождения — работа №6 фотостудии MOMENTA</image:title>
+      <image:caption>Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №6 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/7.webp</image:loc>
+      <image:title>Портрет — работа №7 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №7 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/8.webp</image:loc>
+      <image:title>Love Story — работа №8 фотостудии MOMENTA</image:title>
+      <image:caption>Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №8 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/9.webp</image:loc>
+      <image:title>День рождения — работа №9 фотостудии MOMENTA</image:title>
+      <image:caption>Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №9 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/10.webp</image:loc>
+      <image:title>Портрет — работа №10 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №10 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/11.webp</image:loc>
+      <image:title>Love Story — работа №11 фотостудии MOMENTA</image:title>
+      <image:caption>Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №11 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/12.webp</image:loc>
+      <image:title>День рождения — работа №12 фотостудии MOMENTA</image:title>
+      <image:caption>Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №12 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/13.webp</image:loc>
+      <image:title>Портрет — работа №13 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №13 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/14.webp</image:loc>
+      <image:title>Love Story — работа №14 фотостудии MOMENTA</image:title>
+      <image:caption>Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №14 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/15.webp</image:loc>
+      <image:title>День рождения — работа №15 фотостудии MOMENTA</image:title>
+      <image:caption>Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №15 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/16.webp</image:loc>
+      <image:title>Портрет — работа №16 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №16 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/17.webp</image:loc>
+      <image:title>Love Story — работа №17 фотостудии MOMENTA</image:title>
+      <image:caption>Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №17 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/18.webp</image:loc>
+      <image:title>День рождения — работа №18 фотостудии MOMENTA</image:title>
+      <image:caption>Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №18 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/19.webp</image:loc>
+      <image:title>Портрет — работа №19 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №19 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/20.webp</image:loc>
+      <image:title>Love Story — работа №20 фотостудии MOMENTA</image:title>
+      <image:caption>Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №20 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/21.webp</image:loc>
+      <image:title>День рождения — работа №21 фотостудии MOMENTA</image:title>
+      <image:caption>Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №21 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/22.webp</image:loc>
+      <image:title>Портрет — работа №22 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №22 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/23.webp</image:loc>
+      <image:title>Love Story — работа №23 фотостудии MOMENTA</image:title>
+      <image:caption>Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №23 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/24.webp</image:loc>
+      <image:title>День рождения — работа №24 фотостудии MOMENTA</image:title>
+      <image:caption>Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №24 из портфолио</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.momentaphoto.ru/photos/25.webp</image:loc>
+      <image:title>Портрет — работа №25 фотостудии MOMENTA</image:title>
+      <image:caption>Портретная съёмка в студии MOMENTA, Москва — работа №25 из портфолио</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Страницы ниже нужно создать (см. Фазу 4 аудита). До момента публикации
+       держите их закомментированными: ссылки на 404 в sitemap.xml — ошибка
+       в Яндекс.Вебмастере и Google Search Console.
+  <url>
+    <loc>https://www.momentaphoto.ru/privacy/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://www.momentaphoto.ru/portretnaya-fotosessiya/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.momentaphoto.ru/love-story/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.momentaphoto.ru/fotosessiya-den-rozhdeniya/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  -->
+
+</urlset>
