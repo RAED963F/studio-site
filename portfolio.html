@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Портфолио фотостудии MOMENTA — работы по направлениям, Москва</title>
+  <meta name="description"
+    content="Портфолио фотостудии MOMENTA: портрет, Love Story, дни рождения, выпускные, семейные и деловые съёмки в Москве. Работы по альбомам — выберите направление.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="author" content="Фотостудия MOMENTA">
+
+  <!-- Канонический адрес этой страницы. РЕДАКТИРУЙТЕ ЗДЕСЬ вместе с доменом
+     на остальных страницах, если основное зеркало без www. -->
+  <link rel="canonical" href="https://www.momentaphoto.ru/portfolio.html">
+
+  <meta name="theme-color" content="#FAF7F1">
+  <meta name="color-scheme" content="light">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Фотостудия MOMENTA">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.momentaphoto.ru/portfolio.html">
+  <meta property="og:title" content="Портфолио фотостудии MOMENTA — работы по направлениям">
+  <meta property="og:description"
+    content="Портрет, Love Story, праздники, семья и бизнес — работы фотостудии MOMENTA в Москве по альбомам.">
+  <meta property="og:image" content="https://www.momentaphoto.ru/cover-main.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Jost:wght@300;400;500;600&amp;display=swap"
+    rel="stylesheet">
+
+  <!-- Структурированные данные: страница + хлебные крошки + галерея изображений.
+     Список изображений формируется в разметке ниже; здесь описан контекст. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.momentaphoto.ru/portfolio.html#webpage",
+        "url": "https://www.momentaphoto.ru/portfolio.html",
+        "name": "Портфолио фотостудии MOMENTA",
+        "description": "Работы фотостудии MOMENTA по направлениям: портрет, Love Story, праздники, семья, бизнес.",
+        "inLanguage": "ru-RU",
+        "isPartOf": { "@id": "https://www.momentaphoto.ru/#website" },
+        "about": { "@id": "https://www.momentaphoto.ru/#organization" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://www.momentaphoto.ru/" },
+          { "@type": "ListItem", "position": 2, "name": "Портфолио", "item": "https://www.momentaphoto.ru/portfolio.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Дизайн-токены полностью совпадают с главной страницей MOMENTA —
+       та же палитра, шрифты, тени, тайминги. Это та же студия, не новый сайт. */
+    :root {
+      --bg: #FAF7F1;
+      --bg-soft: #F1E9DD;
+      --ink: #221D1A;
+      --ink-soft: #786C5D;
+      --wine: #7B1F2B;
+      --wine-dark: #521219;
+      --gold: #AD8952;
+      --gold-light: #D9BD8B;
+      --line: #E7DCC9;
+      --card: #FFFFFF;
+      --shadow: 0 20px 50px -25px rgba(34, 29, 26, 0.35);
+      --shadow-lg: 0 30px 70px -20px rgba(82, 18, 25, 0.35);
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--wine);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--wine);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 999;
+      background: var(--wine);
+      color: #fff;
+      padding: 12px 18px;
+      font-size: 14px;
+    }
+
+    .skip-link:focus {
+      left: 0;
+    }
+
+    /* ---- Шапка (визуально как на главной) ---- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: rgba(250, 247, 241, .86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color .3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--wine);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 34px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1.5px solid var(--ink);
+      cursor: pointer;
+      background: rgba(34, 29, 26, 0.045);
+      color: var(--ink);
+      transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .2s ease, box-shadow .3s ease;
+    }
+
+    .btn:hover {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .btn-primary {
+      background: var(--wine);
+      border-color: var(--wine);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--wine-dark);
+      border-color: var(--wine-dark);
+    }
+
+    .btn-ghost {
+      background: rgba(34, 29, 26, 0.045);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .nav-back {
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color .3s ease;
+    }
+
+    .nav-back:hover {
+      color: var(--wine);
+    }
+
+    /* ---- Заголовок страницы ---- */
+    .page-head {
+      padding: clamp(50px, 8vw, 92px) 0 clamp(30px, 5vw, 48px);
+      text-align: center;
+    }
+
+    .page-head h1 {
+      font-size: clamp(34px, 6vw, 58px);
+      margin: 16px 0;
+    }
+
+    .page-head p {
+      max-width: 560px;
+      margin: 0 auto;
+      color: var(--ink-soft);
+      font-size: 16px;
+    }
+
+    .breadcrumbs {
+      font-size: 12.5px;
+      letter-spacing: .06em;
+      color: var(--ink-soft);
+      margin-bottom: 26px;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--wine);
+    }
+
+    /* ---- Фильтр альбомов ---- */
+    .album-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 8px auto 0;
+    }
+
+    .af-btn {
+      font-family: 'Jost', sans-serif;
+      font-size: 12.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-soft);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      padding: 9px 18px;
+      cursor: pointer;
+      transition: color .3s ease, border-color .3s ease, background .3s ease;
+    }
+
+    .af-btn:hover {
+      color: var(--wine);
+      border-color: var(--wine);
+    }
+
+    .af-btn.active {
+      color: #fff;
+      background: var(--wine);
+      border-color: var(--wine);
+    }
+
+    /* ---- Обложки альбомов ---- */
+    .albums {
+      padding: clamp(30px, 5vw, 56px) 0 clamp(50px, 8vw, 90px);
+    }
+
+    .albums-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .album-card {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      aspect-ratio: 4/5;
+      cursor: pointer;
+    }
+
+    .album-cover {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .8s var(--ease);
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+    .album-card:hover .album-cover {
+      transform: scale(1.05);
+    }
+
+    /* Оформленный «пустой» вид обложки, пока фото не загружено (или файла нет).
+       Раньше здесь был тревожно-красный градиент, читавшийся как «сломано».
+       Теперь это тёплый кремовый фон с монограммой — выглядит намеренно. */
+    .album-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(120% 80% at 50% 30%, #fff, transparent 70%),
+        linear-gradient(150deg, #f3ece0, #e7dcc9);
+    }
+
+    .album-ph::after {
+      content: "MOMENTA";
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: .3em;
+      color: rgba(123, 31, 43, .32);
+    }
+
+    .album-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+      background: linear-gradient(to top, rgba(20, 12, 12, .78) 0%, rgba(20, 12, 12, .12) 45%, transparent 75%);
+      color: #fff;
+    }
+
+    .album-index {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light);
+      font-size: 13px;
+      letter-spacing: .12em;
+      margin-bottom: 8px;
+    }
+
+    .album-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .album-sub {
+      font-size: 12.5px;
+      letter-spacing: .05em;
+      color: rgba(255, 255, 255, .78);
+      margin-top: 4px;
+    }
+
+    .album-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #fff;
+      opacity: .9;
+      transition: gap .3s var(--ease);
+    }
+
+    .album-card:hover .album-open {
+      gap: 14px;
+    }
+
+    .album-count {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(250, 247, 241, .9);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: 5px 11px;
+      border-radius: 40px;
+    }
+
+    /* ---- Открытый альбом (сетка кадров) ---- */
+    .album-view {
+      display: none;
+      padding: clamp(20px, 4vw, 40px) 0 clamp(50px, 8vw, 90px);
+    }
+
+    .album-view.active {
+      display: block;
+    }
+
+    .album-view-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .album-view-desc {
+      color: var(--ink-soft);
+      font-size: 15px;
+      margin-top: 10px;
+      max-width: 460px;
+    }
+
+    .album-view-count {
+      font-size: 12.5px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 8px;
+    }
+
+    .album-view-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .album-view-actions .btn {
+      padding: 13px 26px;
+    }
+
+    .album-view-head h2 {
+      font-size: clamp(28px, 4.5vw, 42px);
+    }
+
+    .album-view-head .eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .back-to-albums {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--wine);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: gap .3s var(--ease);
+    }
+
+    .back-to-albums:hover {
+      gap: 13px;
+    }
+
+    /* Мозаичная сетка кадров. Соотношение сторон задаётся контейнером —
+       нет сдвига макета (CLS) при загрузке картинок. */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-cell {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      cursor: zoom-in;
+    }
+
+    .gallery-cell img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .8s var(--ease);
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+  .album-ph,
+.gallery-cell .cell-ph {
+    z-index: 0;
+}
+
+.album-overlay {
+    z-index: 2;
+}
+
+    /* Мягкое появление применяется ТОЛЬКО пока картинка ещё грузится.
+       Как только сработал onload (или картинка была в кэше) — класс
+       снимается и изображение остаётся видимым навсегда. */
+    .gallery-cell img.is-loading {
+      opacity: 0;
+    }
+
+    .gallery-cell img.is-ready {
+      animation: cellFade .5s ease both;
+    }
+
+    @keyframes cellFade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .gallery-cell:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-cell .cell-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(150deg, #f3ece0, #e7dcc9);
+    }
+
+    .gallery-cell .cell-ph::after {
+      content: "MOMENTA";
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: .28em;
+      color: rgba(123, 31, 43, .28);
+    }
+
+    .load-more-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .load-sentinel {
+      height: 1px;
+    }
+
+    /* ---- Финальный CTA ---- */
+    .final-cta {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      padding: clamp(56px, 9vw, 100px) 0;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(28px, 5vw, 44px);
+      margin: 14px 0 12px;
+    }
+
+    .final-cta p {
+      color: var(--ink-soft);
+      max-width: 480px;
+      margin: 0 auto 30px;
+    }
+
+    .final-cta-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ---- Подвал (компактный) ---- */
+    footer {
+      background: var(--wine-dark);
+      color: rgba(255, 255, 255, .8);
+      padding: 40px 0;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer .logo {
+      color: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      letter-spacing: .06em;
+      color: rgba(255, 255, 255, .8);
+      transition: color .3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* ---- Лайтбокс ---- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(18, 12, 12, .95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      touch-action: pan-y;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lb-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 86vh;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .7);
+    }
+
+    .lb-watermark {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: .3em;
+      color: rgba(255, 255, 255, .5);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+      pointer-events: none;
+    }
+
+    .lb-btn {
+      position: absolute;
+      background: rgba(250, 247, 241, .1);
+      border: 1px solid rgba(255, 255, 255, .25);
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .3s ease;
+    }
+
+    .lb-btn:hover {
+      background: rgba(250, 247, 241, .22);
+    }
+
+    .lb-close {
+      top: 22px;
+      right: 22px;
+      font-size: 20px;
+    }
+
+    .lb-prev {
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lb-next {
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lb-count {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, .75);
+      font-size: 13px;
+      letter-spacing: .1em;
+    }
+
+    /* ---- Адаптивность ---- */
+    @media (max-width:900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .albums-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (max-width:560px) {
+      .albums-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .lb-prev {
+        left: 10px;
+      }
+
+      .lb-next {
+        right: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .album-cover,
+      .gallery-cell img {
+        transition: opacity .3s ease;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Перейти к содержимому</a>
+
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="logo" aria-label="MOMENTA — на главную">MOMENTA</a>
+      <nav class="nav-links" aria-label="Основная навигация">
+        <a href="index.html#about">О студии</a>
+        <a href="index.html#services">Направления</a>
+        <a href="portfolio.html" class="active">Портфолио</a>
+        <a href="index.html#packages">Пакеты</a>
+        <a href="index.html#booking">Контакты</a>
+      </nav>
+      <a href="index.html#booking" class="nav-back">Записаться →</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a> · Портфолио
+        </nav>
+        <p class="eyebrow" style="justify-content:center;">Портфолио MOMENTA</p>
+        <h1>Работы по направлениям</h1>
+        <p>Выберите альбом — портрет, Love Story, праздники, семья или бизнес. Каждый кадр открывается крупнее.</p>
+      </div>
+    </div>
+
+    <!-- ===== ОБЛОЖКИ АЛЬБОМОВ ===== -->
+    <section class="albums" id="albumsSection" aria-label="Альбомы портфолио">
+      <div class="container">
+        <div class="album-filters" id="albumFilters" role="group" aria-label="Быстрый переход к альбому"></div>
+      </div>
+      <div class="container" style="margin-top:34px;">
+        <div class="albums-grid" id="albumsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== ОТКРЫТЫЙ АЛЬБОМ ===== -->
+    <section class="album-view" id="albumView" aria-label="Просмотр альбома">
+      <div class="container">
+        <div class="album-view-head">
+          <div class="album-view-info">
+            <p class="eyebrow" id="albumViewEyebrow">Альбом</p>
+            <h2 id="albumViewTitle">—</h2>
+            <p class="album-view-desc" id="albumViewDesc"></p>
+            <p class="album-view-count" id="albumViewCount"></p>
+          </div>
+          <div class="album-view-actions">
+            <a href="index.html#booking" class="btn btn-primary">Записаться на съёмку</a>
+            <button class="back-to-albums" id="backToAlbums" type="button">← Ко всем альбомам</button>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
+
+        <!-- Точка для IntersectionObserver: как только она появляется в поле
+           зрения, подгружается следующая порция кадров. -->
+        <div class="load-sentinel" id="loadSentinel" aria-hidden="true"></div>
+        <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+          <button class="btn btn-ghost" id="loadMoreBtn" type="button">Показать ещё</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ФИНАЛЬНЫЙ CTA ===== -->
+    <section class="final-cta">
+      <div class="container">
+        <p class="eyebrow" style="justify-content:center;">Понравились работы?</p>
+        <h2>Давайте снимем вашу историю</h2>
+        <p>Свободные даты быстро разбирают. Оставьте заявку — подберём формат и подтвердим удобное время.</p>
+        <div class="final-cta-actions">
+          <a href="index.html#booking" class="btn btn-primary">Забронировать съёмку</a>
+          <a href="https://t.me/momentaphoto" target="_blank" rel="noopener" class="btn btn-ghost">Написать в
+            Telegram</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <a href="index.html" class="logo">MOMENTA</a>
+      <div class="footer-links">
+        <a href="index.html#services">Направления</a>
+        <a href="portfolio.html">Портфолио</a>
+        <a href="index.html#packages">Пакеты</a>
+        <a href="index.html#booking">Запись</a>
+        <a href="tel:+79891156946">+7 (989) 115-69-46</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== ЛАЙТБОКС ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии"
+    aria-hidden="true">
+    <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Закрыть">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Предыдущее фото">‹</button>
+    <div class="lb-stage">
+      <img id="lbImg" alt="" decoding="async" draggable="false">
+      <!-- Ненавязчивый водяной знак поверх крупного фото. Отключить —
+         удалить этот элемент или скрыть через .lb-watermark{display:none}. -->
+      <span class="lb-watermark" aria-hidden="true">MOMENTA</span>
+    </div>
+    <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Следующее фото">›</button>
+    <div class="lb-count" id="lbCount" aria-live="polite"></div>
+  </div>
+
+  <script>
+    /* =====================================================================
+       ДАННЫЕ ПОРТФОЛИО — единственное место, которое нужно редактировать.
+       Архитектура полностью data-driven: чтобы добавить фото, увеличьте
+       "count" у альбома (или пропишите массив "files"). Разметка не меняется
+       — сетка, ленивая подгрузка и лайтбокс строятся из этих данных.
+
+       Как это масштабируется на СОТНИ фото без тормозов:
+       • В DOM одновременно рендерится только первая порция (BATCH) кадров.
+       • Остальные подгружаются порциями, когда пользователь долистывает вниз
+         (IntersectionObserver) — либо по кнопке «Показать ещё».
+       • У каждой картинки loading="lazy" + decoding="async" + заданное
+         соотношение сторон → браузер грузит только видимое и не «прыгает».
+       • Полноразмерная версия качается ТОЛЬКО при открытии лайтбокса.
+
+       СТРУКТУРА ФАЙЛОВ (рекомендуется, см. бриф):
+         images/portfolio/<slug>/thumb/<n>.webp   — для сетки (≈600px)
+         images/portfolio/<slug>/large/<n>.webp   — для лайтбокса (≈1600px)
+       Функции thumbSrc()/largeSrc() ниже собирают пути по этому шаблону.
+       Если файла нет — ячейка покажет аккуратный плейсхолдер, сайт не ломается.
+       ===================================================================== */
+    const ALBUMS = [
+      { slug: 'portrait', index: '01', title: 'Портрет', sub: 'Portrait', count: 41, desc: 'Индивидуальная съёмка с вниманием к образу, свету и деталям.' },
+      { slug: 'lovestory', index: '02', title: 'Love Story', sub: 'Love Story', count: 49, desc: 'Съёмка для двоих — естественные эмоции и история ваших отношений.' },
+      { slug: 'birthday', index: '03', title: 'День рождения', sub: 'Birthday', count: 24, desc: 'Атмосфера праздника, люди и детали, которые хочется сохранить.' },
+      { slug: 'graduation', index: '04', title: 'Выпускная', sub: 'Graduation', count: 14, desc: 'Кадры выпускного — от торжества до личных портретов.' },
+      { slug: 'family', index: '05', title: 'Семейная', sub: 'Family', count: 17, desc: 'Тёплые семейные кадры в студии и на природе.' },
+      { slug: 'studio', index: '06', title: 'Студия', sub: 'Studio', count: 37, desc: 'Студийный свет и чистый фон для любого жанра.' },
+    ];
+
+    // Сколько кадров подгружается за одну порцию.
+    const BATCH = 9;
+
+    // Пути к изображениям. РЕДАКТИРУЙТЕ ЗДЕСЬ при другой структуре папок.
+    const thumbSrc = (slug, n) => `images/portfolio/${slug}/thumb/${n}.webp`;
+    const largeSrc = (slug, n) => `images/portfolio/${slug}/large/${n}.webp`;
+    // Обложка альбома — первый кадр в thumb (или отдельный cover.webp, если заведёте).
+    const coverSrc = (slug) => `images/portfolio/${slug}/thumb/1.webp`;
+
+    const altText = (album, n) =>
+      `${album.title} — фотосъёмка MOMENTA в Москве, работа ${n} из альбома «${album.title}»`;
+
+    /* ---------- Рендер обложек альбомов ---------- */
+    const albumsGrid = document.getElementById('albumsGrid');
+    const albumFilters = document.getElementById('albumFilters');
+
+    ALBUMS.forEach(album => {
+      // карточка-обложка
+      const card = document.createElement('a');
+      card.className = 'album-card';
+      card.href = `#${album.slug}`;
+      card.setAttribute('aria-label', `Открыть альбом «${album.title}» — ${album.count} фото`);
+      card.innerHTML = `
+        <span class="album-ph"></span>
+        <img class="album-cover" src="${coverSrc(album.slug)}" alt="Обложка альбома «${album.title}» — MOMENTA"
+             loading="lazy" decoding="async" width="800" height="1000" draggable="false"
+             onerror="this.style.display='none'">
+        <span class="album-count">${album.count} фото</span>
+        <span class="album-overlay">
+          <span class="album-index">${album.index}</span>
+          <span class="album-title">${album.title}</span>
+          <span class="album-sub">${album.sub}</span>
+          <span class="album-open">Смотреть альбом →</span>
+        </span>`;
+      card.addEventListener('click', e => { e.preventDefault(); openAlbum(album.slug); });
+      albumsGrid.appendChild(card);
+
+      // кнопка быстрого фильтра
+      const fb = document.createElement('button');
+      fb.type = 'button';
+      fb.className = 'af-btn';
+      fb.textContent = album.title;
+      fb.dataset.slug = album.slug;
+      fb.addEventListener('click', () => openAlbum(album.slug));
+      albumFilters.appendChild(fb);
+    });
+
+    /* ---------- Состояние открытого альбома ---------- */
+    const albumsSection = document.getElementById('albumsSection');
+    const albumView = document.getElementById('albumView');
+    const galleryGrid = document.getElementById('galleryGrid');
+    const viewTitle = document.getElementById('albumViewTitle');
+    const viewEyebrow = document.getElementById('albumViewEyebrow');
+    const loadMoreWrap = document.getElementById('loadMoreWrap');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const sentinel = document.getElementById('loadSentinel');
+
+    let current = null;   // текущий альбом
+    let shown = 0;        // сколько кадров уже отрисовано
+    let io = null;        // IntersectionObserver для картинок
+    let sentinelIO = null;// observer для подгрузки порций
+
+    // Ленивое проявление: картинка грузится нативно (loading=lazy), а как
+    // только загрузилась — плавно проявляется классом .loaded.
+    function makeCell(album, n) {
+      const cell = document.createElement('figure');
+      cell.className = 'gallery-cell';
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('tabindex', '0');
+      cell.dataset.n = n;
+      cell.setAttribute('aria-label', `Открыть фото ${n} крупнее`);
+
+      const ph = document.createElement('span');
+      ph.className = 'cell-ph';
+
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.width = 800; img.height = 1000;
+      img.alt = altText(album, n);
+      img.draggable = false;                 // защита: запрет перетаскивания
+      img.classList.add('is-loading');       // мягкое появление, пока грузится
+
+      // Снимаем "загрузочное" состояние надёжно, без гонки событий:
+      // 1) обработчик load  2) обработчик error  3) немедленная проверка
+      //    img.complete на случай, если файл уже в кэше и load не сработает.
+      function reveal() {
+        img.classList.remove('is-loading');
+        img.classList.add('is-ready');
+      }
+      function fail() {
+        // файла нет — прячем <img>, остаётся оформленный плейсхолдер с монограммой
+        img.classList.remove('is-loading');
+        img.style.display = 'none';
+      }
+      img.addEventListener('load', reveal);
+      img.addEventListener('error', fail);
+      img.src = thumbSrc(album.slug, n);
+      // если картинка уже закэширована — load мог сработать до навешивания
+      if (img.complete) { img.naturalWidth > 0 ? reveal() : fail(); }
+
+      cell.appendChild(ph);
+      cell.appendChild(img);
+      cell.addEventListener('click', () => openLightbox(n));
+      cell.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(n); }
+      });
+      return cell;
+    }
+
+    function renderBatch() {
+      if (!current) return;
+      const end = Math.min(shown + BATCH, current.count);
+      const frag = document.createDocumentFragment();
+      for (let n = shown + 1; n <= end; n++) frag.appendChild(makeCell(current, n));
+      galleryGrid.appendChild(frag);
+      shown = end;
+      // управление кнопкой/наблюдателем
+      const done = shown >= current.count;
+      loadMoreWrap.style.display = done ? 'none' : 'flex';
+      if (done && sentinelIO) sentinelIO.unobserve(sentinel);
+    }
+
+    const viewDesc = document.getElementById('albumViewDesc');
+    const viewCount = document.getElementById('albumViewCount');
+
+    function plural(n) {
+      const a = n % 10, b = n % 100;
+      if (a === 1 && b !== 11) return 'фотография';
+      if (a >= 2 && a <= 4 && (b < 10 || b >= 20)) return 'фотографии';
+      return 'фотографий';
+    }
+
+    // push=true → добавляем запись в историю (клик пользователя);
+    // push=false → пришли по кнопке «назад» браузера, историю не трогаем.
+    function openAlbum(slug, push = true) {
+      const album = ALBUMS.find(a => a.slug === slug);
+      if (!album) return;
+      current = album;
+      galleryGrid.innerHTML = '';
+      shown = 0;
+      viewTitle.textContent = album.title;
+      viewEyebrow.textContent = `Альбом · ${album.index}`;
+      viewDesc.textContent = album.desc || '';
+      viewCount.textContent = `${album.count} ${plural(album.count)}`;
+      document.querySelectorAll('.af-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.slug === slug));
+
+      albumsSection.style.display = 'none';
+      albumView.classList.add('active');
+      if (push && location.hash !== `#${slug}`) {
+        history.pushState({ slug }, '', `#${slug}`);
+      }
+      window.scrollTo({ top: 0, behavior: 'auto' });
+
+      renderBatch();
+
+      if (sentinelIO) sentinelIO.disconnect();
+      sentinelIO = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) renderBatch();
+      }, { rootMargin: '600px 0px' });
+      sentinelIO.observe(sentinel);
+    }
+
+    function showAlbumList() {
+      albumView.classList.remove('active');
+      albumsSection.style.display = '';
+      current = null;
+      if (sentinelIO) sentinelIO.disconnect();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+
+    // Кнопка «Ко всем альбомам»: если в истории есть куда вернуться —
+    // используем настоящий back (сохраняет позицию прокрутки списка),
+    // иначе просто показываем список и чистим hash.
+    function backToAlbums() {
+      if (location.hash) history.back();
+      else showAlbumList();
+    }
+
+    document.getElementById('backToAlbums').addEventListener('click', backToAlbums);
+    loadMoreBtn.addEventListener('click', renderBatch);
+
+    // Единый источник правды — адресная строка. Реагируем на любые изменения
+    // hash (кнопки назад/вперёд браузера, переход по ссылке из услуг).
+    function syncFromHash() {
+      const slug = location.hash.replace('#', '');
+      if (slug && ALBUMS.some(a => a.slug === slug)) openAlbum(slug, false);
+      else showAlbumList();
+    }
+    window.addEventListener('popstate', syncFromHash);
+
+    /* ---------- Лайтбокс ---------- */
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCount = document.getElementById('lbCount');
+    let lbIndex = 1;
+    let lastFocus = null;
+
+    function preload(src) { const i = new Image(); i.src = src; }
+
+    function showLb() {
+      if (!current) return;
+      lbImg.src = largeSrc(current.slug, lbIndex);
+      lbImg.alt = altText(current, lbIndex);
+      lbCount.textContent = `${lbIndex} / ${current.count}`;
+      // предзагружаем ТОЛЬКО соседей — не весь альбом
+      if (lbIndex < current.count) preload(largeSrc(current.slug, lbIndex + 1));
+      if (lbIndex > 1) preload(largeSrc(current.slug, lbIndex - 1));
+    }
+
+    function openLightbox(n) {
+      lastFocus = document.activeElement;
+      lbIndex = n;
+      showLb();
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('lbClose').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    function nextLb() { if (current) { lbIndex = lbIndex % current.count + 1; showLb(); } }
+    function prevLb() { if (current) { lbIndex = (lbIndex - 2 + current.count) % current.count + 1; showLb(); } }
+
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbNext').addEventListener('click', nextLb);
+    document.getElementById('lbPrev').addEventListener('click', prevLb);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowRight') nextLb();
+      else if (e.key === 'ArrowLeft') prevLb();
+    });
+
+    // Свайпы на мобильном
+    let touchX = null;
+    lightbox.addEventListener('touchstart', e => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 45) { dx < 0 ? nextLb() : prevLb(); }
+      touchX = null;
+    }, { passive: true });
+
+    /* ---------- Практичная защита фотографий ----------
+       Полностью запретить сохранение/скриншот на сайте нельзя (это честно),
+       но мы усложняем «случайное» скачивание: запрещаем контекстное меню и
+       перетаскивание на самих изображениях портфолио. Остальная страница
+       (текст, ссылки, ПКМ вне фото) работает как обычно — доступность и
+       прокрутка не страдают. Полноразмерные файлы не лежат в HTML, а
+       подставляются в лайтбокс только по запросу. */
+    function isProtectedImg(el) {
+      return el && el.tagName === 'IMG' &&
+        (el.classList.contains('album-cover') ||
+          el.closest('.gallery-cell') || el.id === 'lbImg');
+    }
+    document.addEventListener('contextmenu', e => {
+      if (isProtectedImg(e.target)) e.preventDefault();
+    });
+    document.addEventListener('dragstart', e => {
+      if (isProtectedImg(e.target)) e.preventDefault();
+    });
+
+    /* ---------- Первичная синхронизация ----------
+       Если пришли по прямой ссылке из услуг (portfolio.html#portrait) —
+       открываем нужный альбом. replaceState фиксирует стартовую точку,
+       чтобы кнопка «назад» вела на список альбомов, а не уводила со страницы. */
+    (function initFromHash() {
+      const slug = location.hash.replace('#', '');
+      if (slug && ALBUMS.some(a => a.slug === slug)) {
+        history.replaceState({ slug }, '', `#${slug}`);
+        openAlbum(slug, false);
+      }
+    })();
+
+    /* ---------- Yandex.Metrika: цель "открыл альбом" (не обязательна) ---------- */
+    // Если на главной подключён счётчик, здесь можно фиксировать интерес к жанрам.
+    // РЕДАКТИРУЙТЕ ЗДЕСЬ: раскомментируйте и создайте цель в Метрике при желании.
+    // function trackAlbum(slug){ if (typeof ym==='function') ym(111249109,'reachGoal','ALBUM_'+slug.toUpperCase()); }
+  </script>
+</body>
+
+</html>

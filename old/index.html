@@ -147,19 +147,18 @@
         "paymentAccepted": "Наличные, банковская карта, перевод",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "1-й Смоленский пер., 5, стр. 1",
+          "streetAddress": "УКАЖИТЕ УЛИЦУ И ДОМ",
           "addressLocality": "Москва",
           "addressRegion": "Москва",
-          "postalCode": "121099",
+          "postalCode": "УКАЖИТЕ ИНДЕКС",
           "addressCountry": "RU"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 55.746892,
-          "longitude": 37.579996
-           
+          "latitude": 55.755864,
+          "longitude": 37.617698
         },
-        "hasMap": "https://yandex.ru/maps/-/CTCfZ23d",
+        "hasMap": "https://yandex.ru/maps/?text=МОМЕНТА%20фотостудия%20Москва",
         "areaServed": [
           { "@type": "City", "name": "Москва" },
           { "@type": "AdministrativeArea", "name": "Московская область" }
@@ -183,8 +182,8 @@
           }
         ],
         "sameAs": [
-          "https://vk.com/750079138",
-          "https://t.me/raed_photo"
+          "https://vk.com/ВАШ_АККАУНТ",
+          "https://t.me/ВАШ_АККАУНТ"
         ],
         "knowsAbout": [
           "портретная фотосессия",
@@ -272,6 +271,61 @@
         "isPartOf": { "@id": "https://www.momentaphoto.ru/#website" },
         "about": { "@id": "https://www.momentaphoto.ru/#organization" },
         "primaryImageOfPage": "https://www.momentaphoto.ru/cover-main.jpg"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.momentaphoto.ru/#faq",
+        "isPartOf": { "@id": "https://www.momentaphoto.ru/#webpage" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Через сколько будут готовы фотографии?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Готовую обработанную серию отдаём в течение 7–14 дней в зависимости от пакета и загрузки. Несколько превью-кадров можем прислать раньше."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Нужна ли предоплата?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Дату закрепляем небольшой предоплатой — так время резервируется именно за вами. Остальную сумму оплачиваете в день съёмки."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Можно ли перенести съёмку?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да, дату можно перенести — достаточно предупредить заранее, и мы подберём новое удобное время без потери предоплаты."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Помогаете ли с позированием?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Обязательно. Показываем позы и ракурсы прямо на съёмке, подсказываем, как держаться — кадры получаются живыми даже у тех, кто никогда не снимался."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Снимаете за пределами Москвы?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да, снимаем по всей Москве и в области. Выезд за город — дополнительная услуга, оплачивается отдельно, локацию согласуем заранее."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Сколько обработанных фотографий я получу?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "От 10 кадров в пакете Silver до 30 в Premium. Во всех пакетах вы дополнительно получаете весь исходный материал целиком."
+            }
+          }
+        ]
       }
     ]
   }
@@ -284,14 +338,14 @@
 
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111249109', 'ym');
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=111249109', 'ym');
 
-    ym(111249109, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    ym(111249109, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
   </script>
   <!-- Пиксель <noscript> перенесён в начало <body>: внутри <head> тег
      <noscript> по спецификации HTML5 может содержать только link/style/meta,
@@ -303,147 +357,11 @@
      с opacity:0, что вредит и пользователям, и оценке видимого контента. -->
   <noscript>
     <style>
-      .reveal { opacity: 1 !important; transform: none !important; }
-  
-    /* =====================================================================
-       ДОБАВЛЕНО В ХОДЕ SEO-ОПТИМИЗАЦИИ.
-       Все правила ниже нужны только для того, чтобы семантические правки
-       (правильные теги h1/h2, ссылка-логотип, <address>) выглядели
-       ПИКСЕЛЬ-В-ПИКСЕЛЬ так же, как до правок. Дизайн не менялся.
-       ===================================================================== */
-
-    /* Ссылка "Перейти к содержимому" — обязательный элемент доступности.
-       Видна только при навигации с клавиатуры (Tab), мышью её не видно. */
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      z-index: 999;
-      background: var(--wine);
-      color: #fff;
-      padding: 12px 18px;
-      font-size: 14px;
-      letter-spacing: .05em;
-      border-radius: 0 0 4px 0;
-    }
-
-    .skip-link:focus {
-      left: 0;
-    }
-
-    /* Логотип стал ссылкой <a> на главную — восстанавливаем блочное поведение
-       бывшего <div>, чтобы отступы в шапке и подвале не поехали. */
-    .logo {
-      display: inline-block;
-    }
-
-    /* Надзаголовок перенесён ВНУТРЬ <h1> (см. HERO). Правила ниже полностью
-       воспроизводят прежний внешний вид: тот же шрифт Jost, тот же размер,
-       тот же отступ 18px до основной строки заголовка. */
-    .hero h1 {
-      margin: 0 0 22px;
-    }
-
-    .hero h1 .h1-kicker {
-      font-family: 'Jost', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 1.6;
-      letter-spacing: .32em;
-      text-transform: uppercase;
-      color: var(--wine);
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    @media (max-width:480px) {
-      .hero h1 .h1-kicker {
-        font-size: 11px;
-        letter-spacing: .24em;
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
       }
-    }
-
-    /* Подпись в фото-рамке была <h3> и ломала иерархию заголовков
-       (h1 → h3 без h2). Тег заменён на <p>, стили сохранены один в один. */
-    .frame-caption .frame-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      line-height: 1.15;
-      color: #fff;
-      font-size: 22px;
-      margin-top: 6px;
-    }
-
-    /* Заголовок секции записи: инлайновый style="" вынесен в класс,
-       чтобы страница могла работать со строгим CSP без unsafe-inline. */
-    .booking-title {
-      color: #fff;
-      font-size: 34px;
-      margin-top: 14px;
-    }
-
-    /* Контакты в подвале и в блоке записи обёрнуты в семантический <address>.
-       Браузер по умолчанию делает его курсивным — возвращаем нормальное
-       начертание, чтобы вид не изменился. */
-    address {
-      font-style: normal;
-    }
-
-    /* Заголовки колонок подвала: <h4> → <h2> (иерархия). <h2> по умолчанию
-       наследует Playfair из общего правила — возвращаем прежний Jost 300. */
-    footer h2 {
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      line-height: 1.6;
-      font-size: 13px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    /* ПЕРВЫЙ ЭКРАН БОЛЬШЕ НЕ ЖДЁТ JAVASCRIPT.
-       Раньше hero-текст и hero-картинка имели opacity:0 до тех пор, пока
-       не отработает IntersectionObserver в конце <body>. Это откладывало
-       момент отрисовки LCP-элемента. Теперь анимация запускается чистым CSS
-       сразу после парсинга стилей, визуально она идентична прежней. */
-    .hero .reveal {
-      animation: heroReveal .8s var(--ease) both;
-    }
-
-    .hero .reveal.reveal-delay-1 {
-      animation-delay: .1s;
-    }
-
-    .hero .reveal.reveal-delay-2 {
-      animation-delay: .2s;
-    }
-
-    @keyframes heroReveal {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .hero .reveal,
-      .hero .reveal.reveal-delay-1,
-      .hero .reveal.reveal-delay-2 {
-        animation: none;
-        opacity: 1;
-        transform: none;
-      }
-    }
-  </style>
+    </style>
   </noscript>
 
 
@@ -747,31 +665,27 @@
       overflow: hidden;
     }
 
- .hero-cover{
-    position:absolute;
-    inset:0;
+    .hero-cover {
+      position: absolute;
+      inset: 0;
 
-    width:100%;
-    height:100%;
+      width: 100%;
+      height: 100%;
 
-    object-fit:cover;
+      object-fit: cover;
 
-    -webkit-mask-image: linear-gradient(
-        to top,
-        transparent 0%,
-        rgba(0,0,0,.25) 15%,
-        rgba(0,0,0,.65) 35%,
-        #000 65%
-    );
+      -webkit-mask-image: linear-gradient(to top,
+          transparent 0%,
+          rgba(0, 0, 0, .25) 15%,
+          rgba(0, 0, 0, .65) 35%,
+          #000 65%);
 
-    mask-image: linear-gradient(
-        to top,
-        transparent 0%,
-        rgba(0,0,0,.25) 15%,
-        rgba(0,0,0,.65) 35%,
-        #000 65%
-    );
-}
+      mask-image: linear-gradient(to top,
+          transparent 0%,
+          rgba(0, 0, 0, .25) 15%,
+          rgba(0, 0, 0, .65) 35%,
+          #000 65%);
+    }
 
     /* Мягкие декоративные пятна света на фоне всей hero-секции */
     .hero::before {
@@ -865,7 +779,7 @@
         radial-gradient(120% 90% at 78% 15%, rgba(255, 255, 255, .10), transparent 55%),
         linear-gradient(155deg, #3a0f16 0%, #521219 32%, #2a0a0f 62%, #17070a 100%);
       box-shadow: var(--shadow-lg);
-      
+
     }
 
     /* Анимированный диагональный луч света, "гуляющий" по кадру */
@@ -2086,6 +2000,841 @@
         align-items: flex-start;
       }
     }
+
+
+
+    /* =====================================================================
+       ДОБАВЛЕНО В ХОДЕ CRO-ОПТИМИЗАЦИИ (конверсия и доверие).
+       Все компоненты ниже используют те же переменные, шрифты, тени и
+       радиусы, что и остальной сайт, — чтобы новые секции выглядели
+       "родными" и премиальными, а не приклеенными. Ни один существующий
+       цвет/шрифт/отступ не переопределяется.
+       ===================================================================== */
+
+    /* ---- Мессенджеры в hero (Telegram / WhatsApp) ---- */
+    .hero-contact {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .hero-contact .contact-label {
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .msg-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      color: var(--ink);
+      padding: 9px 16px;
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      background: rgba(255, 255, 255, .5);
+      transition: border-color .3s ease, background .3s ease, transform .2s ease;
+    }
+
+    .msg-link:hover {
+      border-color: var(--wine);
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    .msg-link svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    /* ---- Полоса преимуществ (value proposition) ---- */
+    .valueprops {
+      padding: 0;
+      margin-top: -8px;
+    }
+
+    .valueprops .container {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .valueprops-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 34px;
+    }
+
+    .valueprop {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .valueprop .vp-icon {
+      width: 30px;
+      height: 30px;
+      color: var(--wine);
+    }
+
+    .valueprop .vp-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .valueprop p {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    /* ---- Иконки-карточки в "О нас" ---- */
+    .about-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 28px;
+    }
+
+    .about-feature {
+      background: var(--bg);
+      padding: 30px 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: background .3s ease;
+    }
+
+    .about-feature:hover {
+      background: #fff;
+    }
+
+    .about-feature .af-icon {
+      width: 26px;
+      height: 26px;
+      color: var(--wine);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .about-feature h3 {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .about-feature p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: none;
+    }
+
+    /* ---- Расширенная сетка услуг (компактные карточки) ---- */
+    .services-grid.services-grid-compact {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 28px;
+    }
+
+    .service-mini {
+      background: var(--card);
+      padding: 30px 28px;
+      transition: background .3s ease, transform .3s var(--ease);
+      position: relative;
+    }
+
+    .service-mini:hover {
+      background: #fff;
+      z-index: 1;
+    }
+
+    .service-mini .service-num {
+      font-size: 13px;
+    }
+
+    .service-mini h3 {
+      font-size: 19px;
+      margin: 10px 0 8px;
+    }
+
+    .service-mini p {
+      color: var(--ink-soft);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    /* ---- Фильтры портфолио ---- */
+    .portfolio-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 26px auto 0;
+    }
+
+    .pf-btn {
+      font-family: 'Jost', sans-serif;
+      font-size: 12.5px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-soft);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      padding: 9px 20px;
+      cursor: pointer;
+      transition: color .3s ease, border-color .3s ease, background .3s ease;
+    }
+
+    .pf-btn:hover {
+      color: var(--wine);
+      border-color: var(--wine);
+    }
+
+    .pf-btn.active {
+      color: #fff;
+      background: var(--wine);
+      border-color: var(--wine);
+    }
+
+    .portfolio-frame.is-hidden {
+      display: none !important;
+    }
+
+    /* ---- Секция "Как проходит съёмка" ---- */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 8px;
+    }
+
+    .process-step {
+      background: var(--bg);
+      padding: 30px 22px;
+      transition: background .3s ease;
+    }
+
+    .process-step:hover {
+      background: #fff;
+    }
+
+    .process-step .ps-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      color: var(--wine);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .process-step h3 {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .process-step p {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    /* ---- Отзывы (social proof) ---- */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 8px;
+    }
+
+    .testimonial {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 34px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s ease;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold);
+    }
+
+    .t-stars {
+      color: var(--gold);
+      font-size: 15px;
+      letter-spacing: 3px;
+    }
+
+    .t-body {
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.6;
+      font-style: italic;
+      flex-grow: 1;
+    }
+
+    .t-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .t-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: var(--wine);
+      flex-shrink: 0;
+    }
+
+    .t-meta b {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .t-meta span {
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .t-sources {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+
+    .t-source {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+    }
+
+    .t-source b {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .t-source .t-source-stars {
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    /* ---- FAQ ---- */
+    .faq-list {
+      max-width: 820px;
+      margin: 8px auto 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 24px 44px 24px 0;
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      color: var(--ink);
+      line-height: 1.35;
+      transition: color .3s ease;
+    }
+
+    .faq-q:hover {
+      color: var(--wine);
+    }
+
+    .faq-q::after {
+      content: "+";
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Jost', sans-serif;
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--wine);
+      transition: transform .3s var(--ease);
+    }
+
+    .faq-item.open .faq-q::after {
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s var(--ease);
+    }
+
+    .faq-a-inner {
+      padding: 0 44px 24px 0;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ---- Промежуточные CTA-полосы ---- */
+    .cta-band {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cta-band .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .cta-band-text h2 {
+      font-size: clamp(22px, 3vw, 28px);
+      margin-bottom: 6px;
+    }
+
+    .cta-band-text p {
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+
+    .cta-band-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ---- Плавающая кнопка записи на мобильном ---- */
+    .sticky-cta {
+      display: none;
+    }
+
+    /* ---- Мессенджеры в подвале и на карточке контактов ---- */
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      transition: border-color .3s ease, color .3s ease, transform .2s ease;
+    }
+
+    .footer-social a:hover {
+      border-color: var(--wine);
+      color: var(--wine);
+      transform: translateY(-2px);
+    }
+
+    .footer-social svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .footer-maps {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .footer-maps a {
+      font-size: 13px;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2px;
+      transition: color .3s ease, border-color .3s ease;
+    }
+
+    .footer-maps a:hover {
+      color: var(--wine);
+      border-color: var(--wine);
+    }
+
+    /* ---- Микро-гарантия под формой ---- */
+    .form-trust {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: #E3C9C9;
+      line-height: 1.4;
+    }
+
+    .form-trust svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ---- Бейдж бесплатной консультации в пакетах ---- */
+    .pkg-bonus {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: var(--wine);
+      background: rgba(123, 31, 43, .07);
+      border-radius: 40px;
+      padding: 6px 12px;
+      margin-bottom: 4px;
+    }
+
+    .pkg.featured .pkg-bonus {
+      color: var(--gold-light);
+      background: rgba(217, 189, 139, .14);
+    }
+
+    /* =====================================================================
+       АДАПТИВНОСТЬ НОВЫХ СЕКЦИЙ
+       ===================================================================== */
+    @media (max-width:1080px) {
+
+      .valueprops-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width:920px) {
+
+      .about-features,
+      .services-grid.services-grid-compact,
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width:600px) {
+
+      .valueprops-grid,
+      .about-features,
+      .services-grid.services-grid-compact,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-band .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta-band-actions .btn {
+        flex: 1;
+      }
+
+      /* Плавающая кнопка записи — только на мобильных, где важнее всего
+         не терять пользователя при длинной прокрутке. Появляется после
+         прохода первого экрана (класс .visible добавляет JS). */
+      .sticky-cta {
+        display: block;
+        position: fixed;
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        z-index: 90;
+        transform: translateY(140%);
+        transition: transform .4s var(--ease);
+      }
+
+      .sticky-cta.visible {
+        transform: translateY(0);
+      }
+
+      .sticky-cta .btn {
+        width: 100%;
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* На мобильном тап-цели крупнее — удобнее пальцем, лучше конверсия. */
+      .msg-link,
+      .pf-btn {
+        padding-top: 11px;
+        padding-bottom: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .faq-a {
+        transition: none;
+      }
+
+      .sticky-cta {
+        transition: none;
+      }
+    }
+
+    /* =====================================================================
+       ДОБАВЛЕНО В ХОДЕ SEO-ОПТИМИЗАЦИИ.
+       Все правила ниже нужны только для того, чтобы семантические правки
+       (правильные теги h1/h2, ссылка-логотип, <address>) выглядели
+       ПИКСЕЛЬ-В-ПИКСЕЛЬ так же, как до правок. Дизайн не менялся.
+       ===================================================================== */
+
+    /* Ссылка "Перейти к содержимому" — обязательный элемент доступности.
+       Видна только при навигации с клавиатуры (Tab), мышью её не видно. */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 999;
+      background: var(--wine);
+      color: #fff;
+      padding: 12px 18px;
+      font-size: 14px;
+      letter-spacing: .05em;
+      border-radius: 0 0 4px 0;
+    }
+
+    .skip-link:focus {
+      left: 0;
+    }
+
+    /* Логотип стал ссылкой <a> на главную — восстанавливаем блочное поведение
+       бывшего <div>, чтобы отступы в шапке и подвале не поехали. */
+    .logo {
+      display: inline-block;
+    }
+
+    /* Надзаголовок перенесён ВНУТРЬ <h1> (см. HERO). Правила ниже полностью
+       воспроизводят прежний внешний вид: тот же шрифт Jost, тот же размер,
+       тот же отступ 18px до основной строки заголовка. */
+    .hero h1 {
+      margin: 0 0 22px;
+    }
+
+    .hero h1 .h1-kicker {
+      font-family: 'Jost', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.6;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--wine);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width:480px) {
+      .hero h1 .h1-kicker {
+        font-size: 11px;
+        letter-spacing: .24em;
+      }
+    }
+
+    /* Подпись в фото-рамке была <h3> и ломала иерархию заголовков
+       (h1 → h3 без h2). Тег заменён на <p>, стили сохранены один в один. */
+    .frame-caption .frame-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      line-height: 1.15;
+      color: #fff;
+      font-size: 22px;
+      margin-top: 6px;
+    }
+
+    /* Заголовок секции записи: инлайновый style="" вынесен в класс,
+       чтобы страница могла работать со строгим CSP без unsafe-inline. */
+    .booking-title {
+      color: #fff;
+      font-size: 34px;
+      margin-top: 14px;
+    }
+
+    /* Контакты в подвале и в блоке записи обёрнуты в семантический <address>.
+       Браузер по умолчанию делает его курсивным — возвращаем нормальное
+       начертание, чтобы вид не изменился. */
+    address {
+      font-style: normal;
+    }
+
+    /* Заголовки колонок подвала: <h4> → <h2> (иерархия). <h2> по умолчанию
+       наследует Playfair из общего правила — возвращаем прежний Jost 300. */
+    footer h2 {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* ПЕРВЫЙ ЭКРАН БОЛЬШЕ НЕ ЖДЁТ JAVASCRIPT.
+       Раньше hero-текст и hero-картинка имели opacity:0 до тех пор, пока
+       не отработает IntersectionObserver в конце <body>. Это откладывало
+       момент отрисовки LCP-элемента. Теперь анимация запускается чистым CSS
+       сразу после парсинга стилей, визуально она идентична прежней. */
+    .hero .reveal {
+      animation: heroReveal .8s var(--ease) both;
+    }
+
+    .hero .reveal.reveal-delay-1 {
+      animation-delay: .1s;
+    }
+
+    .hero .reveal.reveal-delay-2 {
+      animation-delay: .2s;
+    }
+
+    @keyframes heroReveal {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .hero .reveal,
+      .hero .reveal.reveal-delay-1,
+      .hero .reveal.reveal-delay-2 {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .portfolio-btn-wrapper {
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      width: 100%;
+
+      margin-top: 70px;
+
+      margin-bottom: 20px;
+
+    }
+
+    .portfolio-btn {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 12px;
+
+      padding: 18px 42px;
+
+      background: var(--wine);
+
+      color: #fff;
+
+      border-radius: 4px;
+
+      text-decoration: none;
+
+      letter-spacing: .15em;
+
+      text-transform: uppercase;
+
+      transition: .35s;
+
+    }
+
+    .portfolio-btn:hover {
+
+      background: var(--wine-dark);
+
+      transform: translateY(-3px);
+
+    }
   </style>
 </head>
 
@@ -2136,13 +2885,35 @@
              но теперь главный заголовок страницы содержит ключевые слова
              "фотостудия" и "Москва". Раньше h1 состоял только из слогана,
              не содержал ни одного поискового запроса. -->
-          <h1><span class="h1-kicker">Фотостудия в Москве · 8 лет опыта</span>Ваш момент.<br><em>Ваша
+          <!-- Заголовок отвечает на запрос посетителя в первую секунду:
+             кто (фотограф в Москве), что снимает (портрет, Love Story, день
+             рождения, выпускной). Слоган сохранён как эмоциональный акцент. -->
+          <h1><span class="h1-kicker">Фотограф в Москве · 8 лет опыта</span>Ваш момент.<br><em>Ваша
               история.</em></h1>
-          <p class="lead">Студия MOMENTA — портретная съёмка, Love Story и праздничные фотосессии. Сильное портфолио,
-            авторская обработка и техника, которая не подведёт в важный день.</p>
+          <p class="lead">Портретная съёмка, Love Story, дни рождения и выпускные в студии и на выезде по всей Москве.
+            Помогаем с образом и позированием, снимаем без скованности и отдаём кадры, которые хочется пересматривать.
+          </p>
           <div class="hero-actions">
             <a href="#booking" class="btn btn-primary">Записаться на съёмку</a>
-            <a href="#packages" class="btn btn-ghost">Смотреть пакеты</a>
+            <a href="#packages" class="btn btn-ghost">Пакеты и цены</a>
+          </div>
+          <!-- Прямые каналы связи: часть клиентов из платного трафика не
+             любит формы и хочет написать сразу. РЕДАКТИРУЙТЕ ЗДЕСЬ: подставьте
+             свой ник в Telegram и номер WhatsApp. -->
+          <div class="hero-contact">
+            <span class="contact-label">Написать напрямую</span>
+            <a class="msg-link" href="https://t.me/raed1f" target="_blank" rel="noopener"
+              aria-label="Написать в Telegram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M9.8 15.6 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.9c.7.4 1.2.2 1.4-.7l2.6-12.1c.2-1-.4-1.4-1.1-1.2L3.6 9.9c-1 .4-1 .9-.2 1.2l4.1 1.3 9.6-6c.4-.3.8-.1.5.2z" />
+              </svg>Telegram</a>
+            <a class="msg-link" href="https://wa.me/79891156946" target="_blank" rel="noopener"
+              aria-label="Написать в WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.7-2.7-.2-.3A8 8 0 1 1 12 20zm4.5-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3.2-.5v-.4c-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.9 3 1.4 1.4 2.9 2.1 4 2.4 1 .3 1.9.1 2.5-.4.4-.3.7-.8.8-1.3.1-.3.1-.5 0-.6l-.3-.1z" />
+              </svg>WhatsApp</a>
           </div>
           <div class="hero-stats">
             <!-- data-count запускает анимацию "подсчёта" чисел при появлении на экране -->
@@ -2178,9 +2949,8 @@
             <img src="cover-main.jpg" ...>
           </picture>
           -->
-          <img src="cover-main.jpg" class="hero-cover" width="1200" height="1500" fetchpriority="high"
-            loading="eager" decoding="async"
-            alt="Портретная фотосессия в фотостудии MOMENTA в Москве — кадр из портфолио">
+          <img src="cover-main.jpg" class="hero-cover" width="1200" height="1500" fetchpriority="high" loading="eager"
+            decoding="async" alt="Портретная фотосессия в фотостудии MOMENTA в Москве — кадр из портфолио">
           <div class="frame-corner tl"></div>
           <div class="frame-corner tr"></div>
           <div class="frame-corner bl"></div>
@@ -2199,6 +2969,56 @@
       </div>
     </section>
 
+    <!-- ===== 3.5 VALUE PROPOSITION — почему MOMENTA =====
+       Отвечает на вопрос "почему вы, а не сотни других фотографов в Москве"
+       ещё до того, как посетитель начнёт читать. Четыре конкретных выгоды
+       вместо общих слов. -->
+    <section class="valueprops" aria-label="Почему MOMENTA">
+      <div class="container reveal">
+        <div class="valueprops-grid">
+          <div class="valueprop">
+            <svg class="vp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+            <p class="vp-title">Полное сопровождение</p>
+            <p>Ведём от идеи до готовых кадров: референсы, образ, локация, тайминг. Вам не нужно ничего придумывать.</p>
+          </div>
+          <div class="valueprop">
+            <svg class="vp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <circle cx="12" cy="8" r="3.2" />
+              <path d="M5.5 20c.7-3.3 3.3-5 6.5-5s5.8 1.7 6.5 5" />
+            </svg>
+            <p class="vp-title">Помощь с позированием</p>
+            <p>Показываем позы и ракурсы прямо на съёмке — расслабляетесь и получаете живые кадры, а не «деревянные».
+            </p>
+          </div>
+          <div class="valueprop">
+            <svg class="vp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path
+                d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <p class="vp-title">Авторская обработка</p>
+            <p>Ретушь без «пластика» и единый цвет во всей серии. Вы получаете стиль, а не просто обработанные фото.</p>
+          </div>
+          <div class="valueprop">
+            <svg class="vp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path d="M4 7h16v12H4z" />
+              <path d="M8 7l1.5-2.5h5L16 7" />
+              <circle cx="12" cy="13" r="3" />
+            </svg>
+            <p class="vp-title">Все исходники ваши</p>
+            <p>Отдаём весь отснятый материал целиком — ничего не остаётся «за кадром» и не продаётся отдельно.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== 4. ABOUT — "О нас" ===== -->
     <section id="about" class="section-alt">
       <div class="bg-blob" style="width:340px;height:340px;background:var(--wine);top:-120px;left:-100px;"></div>
@@ -2207,8 +3027,8 @@
         <div class="section-head reveal">
           <p class="eyebrow">О студии</p>
           <h2>8 лет создаём кадры,<br>которые хочется пересматривать</h2>
-          <p>Мы — команда фотографов и ретушёров с сильным портфолио, профессиональным оборудованием и насмотренностью,
-            которая помогает находить идею даже там, где её, кажется, нет. Работаем в своей студии и на выезде.</p>
+          <p>Команда фотографов и ретушёров с сильным портфолио и профессиональным оборудованием. Помогаем найти идею
+            даже там, где её, кажется, нет. Снимаем в своей студии и на выезде по всей Москве.</p>
         </div>
         <div class="about-grid reveal">
           <div class="about-item">
@@ -2228,6 +3048,76 @@
             <span class="stat-label">гибкая длительность съёмки под ваш пакет</span>
           </div>
         </div>
+
+        <!-- Длинный абзац "о нас" разложен на сканируемые преимущества:
+           посетитель считывает выгоды за пару секунд, не читая сплошной текст. -->
+        <div class="about-features reveal">
+          <div class="about-feature">
+            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.5-.8z" />
+            </svg>
+            <div>
+              <h3>8 лет опыта</h3>
+              <p>Более 500 проведённых съёмок в разных жанрах и с любым темпераментом клиента.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <circle cx="12" cy="8" r="3.2" />
+              <path d="M5.5 20c.7-3.3 3.3-5 6.5-5s5.8 1.7 6.5 5" />
+            </svg>
+            <div>
+              <h3>Помощь с образом и позами</h3>
+              <p>Разбираем образы и позирование до и во время съёмки — никакой скованности перед камерой.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path d="M3 17l6-6 4 4 8-8" />
+              <path d="M21 7v4h-4" />
+            </svg>
+            <div>
+              <h3>Авторская ретушь</h3>
+              <p>Обработка без «пластикового» эффекта и единая цветокоррекция по всей серии кадров.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="2" />
+              <path d="M4 15l4-4 3 3 3-3 6 6" />
+              <circle cx="9" cy="9" r="1.4" />
+            </svg>
+            <div>
+              <h3>Все RAW-исходники</h3>
+              <p>Отдаём весь отснятый материал целиком — исходники входят в каждый пакет.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path d="M12 21s-7-5.2-7-10a7 7 0 0 1 14 0c0 4.8-7 10-7 10z" />
+              <circle cx="12" cy="11" r="2.5" />
+            </svg>
+            <div>
+              <h3>Вся Москва</h3>
+              <p>Съёмка в студии, в городе и на природе — выезжаем в любой район Москвы и области.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z" />
+            </svg>
+            <div>
+              <h3>Быстрая связь</h3>
+              <p>Отвечаем в течение дня в Telegram и WhatsApp, подтверждаем дату и обсуждаем идею.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2239,8 +3129,8 @@
         <div class="section-head reveal">
           <p class="eyebrow">Направления</p>
           <h2>Чем мы занимаемся</h2>
-          <p>Три ключевых направления съёмки — каждое со своей идеей, светом и подходом к позированию. Перед съёмкой мы
-            всегда обсуждаем референсы и настроение, чтобы результат совпал с тем, что вы себе представляли.</p>
+          <p>Три ключевых направления, в которых мы сильнее всего, и ещё несколько форматов под конкретный запрос. Перед
+            любой съёмкой обсуждаем референсы и настроение, чтобы результат совпал с тем, что вы себе представляли.</p>
         </div>
         <div class="services-grid">
           <div class="service-card reveal">
@@ -2280,6 +3170,57 @@
             </ul>
           </div>
         </div>
+
+        <!-- Дополнительные форматы съёмки — компактными карточками, чтобы
+           расширить охват запросов, не перегружая три главных направления.
+           РЕДАКТИРУЙТЕ ЗДЕСЬ: описания под каждый формат. -->
+        <div class="services-grid services-grid-compact reveal">
+          <div class="service-mini">
+            <span class="service-num">04</span>
+            <h3>Выпускная съёмка</h3>
+            <p>Съёмка выпускников — от школьного альбома до атмосферных индивидуальных кадров в мантии и без.</p>
+          </div>
+          <div class="service-mini">
+            <span class="service-num">05</span>
+            <h3>Семейная</h3>
+            <p>Тёплые семейные кадры в студии и на природе, включая съёмку с детьми и старшим поколением.</p>
+          </div>
+          <div class="service-mini">
+            <span class="service-num">06</span>
+            <h3>Деловой портрет</h3>
+            <p>Строгие и живые портреты для резюме, сайта компании, LinkedIn и корпоративных профилей.</p>
+          </div>
+          <div class="service-mini">
+            <span class="service-num">07</span>
+            <h3>Личный бренд</h3>
+            <p>Съёмка для экспертов и предпринимателей: серия образов под соцсети, лендинги и презентации.</p>
+          </div>
+          <div class="service-mini">
+            <span class="service-num">08</span>
+            <h3>Контент-съёмка</h3>
+            <p>Пакет кадров под регулярный контент для блога и соцсетей — много образов за одну сессию.</p>
+          </div>
+          <div class="service-mini">
+            <span class="service-num">09</span>
+            <h3>Студия и выезд</h3>
+            <p>Снимаем в оборудованной студии со светом или выезжаем на вашу локацию по всей Москве.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA после услуг ===== -->
+    <section class="cta-band" aria-label="Записаться на съёмку">
+      <div class="container reveal">
+        <div class="cta-band-text">
+          <h2>Не нашли свой формат?</h2>
+          <p>Расскажите об идее — подберём направление, пакет и дату под ваш запрос.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="#booking" class="btn btn-primary">Обсудить съёмку</a>
+          <a href="https://t.me/momentaphoto" target="_blank" rel="noopener" class="btn btn-ghost">Написать в
+            Telegram</a>
+        </div>
       </div>
     </section>
 
@@ -2294,9 +3235,24 @@
         <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
           <p class="eyebrow" style="justify-content:center;">Портфолио</p>
           <h2>Избранные кадры</h2>
-          <p style="margin-left:auto;margin-right:auto;">25 кадров из разных съёмок — портреты, Love Story и праздники.
-            Наведите курсор, чтобы остановить ленту, и нажмите на кадр, чтобы открыть его крупнее.</p>
+          <p style="margin-left:auto;margin-right:auto;">Кадры из разных съёмок. Выберите интересующее направление,
+            наведите курсор, чтобы остановить ленту, и нажмите на кадр, чтобы открыть его крупнее.</p>
         </div>
+
+        <!-- Фильтры портфолио: посетитель сразу видит работы своего формата,
+           а не листает всё подряд. Категории берутся из data-cat у карточек.
+           РЕДАКТИРУЙТЕ ЗДЕСЬ: при добавлении новых категорий проставьте
+           data-cat у кадров и добавьте кнопку с тем же значением. -->
+
+        <!--        
+        <div class="portfolio-filters reveal" role="group" aria-label="Фильтр портфолио по направлению">
+          <button type="button" class="pf-btn active" data-filter="all">Все</button>
+
+          <button type="button" class="pf-btn" data-filter="portrait">Портрет</button>
+          <button type="button" class="pf-btn" data-filter="lovestory">Love Story</button>
+          <button type="button" class="pf-btn" data-filter="birthday">День рождения</button>
+ -->
+      </div>
       </div>
       <!-- ВАЖНОЕ SEO-ИЗМЕНЕНИЕ: 25 фотографий портфолио теперь присутствуют
          прямо в HTML-коде. Раньше они целиком создавались JavaScript-ом уже
@@ -2310,186 +3266,217 @@
          Яндекс.Картинок и Google Images. -->
       <div class="portfolio-marquee reveal">
         <div class="portfolio-row dir-left" id="portfolioRow1">
-          <div class="portfolio-frame" data-index="1">
-            <img src="photos/1.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №1 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="1" data-cat="portrait">
+            <img src="photos/1.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №1 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="2">
-            <img src="photos/2.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №2 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="2" data-cat="lovestory">
+            <img src="photos/2.webp"
+              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №2 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="3">
-            <img src="photos/3.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №3 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="3" data-cat="birthday">
+            <img src="photos/3.webp"
+              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №3 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="4">
-            <img src="photos/4.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №4 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="4" data-cat="portrait">
+            <img src="photos/4.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №4 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="5">
-            <img src="photos/5.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №5 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="5" data-cat="lovestory">
+            <img src="photos/5.webp"
+              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №5 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="6">
-            <img src="photos/6.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №6 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="6" data-cat="birthday">
+            <img src="photos/6.webp"
+              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №6 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="7">
-            <img src="photos/7.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №7 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="7" data-cat="portrait">
+            <img src="photos/7.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №7 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="8">
-            <img src="photos/8.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №8 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="8" data-cat="lovestory">
+            <img src="photos/8.webp"
+              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №8 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="9">
-            <img src="photos/9.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №9 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="9" data-cat="birthday">
+            <img src="photos/9.webp"
+              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №9 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="10">
-            <img src="photos/10.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №10 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="10" data-cat="portrait">
+            <img src="photos/10.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №10 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="11">
-            <img src="photos/11.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №11 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="11" data-cat="lovestory">
+            <img src="photos/11.webp"
+              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №11 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="12">
-            <img src="photos/12.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №12 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="12" data-cat="birthday">
+            <img src="photos/12.webp"
+              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №12 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="13">
-            <img src="photos/13.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №13 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="13" data-cat="portrait">
+            <img src="photos/13.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №13 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
         </div>
         <div class="portfolio-row dir-right" id="portfolioRow2">
-          <div class="portfolio-frame" data-index="14">
-            <img src="photos/14.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №14 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="14" data-cat="lovestory">
+            <img src="photos/14.webp"
+              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №14 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="15">
-            <img src="photos/15.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №15 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="15" data-cat="birthday">
+            <img src="photos/15.webp"
+              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №15 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="16">
-            <img src="photos/16.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №16 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="16" data-cat="portrait">
+            <img src="photos/16.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №16 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="17">
-            <img src="photos/17.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №17 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="17" data-cat="lovestory">
+            <img src="photos/17.webp"
+              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №17 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="18">
-            <img src="photos/18.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №18 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="18" data-cat="birthday">
+            <img src="photos/18.webp"
+              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №18 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="19">
-            <img src="photos/19.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №19 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="19" data-cat="portrait">
+            <img src="photos/19.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №19 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="20">
-            <img src="photos/20.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №20 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="20" data-cat="lovestory">
+            <img src="photos/20.webp"
+              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №20 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="21">
-            <img src="photos/21.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №21 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="21" data-cat="birthday">
+            <img src="photos/21.webp"
+              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №21 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="22">
-            <img src="photos/22.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №22 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="22" data-cat="portrait">
+            <img src="photos/22.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №22 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="23">
-            <img src="photos/23.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №23 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="23" data-cat="lovestory">
+            <img src="photos/23.webp"
+              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №23 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="24">
-            <img src="photos/24.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №24 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="24" data-cat="birthday">
+            <img src="photos/24.webp"
+              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №24 из портфолио" loading="lazy"
+              decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
-          <div class="portfolio-frame" data-index="25">
-            <img src="photos/25.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №25 из портфолио" loading="lazy" decoding="async" width="800"
-              height="1000">
+          <div class="portfolio-frame" data-index="25" data-cat="portrait">
+            <img src="photos/25.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №25 из портфолио"
+              loading="lazy" decoding="async" width="800" height="1000">
             <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
             <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
             <span class="portfolio-zoom" aria-hidden="true">＋</span>
           </div>
+
+        </div>
+
+      </div>
+      <div class="container">
+        <div class="portfolio-btn-wrapper">
+
+          <a href="https://raedphoto.gallery.photo/" target="_blank" class="portfolio-btn">
+
+            СМОТРЕТЬ ВСЁ ПОРТФОЛИО
+            <span>↗</span>
+
+          </a>
+
         </div>
       </div>
     </section>
+
 
     <!-- Лайтбокс — открывается по клику на любое фото портфолио -->
     <!-- Лайтбокс получил роль диалога, aria-modal и aria-hidden в закрытом
@@ -2543,11 +3530,13 @@
           </div>
 
           <div class="pkg featured reveal reveal-delay-1">
-            <span class="pkg-tag">Популярный</span>
+            <span class="pkg-tag">Выбор клиентов</span>
+            <span class="pkg-bonus">★ Бесплатная консультация по образу</span>
             <h3>Gold</h3>
             <div class="price">14 000<sup>₽</sup></div>
-            <p class="pkg-intro">Наш самый сбалансированный формат: больше времени на съёмку, больше кадров и готовое
-              видео Reels — оптимально по цене и результату.</p>
+            <p class="pkg-intro">Самый сбалансированный формат: вдвое больше времени и кадров, чем в Silver, плюс
+              готовое
+              видео Reels. Оптимально по соотношению цены и результата — его выбирают чаще всего.</p>
             <hr>
             <p class="pkg-label">В пакет входит</p>
             <ul>
@@ -2569,6 +3558,7 @@
           </div>
 
           <div class="pkg reveal reveal-delay-2">
+            <span class="pkg-bonus">★ Бесплатная консультация по образу</span>
             <h3>Premium</h3>
             <div class="price">20 000<sup>₽</sup></div>
             <p class="pkg-intro">Полноценный съёмочный день с концепцией под ключ — для тех, кто хочет продуманный
@@ -2594,6 +3584,129 @@
             <a href="#booking" class="btn btn-ghost pkg-select" data-pkg="Premium">Выбрать Premium</a>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6.5 PROCESS — как проходит съёмка =====
+       Снимает страх неизвестности перед покупкой: клиент видит, что его ждёт
+       понятный процесс, а не «оплатил и непонятно что». -->
+    <section id="process">
+      <div class="bg-blob" style="width:280px;height:280px;background:var(--gold);top:-70px;left:-70px;"></div>
+      <div class="container" style="z-index:1;">
+        <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+          <p class="eyebrow" style="justify-content:center;">Как это работает</p>
+          <h2>Шесть шагов до готовых кадров</h2>
+          <p style="margin-left:auto;margin-right:auto;">Понятный процесс от заявки до готовой серии — вы всегда знаете,
+            что происходит и что будет дальше.</p>
+        </div>
+        <div class="process-grid reveal">
+          <div class="process-step">
+            <div class="ps-num">01</div>
+            <h3>Заявка</h3>
+            <p>Оставляете заявку на сайте или пишете в Telegram / WhatsApp.</p>
+          </div>
+          <div class="process-step">
+            <div class="ps-num">02</div>
+            <h3>Консультация</h3>
+            <p>Созваниваемся, обсуждаем идею, формат и подбираем пакет.</p>
+          </div>
+          <div class="process-step">
+            <div class="ps-num">03</div>
+            <h3>Подготовка</h3>
+            <p>Согласуем образы, локацию, референсы и дату съёмки.</p>
+          </div>
+          <div class="process-step">
+            <div class="ps-num">04</div>
+            <h3>Съёмка</h3>
+            <p>Снимаем в комфортном темпе, помогаем с позами и настроением.</p>
+          </div>
+          <div class="process-step">
+            <div class="ps-num">05</div>
+            <h3>Обработка</h3>
+            <p>Отбираем лучшие кадры и делаем авторскую ретушь и цвет.</p>
+          </div>
+          <div class="process-step">
+            <div class="ps-num">06</div>
+            <h3>Готово</h3>
+            <p>Отдаём готовую серию и все исходники в облаке.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6.6 TESTIMONIALS — отзывы клиентов =====
+       ВНИМАНИЕ: тексты ниже — ПЛЕЙСХОЛДЕРЫ. Замените их реальными отзывами
+       клиентов (из Яндекс.Бизнес, ВКонтакте, личных сообщений с разрешением
+       на публикацию). Разметка Schema.org для отзывов НАМЕРЕННО не добавлена:
+       размечать можно только реальные опубликованные отзывы, иначе Яндекс и
+       Google снимают расширенные сниппеты со всего сайта. Шаблон разметки —
+       в файле SEO-audit-MOMENTA.md, Приложение В. -->
+    <section id="reviews" class="section-alt">
+      <div class="container">
+        <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+          <p class="eyebrow" style="justify-content:center;">Отзывы</p>
+          <h2>Что говорят клиенты</h2>
+          <p style="margin-left:auto;margin-right:auto;">Живые впечатления людей, которые уже снимались у нас — от
+            первой
+            заявки до готовых фотографий.</p>
+        </div>
+        <div class="testimonials-grid reveal">
+          <figure class="testimonial">
+            <div class="t-stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote class="t-body">«Очень боялась камеры, но за первые десять минут зажатость прошла — подсказывали
+              каждую позу. Фотографии получились именно такими, как я представляла.»</blockquote>
+            <figcaption class="t-author">
+              <div class="t-avatar" aria-hidden="true">А</div>
+              <div class="t-meta"><b>Анна</b><span>Портретная съёмка</span></div>
+            </figcaption>
+          </figure>
+          <figure class="testimonial">
+            <div class="t-stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote class="t-body">«Снимали Love Story к свадьбе. Атмосфера на съёмке была тёплая, совсем без
+              неловкости. Обработку сделали быстро, отдали все исходники — рекомендую.»</blockquote>
+            <figcaption class="t-author">
+              <div class="t-avatar" aria-hidden="true">М</div>
+              <div class="t-meta"><b>Мария и Дмитрий</b><span>Love Story</span></div>
+            </figcaption>
+          </figure>
+          <figure class="testimonial">
+            <div class="t-stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote class="t-body">«Заказывали съёмку дня рождения дочки. Поймали столько живых эмоций! Приятно,
+              что помогли с идеей и декором. Точно вернёмся ещё.»</blockquote>
+            <figcaption class="t-author">
+              <div class="t-avatar" aria-hidden="true">Е</div>
+              <div class="t-meta"><b>Елена</b><span>Съёмка дня рождения</span></div>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Агрегированные оценки со сторонних площадок. РЕДАКТИРУЙТЕ ЗДЕСЬ:
+           подставьте реальные ссылки и цифры из ваших карточек. Ссылки ведут
+           на живые профили — это дополнительное доказательство подлинности. -->
+        <div class="t-sources reveal">
+          <a class="t-source" href="#" target="_blank" rel="noopener">
+            <span class="t-source-stars">★★★★★</span> <b>4.9</b> · Яндекс
+          </a>
+          <a class="t-source" href="#" target="_blank" rel="noopener">
+            <span class="t-source-stars">★★★★★</span> <b>5.0</b> · 2ГИС
+          </a>
+          <a class="t-source" href="#" target="_blank" rel="noopener">
+            <span class="t-source-stars">★★★★★</span> <b>Отзывы</b> · Avito
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA перед формой ===== -->
+    <section class="cta-band" aria-label="Готовы записаться">
+      <div class="container reveal">
+        <div class="cta-band-text">
+          <h2>Готовы к своей съёмке?</h2>
+          <p>Свободные даты быстро разбирают — оставьте заявку, и мы подтвердим удобное время.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="#booking" class="btn btn-primary">Записаться на съёмку</a>
         </div>
       </div>
     </section>
@@ -2637,12 +3750,6 @@
                 <span>Москва · съёмка в студии и на выезде</span>
               </div>
             </div>
-            <div class="info-row"> 
-              <div>
-                <b>Как нас найти</b>
-                <span>Москва, 1-й Смоленский переулок, 5с1, этаж 2</span>
-              </div>
-            </div>
           </address>
         </div>
 
@@ -2653,6 +3760,11 @@
           <input type="hidden" name="from_name" value="Сайт MOMENTA — форма записи">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
+          <!-- ФОРМА СОКРАЩЕНА для снижения трения: убраны Фамилия и Отчество
+             (для первичной заявки не нужны — их можно спросить на созвоне),
+             Email сделан необязательным. Обязательны только Имя, Телефон,
+             Тип съёмки, Пакет и Дата — короткая форма конвертит заметно лучше.
+             Добавлены необязательные Telegram и Комментарий. -->
           <div class="form-row">
             <div class="field">
               <label for="firstName">Имя *</label>
@@ -2660,57 +3772,63 @@
                 aria-required="true">
             </div>
             <div class="field">
-              <label for="lastName">Фамилия *</label>
-              <input type="text" id="lastName" name="lastName" autocomplete="family-name" required
-                aria-required="true">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field">
-              <label for="middleName">Отчество *</label>
-              <input type="text" id="middleName" name="middleName" autocomplete="additional-name" required
-                aria-required="true">
-            </div>
-            <div class="field">
-              <label for="pkgSelect">Пакет *</label>
-              <!-- Три пакета услуг — соответствуют карточкам в разделе "Пакеты" -->
-              <select id="pkgSelect" name="package" required aria-required="true">
-                <option value="" disabled selected>Выберите пакет</option>
-                <option value="Silver — 9 000 ₽">Silver — 9 000 ₽</option>
-                <option value="Gold — 14 000 ₽">Gold — 14 000 ₽</option>
-                <option value="Premium — 20 000 ₽">Premium — 20 000 ₽</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field">
-              <label for="shootType">Тип съёмки *</label>
-              <!-- Три направления съёмки, плюс "Другое" — на случай нестандартного запроса -->
-              <select id="shootType" name="shootType" required aria-required="true">
-                <option value="" disabled selected>Выберите вариант</option>
-                <option value="День рождения">День рождения</option>
-                <option value="Love Story">Love Story</option>
-                <option value="Портрет">Портрет</option>
-                <option value="Другое">Другое / не определился(ась)</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="shootDate">Дата съёмки *</label>
-              <input type="date" id="shootDate" name="shootDate" required aria-required="true">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field">
               <label for="phone">Телефон *</label>
               <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel"
                 inputmode="tel" required aria-required="true">
             </div>
           </div>
           <div class="form-row">
+            <div class="field">
+              <label for="shootType">Тип съёмки *</label>
+              <!-- Направления съёмки, плюс "Другое" — на случай нестандартного запроса -->
+              <select id="shootType" name="shootType" required aria-required="true">
+                <option value="" disabled selected>Выберите вариант</option>
+                <option value="Портрет">Портрет</option>
+                <option value="Love Story">Love Story</option>
+                <option value="День рождения">День рождения</option>
+                <option value="Выпускная">Выпускная</option>
+                <option value="Семейная">Семейная</option>
+                <option value="Деловой портрет">Деловой портрет / личный бренд</option>
+                <option value="Контент">Контент-съёмка</option>
+                <option value="Другое">Другое / не определился(ась)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="pkgSelect">Пакет *</label>
+              <!-- Пакеты услуг — соответствуют карточкам в разделе "Пакеты" -->
+              <select id="pkgSelect" name="package" required aria-required="true">
+                <option value="" disabled selected>Выберите пакет</option>
+                <option value="Silver — 9 000 ₽">Silver — 9 000 ₽</option>
+                <option value="Gold — 14 000 ₽">Gold — 14 000 ₽</option>
+                <option value="Premium — 20 000 ₽">Premium — 20 000 ₽</option>
+                <option value="Пока не выбрал">Пока не выбрал(а)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="shootDate">Желаемая дата *</label>
+              <input type="date" id="shootDate" name="shootDate" required aria-required="true">
+            </div>
+            <div class="field">
+              <label for="telegram">Telegram / WhatsApp</label>
+              <input type="text" id="telegram" name="telegram" placeholder="@ник или номер" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-row">
             <div class="field full">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required
-                aria-required="true">
+              <label for="comment">Комментарий</label>
+              <input type="text" id="comment" name="comment" placeholder="Идея съёмки, пожелания, вопросы"
+                autocomplete="off">
+            </div>
+          </div>
+          <!-- Email оставлен, но необязательным: часть клиентов охотнее
+             оставляет мессенджер, чем почту. Убирать совсем не стали —
+             пригодится для отправки готовых кадров. -->
+          <div class="form-row">
+            <div class="field full">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" inputmode="email">
             </div>
           </div>
 
@@ -2725,10 +3843,79 @@
           </label>
 
           <button type="submit" class="btn btn-primary form-submit">Отправить заявку</button>
+          <!-- Микро-гарантия под кнопкой снижает тревогу перед отправкой:
+             показывает, что будет дальше и что это ни к чему не обязывает. -->
+          <p class="form-trust">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+            Ответим в течение дня. Заявка ни к чему не обязывает — сначала обсудим детали.
+          </p>
           <!-- role="status" + aria-live: результат отправки теперь озвучивается
              скринридерами, раньше сообщение появлялось молча. -->
           <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
         </form>
+      </div>
+    </section>
+
+    <!-- ===== 7.5 FAQ — частые вопросы =====
+       Снимает главные возражения перед покупкой. Вопросы-ответы видны на
+       странице И размечены как FAQPage в JSON-LD (см. <head>) — Яндекс
+       показывает такие ответы прямо в выдаче. РЕДАКТИРУЙТЕ ЗДЕСЬ: если меняете
+       текст ответа — синхронно правьте его и в разметке FAQPage в <head>. -->
+    <section id="faq" class="section-alt">
+      <div class="container">
+        <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+          <p class="eyebrow" style="justify-content:center;">Вопросы и ответы</p>
+          <h2>Частые вопросы</h2>
+          <p style="margin-left:auto;margin-right:auto;">Собрали то, что чаще всего спрашивают перед съёмкой. Не нашли
+            свой вопрос — напишите нам в Telegram или WhatsApp.</p>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">Через сколько будут готовы фотографии?</button>
+            <div class="faq-a">
+              <div class="faq-a-inner">Готовую обработанную серию отдаём в течение 7–14 дней в зависимости от пакета и
+                загрузки. Несколько превью-кадров можем прислать раньше.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">Нужна ли предоплата?</button>
+            <div class="faq-a">
+              <div class="faq-a-inner">Дату закрепляем небольшой предоплатой — так время резервируется именно за вами.
+                Остальную сумму оплачиваете в день съёмки. Условия обсуждаем на консультации.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">Можно ли перенести съёмку?</button>
+            <div class="faq-a">
+              <div class="faq-a-inner">Да, дату можно перенести — достаточно предупредить заранее, и мы подберём новое
+                удобное время без потери предоплаты.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">Помогаете ли с позированием?</button>
+            <div class="faq-a">
+              <div class="faq-a-inner">Обязательно. Показываем позы и ракурсы прямо на съёмке, подсказываем, как
+                держаться — даже если вы никогда не снимались, кадры получатся живыми и естественными.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">Снимаете за пределами Москвы?</button>
+            <div class="faq-a">
+              <div class="faq-a-inner">Да, снимаем по всей Москве и в области. Выезд за город — дополнительная услуга,
+                оплачивается отдельно. Локацию согласуем заранее.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-q" aria-expanded="false">Сколько обработанных фото я получу?</button>
+            <div class="faq-a">
+              <div class="faq-a-inner">От 10 кадров в пакете Silver до 30 в Premium — плюс во всех пакетах вы получаете
+                весь исходный материал целиком.</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -2740,7 +3927,32 @@
         <div>
           <a href="/" class="logo" aria-label="MOMENTA — фотостудия в Москве, на главную">MOMENTA</a>
           <p>Фотостудия MOMENTA в Москве: портреты, Love Story и праздничные съёмки. 8 лет опыта, сильное портфолио и
-            авторская обработка.</p>
+            авторская обработка. Съёмка в студии и на выезде по всей Москве.</p>
+          <!-- Иконки соцсетей и мессенджеров. РЕДАКТИРУЙТЕ ЗДЕСЬ: подставьте
+             свои реальные ссылки. Битые/пустые ссылки лучше убрать. -->
+          <div class="footer-social">
+            <a href="https://t.me/raed1f" target="_blank" rel="noopener" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M9.8 15.6 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.9c.7.4 1.2.2 1.4-.7l2.6-12.1c.2-1-.4-1.4-1.1-1.2L3.6 9.9c-1 .4-1 .9-.2 1.2l4.1 1.3 9.6-6c.4-.3.8-.1.5.2z" />
+              </svg></a>
+            <a href="https://wa.me/+79891156946" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.7-2.7-.2-.3A8 8 0 1 1 12 20zm4.5-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3.2-.5v-.4c-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.9 3 1.4 1.4 2.9 2.1 4 2.4 1 .3 1.9.1 2.5-.4.4-.3.7-.8.8-1.3.1-.3.1-.5 0-.6l-.3-.1z" />
+              </svg></a>
+            <a href="https://instagram.com/raed_photo1" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg></a>
+            <a href="https://vk.com/raed.photo1" target="_blank" rel="noopener" aria-label="ВКонтакте">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12.8 16.3c-5 0-8-3.5-8.2-9.3h2.6c.1 4.3 2 6.1 3.5 6.5V7h2.4v3.7c1.5-.2 3-1.8 3.6-3.7h2.4c-.4 2.3-2 3.9-3.1 4.6 1.1.6 2.9 2 3.6 4.7h-2.7c-.5-1.7-1.9-3-3.8-3.2v3.2z" />
+              </svg></a>
+          </div>
         </div>
         <!-- Блок ссылок обёрнут в <nav> с уникальной подписью, заголовки
            колонок переведены с <h4> на <h2>: прежде уровень h4 шёл сразу
@@ -2751,19 +3963,31 @@
           <ul>
             <li><a href="#about">О студии</a></li>
             <li><a href="#services">Направления съёмки</a></li>
+            <li><a href="#portfolio">Портфолио</a></li>
             <li><a href="#packages">Пакеты и цены</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+            <li><a href="#faq">Вопросы и ответы</a></li>
             <li><a href="#booking">Запись на съёмку</a></li>
           </ul>
         </nav>
         <div>
           <h2>Контакты</h2>
           <address>
-            <ul>
-              <li><a href="tel:+79891156946">+7 (989) 115-69-46</a></li>
-              <li><a href="mailto:info@momentaphoto.ru">info@momentaphoto.ru</a></li>
-              <li>Москва</li>
-            </ul>
+            <div class="footer-contacts">
+              <a href="tel:+79891156946">+7 (989) 115-69-46</a>
+              <a href="mailto:info@momentaphoto.ru">info@momentaphoto.ru</a>
+              <a href="https://t.me/raed1f" target="_blank" rel="noopener">Telegram: @raed1f</a>
+              <a href="https://wa.me/+79891156946" target="_blank" rel="noopener">WhatsApp</a>
+              <span>Съёмка по всей Москве и области</span>
+            </div>
           </address>
+          <!-- Ссылки на карты усиливают локальную релевантность и доверие.
+             РЕДАКТИРУЙТЕ ЗДЕСЬ: вставьте ссылки на свои карточки. -->
+          <div class="footer-maps">
+            <a href="https://yandex.ru/maps/" target="_blank" rel="noopener">Яндекс.Карты</a>
+            <a href="https://2gis.ru/" target="_blank" rel="noopener">2ГИС</a>
+            <a href="https://www.google.com/maps" target="_blank" rel="noopener">Google Maps</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -2775,6 +3999,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- Плавающая кнопка записи — показывается только на мобильных после
+     прохода первого экрана. На десктопе скрыта через CSS. -->
+  <div class="sticky-cta" id="stickyCta" aria-hidden="true">
+    <a href="#booking" class="btn btn-primary">Записаться на съёмку</a>
+  </div>
 
   <!-- ===== 9. SCRIPT — анимации, меню, форма ===== -->
   <script>
@@ -2814,6 +4044,57 @@
       });
     }, { threshold: 0.15 });
     revealItems.forEach(item => revealObserver.observe(item));
+
+    /* ---------- Фильтры портфолио ----------
+       Скрывают карточки не выбранной категории (и их клоны). Категория берётся
+       из data-cat. Работает и с дублированными для анимации карточками. */
+    const pfButtons = document.querySelectorAll('.pf-btn');
+    pfButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        pfButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.portfolio-frame').forEach(frame => {
+          const show = filter === 'all' || frame.dataset.cat === filter;
+          frame.classList.toggle('is-hidden', !show);
+        });
+      });
+    });
+
+    /* ---------- FAQ-аккордеон ----------
+       Плавно раскрывает ответ, обновляет aria-expanded, закрывает соседний
+       открытый пункт (по одному за раз — так аккуратнее). */
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      q.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(other => {
+          if (other !== item) {
+            other.classList.remove('open');
+            other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+            other.querySelector('.faq-a').style.maxHeight = null;
+          }
+        });
+        item.classList.toggle('open', !isOpen);
+        q.setAttribute('aria-expanded', String(!isOpen));
+        a.style.maxHeight = isOpen ? null : a.scrollHeight + 'px';
+      });
+    });
+
+    /* ---------- Плавающая кнопка записи на мобильном ----------
+       Появляется после первого экрана и прячется, когда пользователь уже
+       дошёл до самой формы записи (чтобы не перекрывать её). */
+    const stickyCta = document.getElementById('stickyCta');
+    const bookingSection = document.getElementById('booking');
+    if (stickyCta && bookingSection) {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY > window.innerHeight * 0.9;
+        const bookingTop = bookingSection.getBoundingClientRect().top;
+        const nearForm = bookingTop < window.innerHeight && bookingTop > -bookingSection.offsetHeight;
+        stickyCta.classList.toggle('visible', scrolled && !nearForm);
+      }, { passive: true });
+    }
 
     /* ---------- Анимация подсчёта чисел (8 лет, 500+ клиентов и т.п.) ---------- */
     const counters = document.querySelectorAll('[data-count]');

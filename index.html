@@ -338,14 +338,14 @@
 
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-      m[i].l = 1 * new Date();
-      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=111249109', 'ym');
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111249109', 'ym');
 
-    ym(111249109, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
+    ym(111249109, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
   </script>
   <!-- Пиксель <noscript> перенесён в начало <body>: внутри <head> тег
      <noscript> по спецификации HTML5 может содержать только link/style/meta,
@@ -357,10 +357,7 @@
      с opacity:0, что вредит и пользователям, и оценке видимого контента. -->
   <noscript>
     <style>
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-      }
+      .reveal { opacity: 1 !important; transform: none !important; }
     </style>
   </noscript>
 
@@ -665,27 +662,31 @@
       overflow: hidden;
     }
 
-    .hero-cover {
-      position: absolute;
-      inset: 0;
+ .hero-cover{
+    position:absolute;
+    inset:0;
 
-      width: 100%;
-      height: 100%;
+    width:100%;
+    height:100%;
 
-      object-fit: cover;
+    object-fit:cover;
 
-      -webkit-mask-image: linear-gradient(to top,
-          transparent 0%,
-          rgba(0, 0, 0, .25) 15%,
-          rgba(0, 0, 0, .65) 35%,
-          #000 65%);
+    -webkit-mask-image: linear-gradient(
+        to top,
+        transparent 0%,
+        rgba(0,0,0,.25) 15%,
+        rgba(0,0,0,.65) 35%,
+        #000 65%
+    );
 
-      mask-image: linear-gradient(to top,
-          transparent 0%,
-          rgba(0, 0, 0, .25) 15%,
-          rgba(0, 0, 0, .65) 35%,
-          #000 65%);
-    }
+    mask-image: linear-gradient(
+        to top,
+        transparent 0%,
+        rgba(0,0,0,.25) 15%,
+        rgba(0,0,0,.65) 35%,
+        #000 65%
+    );
+}
 
     /* Мягкие декоративные пятна света на фоне всей hero-секции */
     .hero::before {
@@ -779,7 +780,7 @@
         radial-gradient(120% 90% at 78% 15%, rgba(255, 255, 255, .10), transparent 55%),
         linear-gradient(155deg, #3a0f16 0%, #521219 32%, #2a0a0f 62%, #17070a 100%);
       box-shadow: var(--shadow-lg);
-
+      
     }
 
     /* Анимированный диагональный луч света, "гуляющий" по кадру */
@@ -1113,299 +1114,243 @@
     }
 
     /* =====================================================================
-     ПОРТФОЛИО — бегущая лента фотографий (карусель без остановки)
-     РЕДАКТИРУЙТЕ ЗДЕСЬ: количество фото и путь к папке задаются переменными
-     GALLERY_FOLDER и TOTAL_IMAGES в самом низу файла, в <script>.
-     Файлы должны называться 1.jpg, 2.jpg … 25.jpg и лежать в папке photos/
-     рядом с этим index.html. Если фото пока не хватает — на его месте
-     аккуратно появится плейсхолдер с номером, ничего не "поломается".
-     ===================================================================== */
-    .portfolio {
-      position: relative;
-      overflow: hidden;
+       ПОРТФОЛИО — кинематографичная витрина (один кадр за раз)
+       Фотография — главный герой; интерфейс почти исчезает. Ровно 12
+       кадров показываются по одному, с плавным горизонтальным переходом
+       (текущий уходит влево, следующий входит справа). Никакого
+       автоплей/бесконечной ленты — движение только по клику/клавише/свайпу.
+       Загружается лишь текущий кадр и предзагружается следующий.
+       РЕДАКТИРУЙТЕ ЗДЕСЬ: подписи-категории и alt — в массиве DATA в JS ниже.
+       ===================================================================== */
+    .portfolio { position: relative; }
+    #portfolio .container { max-width: 1300px; }
+
+    .pf-cinema {
+      --pf-ease: cubic-bezier(.76, 0, .24, 1);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: clamp(28px, 4vw, 64px);
+      align-items: stretch;
+      margin-top: 6px;
     }
 
-    .portfolio-marquee {
+    /* ---- Сцена: крупный кадр ---- */
+    .pf-stage {
       position: relative;
-      width: 100%;
+      display: block;
       overflow: hidden;
-      padding: 8px 0 4px;
+      background: var(--bg-soft);
+      height: clamp(380px, 66vh, 720px);
+      text-decoration: none;
+      cursor: pointer;                   /* JS заменит на кастомный «Смотреть» */
     }
-
-    /* Плавное затухание по краям ленты — классический приём для каруселей портфолио */
-    .portfolio-marquee::before,
-    .portfolio-marquee::after {
-      content: "";
+    .pf-frame {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      width: min(120px, 12%);
-      z-index: 2;
-      pointer-events: none;
+      inset: 0;
+      opacity: 0;
+      transform: translateX(0);
+      transition: transform .82s var(--pf-ease), opacity .82s var(--pf-ease);
+      will-change: transform, opacity;
     }
-
-    .portfolio-marquee::before {
-      left: 0;
-      background: linear-gradient(90deg, var(--bg), transparent);
-    }
-
-    .portfolio-marquee::after {
-      right: 0;
-      background: linear-gradient(270deg, var(--bg), transparent);
-    }
-
-    .portfolio-row {
-      display: flex;
-      gap: 20px;
-      width: max-content;
-      will-change: transform;
-    }
-
-    .portfolio-row.dir-left {
-      animation: marquee-left 46s linear infinite;
-    }
-
-    .portfolio-row.dir-right {
-      animation: marquee-right 52s linear infinite;
-      margin-top: 20px;
-    }
-
-    .portfolio-row:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes marquee-left {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    @keyframes marquee-right {
-      from {
-        transform: translateX(-50%);
-      }
-
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .portfolio-row {
-        animation: none;
-        overflow-x: auto;
-      }
-    }
-
-    .portfolio-frame {
-      position: relative;
-      flex: 0 0 auto;
-      width: 190px;
-      aspect-ratio: 4/5;
-      border-radius: 2px;
-      overflow: hidden;
-      cursor: pointer;
-      background: linear-gradient(160deg, #2a0a0f, #43101a);
-      box-shadow: 0 14px 30px -18px rgba(34, 29, 26, .45);
-      transition: transform .45s var(--ease), box-shadow .45s var(--ease);
-    }
-
-    .portfolio-frame:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: var(--shadow-lg);
-      z-index: 2;
-    }
-
-    .portfolio-frame img {
+    .pf-frame.is-active { opacity: 1; }
+    .pf-frame img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform .9s var(--pf-ease);
+    }
+    /* тонкая рамка-обводка кадра */
+    .pf-stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 1px rgba(34, 29, 26, .10);
+      pointer-events: none;
+      z-index: 3;
+    }
+    /* деликатный ховер: чуть заметное приближение */
+    .pf-stage:hover .pf-frame.is-active img { transform: scale(1.02); }
+
+    /* кастомный круглый курсор «Смотреть» */
+    .pf-cursor {
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 4;
+      width: 78px; height: 78px;
+      margin: -39px 0 0 -39px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(123, 31, 43, .92);
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+      opacity: 0;
+      transform: translate(-9999px, -9999px);   /* позицию задаёт JS */
+      transition: opacity .3s var(--ease);
+      pointer-events: none;
+    }
+    .pf-stage:hover .pf-cursor { opacity: 1; }
+
+    /* ---- Правая колонка: метаданные, предпросмотр, навигация ---- */
+    .pf-rail {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 26px;
+      padding: 4px 0;
+    }
+    .pf-meta {
+      transition: opacity .3s var(--ease);
+    }
+    .pf-meta.pf-fade { opacity: 0; }
+    .pf-meta .pf-cat {
       display: block;
-      filter: grayscale(55%) sepia(6%) contrast(1.03);
-      transition: filter .6s ease, transform .8s ease;
-    }
-
-    .portfolio-frame:hover img {
-      filter: grayscale(0%) sepia(0%);
-      transform: scale(1.07);
-    }
-
-    .portfolio-corner {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border: 1.5px solid rgba(255, 255, 255, .85);
-      opacity: 0;
-      transition: opacity .3s ease;
-      z-index: 2;
-    }
-
-    .portfolio-frame:hover .portfolio-corner {
-      opacity: 1;
-    }
-
-    .portfolio-corner.tl {
-      top: 8px;
-      left: 8px;
-      border-right: none;
-      border-bottom: none;
-    }
-
-    .portfolio-corner.tr {
-      top: 8px;
-      right: 8px;
-      border-left: none;
-      border-bottom: none;
-    }
-
-    .portfolio-corner.bl {
-      bottom: 8px;
-      left: 8px;
-      border-right: none;
-      border-top: none;
-    }
-
-    .portfolio-corner.br {
-      bottom: 8px;
-      right: 8px;
-      border-left: none;
-      border-top: none;
-    }
-
-    .portfolio-zoom {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(.6);
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .14);
-      border: 1px solid rgba(255, 255, 255, .6);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      opacity: 0;
-      transition: opacity .3s ease, transform .3s ease;
-      z-index: 2;
-    }
-
-    .portfolio-frame:hover .portfolio-zoom {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    /* Если файл фото ещё не добавлен — вместо "битой" картинки показываем
-     аккуратную плашку с номером, дизайн не рушится */
-    .portfolio-frame.img-missing img {
-      display: none;
-    }
-
-    .portfolio-frame.img-missing::before {
-      content: "Фото " attr(data-index);
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-light);
       font-family: 'Playfair Display', serif;
-      font-size: 13px;
-      letter-spacing: .08em;
-      text-align: center;
-      padding: 10px;
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .pf-meta .pf-loc {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: .74rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-soft);
     }
 
-    @media (max-width:600px) {
-      .portfolio-frame {
-        width: 140px;
-      }
-    }
-
-    /* ---- Лайтбокс (увеличенный просмотр фото) ---- */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 400;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(23, 7, 10, .94);
-      padding: 24px;
-    }
-
-    .lightbox.open {
-      display: flex;
-    }
-
-    .lightbox img {
-      max-width: 88vw;
-      max-height: 78vh;
-      border-radius: 2px;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .lightbox-close,
-    .lightbox-nav {
-      position: absolute;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .08);
-      border: 1px solid rgba(255, 255, 255, .35);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
+    /* предпросмотр следующего кадра — маленький, слегка «выглядывает» */
+    .pf-next-preview {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 0;
       cursor: pointer;
-      transition: background .25s ease;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
     }
-
-    .lightbox-close:hover,
-    .lightbox-nav:hover {
-      background: rgba(255, 255, 255, .22);
+    .pf-next-label {
+      font-family: 'Jost', sans-serif;
+      font-size: .68rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color .3s var(--ease);
     }
-
-    .lightbox-close {
-      top: 22px;
-      right: 22px;
+    .pf-next-thumb {
+      position: relative;
+      width: 150px; height: 104px;
+      overflow: hidden;
+      background: var(--bg-soft);
+      box-shadow: inset 0 0 0 1px rgba(34, 29, 26, .10);
     }
-
-    .lightbox-nav.prev {
-      left: 22px;
-      top: 50%;
-      transform: translateY(-50%);
+    .pf-next-thumb img {
+      display: block;
+      width: 118%;                       /* чуть шире — правый край «уходит» за рамку */
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s var(--ease), opacity .35s var(--ease);
     }
+    .pf-next-preview:hover .pf-next-label { color: var(--wine); }
+    .pf-next-preview:hover .pf-next-thumb img { transform: translateX(-6px) scale(1.03); }
+    .pf-next-preview:focus-visible { outline: 2px solid var(--wine); outline-offset: 4px; }
 
-    .lightbox-nav.next {
-      right: 22px;
-      top: 50%;
-      transform: translateY(-50%);
+    /* навигация: стрелки + тихий счётчик со шкалой */
+    .pf-nav { display: flex; flex-direction: column; gap: 16px; }
+    .pf-arrows { display: flex; gap: 10px; }
+    .pf-arrow {
+      appearance: none;
+      width: 52px; height: 52px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
     }
+    .pf-arrow:hover { background: var(--wine); color: #fff; border-color: var(--wine); }
+    .pf-arrow:focus-visible { outline: 2px solid var(--wine); outline-offset: 3px; }
+    .pf-arrow:disabled { opacity: .4; cursor: default; }
 
-    .lightbox-count {
+    .pf-counter {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Jost', sans-serif;
+      font-size: .78rem; letter-spacing: .22em;
+      color: var(--ink-soft);
+    }
+    .pf-counter #pfCur { color: var(--ink); }
+    .pf-counter .pf-dash { color: var(--line); }
+    .pf-progress {
+      position: relative;
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+      overflow: hidden;
+    }
+    .pf-progress-bar {
       position: absolute;
-      bottom: 22px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #F4EFE7;
-      font-size: 12.5px;
-      letter-spacing: .1em;
+      left: 0; top: 0; height: 100%;
+      width: 8.33%;
+      background: var(--wine);
+      transition: width .82s var(--pf-ease);
     }
 
-    @media (max-width:600px) {
-      .lightbox-nav {
-        width: 38px;
-        height: 38px;
-        font-size: 16px;
+    /* ---- Единственный призыв к действию ---- */
+    .pf-cta { margin-top: 44px; display: flex; justify-content: center; }
+
+    /* =====================  Планшет  ===================== */
+    @media (max-width: 1024px) {
+      #portfolio .container { max-width: 760px; }
+      .pf-cinema {
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
+      .pf-stage { height: clamp(340px, 56vh, 560px); }
+      .pf-rail {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px 28px;
+        padding: 0;
+      }
+      .pf-meta { order: 1; }
+      .pf-nav { order: 2; flex-direction: row; align-items: center; gap: 20px; flex: 1; justify-content: flex-end; }
+      .pf-nav .pf-counter { min-width: 160px; }
+      .pf-next-preview { order: 3; flex-direction: row; align-items: center; gap: 14px; }
+      .pf-next-thumb { width: 96px; height: 68px; }
+    }
+
+    /* =====================  Мобильные  ===================== */
+    @media (max-width: 680px) {
+      .pf-stage { height: auto; aspect-ratio: 4 / 5; cursor: pointer; }
+      .pf-cursor { display: none; }
+      .pf-rail { flex-direction: column; align-items: stretch; gap: 18px; }
+      .pf-meta { order: 1; text-align: center; }
+      .pf-meta .pf-cat { font-size: 1.25rem; }
+      .pf-next-preview { display: none; }        /* на телефоне убираем предпросмотр */
+      .pf-nav {
+        order: 2;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .pf-arrows { order: 1; }
+      .pf-nav .pf-counter { order: 2; flex: 1; justify-content: center; }
+      .pf-arrow { width: 46px; height: 46px; }
+      .pf-cta { margin-top: 30px; }
+      .pf-cta .btn { width: 100%; text-align: center; }
+    }
+
+    /* уважаем «уменьшить движение» */
+    @media (prefers-reduced-motion: reduce) {
+      .pf-frame { transition: opacity .3s linear; }
+      .pf-frame img,
+      .pf-stage:hover .pf-frame.is-active img { transition: none; transform: none; }
+      .pf-progress-bar { transition: none; }
     }
 
     /* ===== 6. PACKAGES ===== */
@@ -2001,7 +1946,52 @@
       }
     }
 
+  
 
+    /* ---- Ссылка "Смотреть работы" в карточках услуг ---- */
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-family: 'Jost', sans-serif;
+      font-size: 12.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--wine);
+      transition: gap .3s var(--ease), color .3s ease;
+    }
+
+    .service-link:hover {
+      gap: 14px;
+      color: var(--wine-dark);
+    }
+
+    .service-link .arrow {
+      transition: transform .3s var(--ease);
+    }
+
+    .service-link:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    .service-mini {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-mini .service-link {
+      margin-top: auto;
+      padding-top: 16px;
+    }
+
+    /* ---- Кнопка "Смотреть всё портфолио" ---- */
+    .portfolio-viewall {
+      display: flex;
+      justify-content: center;
+      margin-top: 44px;
+    }
 
     /* =====================================================================
        ДОБАВЛЕНО В ХОДЕ CRO-ОПТИМИЗАЦИИ (конверсия и доверие).
@@ -2184,44 +2174,10 @@
       line-height: 1.55;
     }
 
-    /* ---- Фильтры портфолио ---- */
-    .portfolio-filters {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 26px auto 0;
-    }
 
-    .pf-btn {
-      font-family: 'Jost', sans-serif;
-      font-size: 12.5px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-weight: 500;
-      color: var(--ink-soft);
-      background: transparent;
-      border: 1px solid var(--line);
-      border-radius: 40px;
-      padding: 9px 20px;
-      cursor: pointer;
-      transition: color .3s ease, border-color .3s ease, background .3s ease;
-    }
 
-    .pf-btn:hover {
-      color: var(--wine);
-      border-color: var(--wine);
-    }
 
-    .pf-btn.active {
-      color: #fff;
-      background: var(--wine);
-      border-color: var(--wine);
-    }
 
-    .portfolio-frame.is-hidden {
-      display: none !important;
-    }
 
     /* ---- Секция "Как проходит съёмка" ---- */
     .process-grid {
@@ -2627,8 +2583,7 @@
       }
 
       /* На мобильном тап-цели крупнее — удобнее пальцем, лучше конверсия. */
-      .msg-link,
-      .pf-btn {
+      .msg-link {
         padding-top: 11px;
         padding-bottom: 11px;
       }
@@ -2784,57 +2739,19 @@
       }
     }
 
-    .portfolio-btn-wrapper {
+    .pf-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  transition: transform .9s var(--pf-ease);
+}
 
-      display: flex;
-
-      justify-content: center;
-
-      align-items: center;
-
-      width: 100%;
-
-      margin-top: 70px;
-
-      margin-bottom: 20px;
-
-    }
-
-    .portfolio-btn {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 12px;
-
-      padding: 18px 42px;
-
-      background: var(--wine);
-
-      color: #fff;
-
-      border-radius: 4px;
-
-      text-decoration: none;
-
-      letter-spacing: .15em;
-
-      text-transform: uppercase;
-
-      transition: .35s;
-
-    }
-
-    .portfolio-btn:hover {
-
-      background: var(--wine-dark);
-
-      transform: translateY(-3px);
-
-    }
+/* Keep the entire photograph visible */
+.pf-stage:hover .pf-frame.is-active img {
+  transform: none;
+}
   </style>
 </head>
 
@@ -2864,6 +2781,7 @@
       <nav class="nav-links" id="navLinks" aria-label="Основная навигация">
         <a href="#about">О студии MOMENTA</a>
         <a href="#services">Направления съёмки</a>
+        <a href="portfolio.html">Портфолио</a>
         <a href="#packages">Пакеты и цены</a>
         <a href="#booking">Контакты и запись</a>
       </nav>
@@ -2890,9 +2808,8 @@
              рождения, выпускной). Слоган сохранён как эмоциональный акцент. -->
           <h1><span class="h1-kicker">Фотограф в Москве · 8 лет опыта</span>Ваш момент.<br><em>Ваша
               история.</em></h1>
-          <p class="lead">Портретная съёмка, Love Story, дни рождения и выпускные в студии и на выезде по всей Москве.
-            Помогаем с образом и позированием, снимаем без скованности и отдаём кадры, которые хочется пересматривать.
-          </p>
+          <p class="lead">Портреты, Love Story и съёмки для особенных событий в Москве — с продуманным образом,
+            светом и атмосферой. Вам не нужно уметь позировать: всё покажем на съёмке.</p>
           <div class="hero-actions">
             <a href="#booking" class="btn btn-primary">Записаться на съёмку</a>
             <a href="#packages" class="btn btn-ghost">Пакеты и цены</a>
@@ -2902,17 +2819,15 @@
              свой ник в Telegram и номер WhatsApp. -->
           <div class="hero-contact">
             <span class="contact-label">Написать напрямую</span>
-            <a class="msg-link" href="https://t.me/raed1f" target="_blank" rel="noopener"
+            <a class="msg-link" href="https://t.me/momentaphoto" target="_blank" rel="noopener"
               aria-label="Написать в Telegram">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M9.8 15.6 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.9c.7.4 1.2.2 1.4-.7l2.6-12.1c.2-1-.4-1.4-1.1-1.2L3.6 9.9c-1 .4-1 .9-.2 1.2l4.1 1.3 9.6-6c.4-.3.8-.1.5.2z" />
+                <path d="M9.8 15.6 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.9c.7.4 1.2.2 1.4-.7l2.6-12.1c.2-1-.4-1.4-1.1-1.2L3.6 9.9c-1 .4-1 .9-.2 1.2l4.1 1.3 9.6-6c.4-.3.8-.1.5.2z" />
               </svg>Telegram</a>
             <a class="msg-link" href="https://wa.me/79891156946" target="_blank" rel="noopener"
               aria-label="Написать в WhatsApp">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.7-2.7-.2-.3A8 8 0 1 1 12 20zm4.5-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3.2-.5v-.4c-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.9 3 1.4 1.4 2.9 2.1 4 2.4 1 .3 1.9.1 2.5-.4.4-.3.7-.8.8-1.3.1-.3.1-.5 0-.6l-.3-.1z" />
+                <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.7-2.7-.2-.3A8 8 0 1 1 12 20zm4.5-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3.2-.5v-.4c-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.9 3 1.4 1.4 2.9 2.1 4 2.4 1 .3 1.9.1 2.5-.4.4-.3.7-.8.8-1.3.1-.3.1-.5 0-.6l-.3-.1z" />
               </svg>WhatsApp</a>
           </div>
           <div class="hero-stats">
@@ -2949,8 +2864,9 @@
             <img src="cover-main.jpg" ...>
           </picture>
           -->
-          <img src="cover-main.jpg" class="hero-cover" width="1200" height="1500" fetchpriority="high" loading="eager"
-            decoding="async" alt="Портретная фотосессия в фотостудии MOMENTA в Москве — кадр из портфолио">
+          <img src="cover-main.jpg" class="hero-cover" width="1200" height="1500" fetchpriority="high"
+            loading="eager" decoding="async"
+            alt="Портретная фотосессия в фотостудии MOMENTA в Москве — кадр из портфолио">
           <div class="frame-corner tl"></div>
           <div class="frame-corner tr"></div>
           <div class="frame-corner bl"></div>
@@ -2992,14 +2908,12 @@
               <path d="M5.5 20c.7-3.3 3.3-5 6.5-5s5.8 1.7 6.5 5" />
             </svg>
             <p class="vp-title">Помощь с позированием</p>
-            <p>Показываем позы и ракурсы прямо на съёмке — расслабляетесь и получаете живые кадры, а не «деревянные».
-            </p>
+            <p>Показываем позы и ракурсы прямо на съёмке — расслабляетесь и получаете живые кадры, а не «деревянные».</p>
           </div>
           <div class="valueprop">
             <svg class="vp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
               aria-hidden="true">
-              <path
-                d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
+              <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
               <circle cx="12" cy="12" r="3" />
             </svg>
             <p class="vp-title">Авторская обработка</p>
@@ -3026,31 +2940,14 @@
       <div class="container">
         <div class="section-head reveal">
           <p class="eyebrow">О студии</p>
-          <h2>8 лет создаём кадры,<br>которые хочется пересматривать</h2>
-          <p>Команда фотографов и ретушёров с сильным портфолио и профессиональным оборудованием. Помогаем найти идею
-            даже там, где её, кажется, нет. Снимаем в своей студии и на выезде по всей Москве.</p>
-        </div>
-        <div class="about-grid reveal">
-          <div class="about-item">
-            <div class="stat-num"><span data-count="8">0</span><span class="stat-suffix">лет</span></div>
-            <span class="stat-label">опыта в портретной и коммерческой съёмке</span>
-          </div>
-          <div class="about-item">
-            <div class="stat-num"><span data-count="500">0</span><span class="stat-suffix">+</span></div>
-            <span class="stat-label">проведённых фотосессий</span>
-          </div>
-          <div class="about-item">
-            <div class="stat-num">100<span class="stat-suffix">%</span></div>
-            <span class="stat-label">авторская цветокоррекция и обработка</span>
-          </div>
-          <div class="about-item">
-            <div class="stat-num">1–4<span class="stat-suffix">ч</span></div>
-            <span class="stat-label">гибкая длительность съёмки под ваш пакет</span>
-          </div>
+          <h2>Съёмка, на которой<br>вам будет легко</h2>
+          <p>Команда фотографов и ретушёров с сильным портфолио и профессиональным светом. Находим идею даже там, где
+            её, кажется, нет, — и снимаем так, чтобы результат совпал с тем, что вы себе представляли.</p>
         </div>
 
-        <!-- Длинный абзац "о нас" разложен на сканируемые преимущества:
-           посетитель считывает выгоды за пару секунд, не читая сплошной текст. -->
+        <!-- Преимущества сканируемыми карточками. Цифры (8 лет / 500+) намеренно
+           НЕ повторяются здесь — они уже заявлены один раз в hero, чтобы не
+           дублировать один и тот же факт по всей странице. -->
         <div class="about-features reveal">
           <div class="about-feature">
             <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -3058,42 +2955,8 @@
               <path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.5-.8z" />
             </svg>
             <div>
-              <h3>8 лет опыта</h3>
-              <p>Более 500 проведённых съёмок в разных жанрах и с любым темпераментом клиента.</p>
-            </div>
-          </div>
-          <div class="about-feature">
-            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              aria-hidden="true">
-              <circle cx="12" cy="8" r="3.2" />
-              <path d="M5.5 20c.7-3.3 3.3-5 6.5-5s5.8 1.7 6.5 5" />
-            </svg>
-            <div>
-              <h3>Помощь с образом и позами</h3>
-              <p>Разбираем образы и позирование до и во время съёмки — никакой скованности перед камерой.</p>
-            </div>
-          </div>
-          <div class="about-feature">
-            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              aria-hidden="true">
-              <path d="M3 17l6-6 4 4 8-8" />
-              <path d="M21 7v4h-4" />
-            </svg>
-            <div>
-              <h3>Авторская ретушь</h3>
-              <p>Обработка без «пластикового» эффекта и единая цветокоррекция по всей серии кадров.</p>
-            </div>
-          </div>
-          <div class="about-feature">
-            <svg class="af-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              aria-hidden="true">
-              <rect x="4" y="4" width="16" height="16" rx="2" />
-              <path d="M4 15l4-4 3 3 3-3 6 6" />
-              <circle cx="9" cy="9" r="1.4" />
-            </svg>
-            <div>
-              <h3>Все RAW-исходники</h3>
-              <p>Отдаём весь отснятый материал целиком — исходники входят в каждый пакет.</p>
+              <h3>Опыт в любом жанре</h3>
+              <p>Портрет, пара, семья, дети, бизнес — работаем с любым темпераментом и настроением.</p>
             </div>
           </div>
           <div class="about-feature">
@@ -3103,8 +2966,8 @@
               <circle cx="12" cy="11" r="2.5" />
             </svg>
             <div>
-              <h3>Вся Москва</h3>
-              <p>Съёмка в студии, в городе и на природе — выезжаем в любой район Москвы и области.</p>
+              <h3>Там, где ваша история</h3>
+              <p>Съёмка в Москве и за её пределами — в студии, на природе, в городе или в любой локации по вашему желанию.</p>
             </div>
           </div>
           <div class="about-feature">
@@ -3136,38 +2999,38 @@
           <div class="service-card reveal">
             <span class="service-num">Направление · 01</span>
             <h3>День рождения</h3>
-            <p>Атмосферная праздничная съёмка, которая сохранит эмоции дня рождения — искренний смех, объятия близких,
-              торт со свечами и ту самую суету праздника, которую хочется пересматривать спустя годы. Снимаем в студии с
-              декором и реквизитом или выезжаем на вашу локацию.</p>
+            <p>Живая праздничная съёмка, которая сохранит эмоции дня — смех, объятия близких и суету праздника.</p>
             <ul class="service-list">
-              <li>Подбор декора и цветовой гаммы под тематику праздника</li>
-              <li>Групповые и индивидуальные кадры с гостями</li>
-              <li>Лёгкая постановка без "деревянных" поз — только живые эмоции</li>
+              <li>Декор и цветовая гамма под тематику</li>
+              <li>Кадры с гостями и индивидуальные</li>
+              <li>Без «деревянных» поз — только эмоции</li>
             </ul>
+            <a class="service-link" href="portfolio.html#birthday">Смотреть работы <span
+                class="arrow">→</span></a>
           </div>
           <div class="service-card reveal reveal-delay-1">
             <span class="service-num">Направление · 02</span>
             <h3>Love Story</h3>
-            <p>Тёплая и живая съёмка для пар: естественные эмоции, доверительная атмосфера и кадры, которые расскажут
-              историю ваших отношений — от первого взгляда до объятий в закатном свете. Отлично подходит как
-              самостоятельная съёмка или как подготовка к свадьбе.</p>
+            <p>Сохраним вашу историю естественно — без постановочных поз и неловкости перед камерой.</p>
             <ul class="service-list">
-              <li>Помощь в раскрепощении перед камерой — работаем без неловкости</li>
-              <li>Съёмка в студии, в городе или на природе на ваш выбор</li>
-              <li>Кадры для приглашений, соцсетей и фотокниги</li>
+              <li>Помогаем раскрепоститься на съёмке</li>
+              <li>Студия, город или природа — на выбор</li>
+              <li>Кадры для приглашений и фотокниги</li>
             </ul>
+            <a class="service-link" href="portfolio.html#lovestory">Смотреть работы <span
+                class="arrow">→</span></a>
           </div>
           <div class="service-card reveal reveal-delay-2">
             <span class="service-num">Направление · 03</span>
             <h3>Портрет</h3>
-            <p>Индивидуальная студийная съёмка с проработкой образа, света и позирования. Подходит для личного архива,
-              обновления соцсетей, делового портрета или подарка близкому человеку — подбираем свет и ракурсы, которые
-              подчёркивают именно вас.</p>
+            <p>Съёмка, в которой не нужно уметь позировать. Поможем с образом, светом и ракурсами.</p>
             <ul class="service-list">
-              <li>Разбор образов и поз ещё до начала съёмки</li>
-              <li>Студийный свет с мягким и контрастным рисунком на выбор</li>
-              <li>Авторская ретушь без "пластикового" эффекта</li>
+              <li>Разбор образов и поз до съёмки</li>
+              <li>Мягкий или контрастный свет на выбор</li>
+              <li>Ретушь без «пластикового» эффекта</li>
             </ul>
+            <a class="service-link" href="portfolio.html#portrait">Смотреть работы <span
+                class="arrow">→</span></a>
           </div>
         </div>
 
@@ -3178,32 +3041,38 @@
           <div class="service-mini">
             <span class="service-num">04</span>
             <h3>Выпускная съёмка</h3>
-            <p>Съёмка выпускников — от школьного альбома до атмосферных индивидуальных кадров в мантии и без.</p>
+            <p>Съёмка выпускников — от школьного альбома до атмосферных индивидуальных кадров.</p>
+            <a class="service-link" href="portfolio.html#graduation">Смотреть работы <span class="arrow">→</span></a>
           </div>
           <div class="service-mini">
             <span class="service-num">05</span>
             <h3>Семейная</h3>
-            <p>Тёплые семейные кадры в студии и на природе, включая съёмку с детьми и старшим поколением.</p>
+            <p>Тёплые семейные кадры в студии и на природе, включая съёмку с детьми.</p>
+            <a class="service-link" href="portfolio.html#family">Смотреть работы <span class="arrow">→</span></a>
           </div>
           <div class="service-mini">
             <span class="service-num">06</span>
             <h3>Деловой портрет</h3>
-            <p>Строгие и живые портреты для резюме, сайта компании, LinkedIn и корпоративных профилей.</p>
+            <p>Портреты для резюме, сайта компании и корпоративных профилей.</p>
+            <a class="service-link" href="portfolio.html#business">Смотреть работы <span class="arrow">→</span></a>
           </div>
           <div class="service-mini">
             <span class="service-num">07</span>
             <h3>Личный бренд</h3>
-            <p>Съёмка для экспертов и предпринимателей: серия образов под соцсети, лендинги и презентации.</p>
+            <p>Серия образов под соцсети, лендинги и презентации для экспертов.</p>
+            <a class="service-link" href="portfolio.html#branding">Смотреть работы <span class="arrow">→</span></a>
           </div>
           <div class="service-mini">
             <span class="service-num">08</span>
             <h3>Контент-съёмка</h3>
-            <p>Пакет кадров под регулярный контент для блога и соцсетей — много образов за одну сессию.</p>
+            <p>Пакет кадров под регулярный контент — много образов за одну сессию.</p>
+            <a class="service-link" href="portfolio.html#content">Смотреть работы <span class="arrow">→</span></a>
           </div>
           <div class="service-mini">
             <span class="service-num">09</span>
             <h3>Студия и выезд</h3>
-            <p>Снимаем в оборудованной студии со светом или выезжаем на вашу локацию по всей Москве.</p>
+            <p>Оборудованная студия со светом или выезд на вашу локацию по Москве.</p>
+            <a class="service-link" href="portfolio.html#studio">Смотреть работы <span class="arrow">→</span></a>
           </div>
         </div>
       </div>
@@ -3224,273 +3093,86 @@
       </div>
     </section>
 
-    <!-- ===== 5.5 PORTFOLIO — бегущая лента фотографий =====
-       РЕДАКТИРУЙТЕ ЗДЕСЬ: положите 25 файлов 1.jpg … 25.jpg в папку "photos"
-       рядом с index.html. Ничего в разметке ниже менять не нужно — карточки
-       и лайтбокс строит JS в конце файла (переменные GALLERY_FOLDER и
-       TOTAL_IMAGES). Если фото пока меньше 25 — на пустых местах аккуратно
-       появится плашка с номером, сайт не "сломается". -->
+    <!-- ===== 5.5 PORTFOLIO — кинематографичная витрина (один кадр за раз) =====
+       Ровно 12 кадров (photos/1.webp … photos/12.webp) показываются по
+       одному, с плавным горизонтальным переходом. Полный архив — на
+       portfolio.html. Первый кадр присутствует в разметке (виден сразу),
+       остальные подгружаются по мере навигации. Для поисковых роботов и
+       случая «JS отключён» все 12 кадров с alt продублированы в <noscript>.
+       РЕДАКТИРУЙТЕ ЗДЕСЬ: категории/локации/alt — в массиве DATA (JS ниже). -->
     <section id="portfolio" class="portfolio">
       <div class="container" style="z-index:1;position:relative;">
-        <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
-          <p class="eyebrow" style="justify-content:center;">Портфолио</p>
-          <h2>Избранные кадры</h2>
-          <p style="margin-left:auto;margin-right:auto;">Кадры из разных съёмок. Выберите интересующее направление,
-            наведите курсор, чтобы остановить ленту, и нажмите на кадр, чтобы открыть его крупнее.</p>
+
+        <div class="section-head reveal">
+          <p class="eyebrow">Портфолио</p>
+          <h2>Кадры, которые хочется сохранить.</h2>
+          <p>Моменты MOMENTA — остальное в полном портфолио.</p>
         </div>
 
-        <!-- Фильтры портфолио: посетитель сразу видит работы своего формата,
-           а не листает всё подряд. Категории берутся из data-cat у карточек.
-           РЕДАКТИРУЙТЕ ЗДЕСЬ: при добавлении новых категорий проставьте
-           data-cat у кадров и добавьте кнопку с тем же значением. -->
+        <div class="pf-cinema reveal reveal-delay-1">
 
-        <!--        
-        <div class="portfolio-filters reveal" role="group" aria-label="Фильтр портфолио по направлению">
-          <button type="button" class="pf-btn active" data-filter="all">Все</button>
-
-          <button type="button" class="pf-btn" data-filter="portrait">Портрет</button>
-          <button type="button" class="pf-btn" data-filter="lovestory">Love Story</button>
-          <button type="button" class="pf-btn" data-filter="birthday">День рождения</button>
- -->
-      </div>
-      </div>
-      <!-- ВАЖНОЕ SEO-ИЗМЕНЕНИЕ: 25 фотографий портфолио теперь присутствуют
-         прямо в HTML-коде. Раньше они целиком создавались JavaScript-ом уже
-         после загрузки страницы — робот Яндекса и часть краулеров такой
-         контент могут не увидеть, и сайт терял весь трафик из поиска по
-         картинкам. JS ниже только дублирует эти карточки для бесшовной
-         анимации ленты, сам контент от него больше не зависит.
-         РЕДАКТИРУЙТЕ ЗДЕСЬ: атрибуты alt. Сейчас они шаблонные — замените
-         каждый на честное описание того, что реально изображено на кадре
-         (кто, где, какая съёмка). Это главный источник трафика из
-         Яндекс.Картинок и Google Images. -->
-      <div class="portfolio-marquee reveal">
-        <div class="portfolio-row dir-left" id="portfolioRow1">
-          <div class="portfolio-frame" data-index="1" data-cat="portrait">
-            <img src="photos/1.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №1 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="2" data-cat="lovestory">
-            <img src="photos/2.webp"
-              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №2 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="3" data-cat="birthday">
-            <img src="photos/3.webp"
-              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №3 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="4" data-cat="portrait">
-            <img src="photos/4.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №4 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="5" data-cat="lovestory">
-            <img src="photos/5.webp"
-              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №5 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="6" data-cat="birthday">
-            <img src="photos/6.webp"
-              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №6 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="7" data-cat="portrait">
-            <img src="photos/7.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №7 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="8" data-cat="lovestory">
-            <img src="photos/8.webp"
-              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №8 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="9" data-cat="birthday">
-            <img src="photos/9.webp"
-              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №9 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="10" data-cat="portrait">
-            <img src="photos/10.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №10 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="11" data-cat="lovestory">
-            <img src="photos/11.webp"
-              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №11 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="12" data-cat="birthday">
-            <img src="photos/12.webp"
-              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №12 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="13" data-cat="portrait">
-            <img src="photos/13.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №13 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-        </div>
-        <div class="portfolio-row dir-right" id="portfolioRow2">
-          <div class="portfolio-frame" data-index="14" data-cat="lovestory">
-            <img src="photos/14.webp"
-              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №14 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="15" data-cat="birthday">
-            <img src="photos/15.webp"
-              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №15 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="16" data-cat="portrait">
-            <img src="photos/16.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №16 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="17" data-cat="lovestory">
-            <img src="photos/17.webp"
-              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №17 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="18" data-cat="birthday">
-            <img src="photos/18.webp"
-              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №18 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="19" data-cat="portrait">
-            <img src="photos/19.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №19 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="20" data-cat="lovestory">
-            <img src="photos/20.webp"
-              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №20 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="21" data-cat="birthday">
-            <img src="photos/21.webp"
-              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №21 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="22" data-cat="portrait">
-            <img src="photos/22.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №22 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="23" data-cat="lovestory">
-            <img src="photos/23.webp"
-              alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — работа №23 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="24" data-cat="birthday">
-            <img src="photos/24.webp"
-              alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — работа №24 из портфолио" loading="lazy"
-              decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-          <div class="portfolio-frame" data-index="25" data-cat="portrait">
-            <img src="photos/25.webp" alt="Портретная съёмка в студии MOMENTA, Москва — работа №25 из портфолио"
-              loading="lazy" decoding="async" width="800" height="1000">
-            <span class="portfolio-corner tl"></span><span class="portfolio-corner tr"></span>
-            <span class="portfolio-corner bl"></span><span class="portfolio-corner br"></span>
-            <span class="portfolio-zoom" aria-hidden="true">＋</span>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="container">
-        <div class="portfolio-btn-wrapper">
-
-          <a href="https://raedphoto.gallery.photo/" target="_blank" class="portfolio-btn">
-
-            СМОТРЕТЬ ВСЁ ПОРТФОЛИО
-            <span>↗</span>
-
+          <a class="pf-stage" id="pfStage" href="portfolio.html" aria-label="Открыть полное портфолио">
+            <div class="pf-frame is-active">
+              <img id="pfImgA" src="photos/1.webp" alt="Портретная съёмка в студии MOMENTA, Москва — кадр из портфолио"
+                   width="800" height="1000" decoding="async" draggable="false">
+            </div>
+            <div class="pf-frame">
+              <img id="pfImgB" alt="" width="800" height="1000" decoding="async" draggable="false">
+            </div>
+            <span class="pf-cursor" aria-hidden="true">Смотреть</span>
           </a>
 
+          <div class="pf-rail">
+            <div class="pf-meta" id="pfMeta" aria-live="polite">
+              <span class="pf-cat" id="pfCat">Портрет</span>
+              <span class="pf-loc" id="pfLoc">Москва · Студия</span>
+            </div>
+
+            <button class="pf-next-preview" id="pfPreview" type="button" aria-label="Следующий кадр">
+              <span class="pf-next-label">Далее →</span>
+              <span class="pf-next-thumb">
+                <img id="pfPrevImg" src="photos/2.webp" alt="" aria-hidden="true" decoding="async" draggable="false">
+              </span>
+            </button>
+
+            <div class="pf-nav">
+              <div class="pf-arrows">
+                <button class="pf-arrow" id="pfPrev" type="button" aria-label="Предыдущий кадр">&#8592;</button>
+                <button class="pf-arrow" id="pfNext" type="button" aria-label="Следующий кадр">&#8594;</button>
+              </div>
+              <div class="pf-counter" aria-hidden="true">
+                <span id="pfCur">01</span><span class="pf-dash">—</span><span>12</span>
+                <span class="pf-progress"><span class="pf-progress-bar" id="pfBar"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Для поисковиков и режима без JS: все 12 кадров с честным alt. -->
+          <noscript>
+            <div class="pf-noscript" style="display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-top:24px;">
+            <img src="photos/1.webp" alt="Портретная съёмка в студии MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/2.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/3.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/4.webp" alt="Портретная съёмка в студии MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/5.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/6.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/7.webp" alt="Портретная съёмка в студии MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/8.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/9.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/10.webp" alt="Портретная съёмка в студии MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/11.webp" alt="Love Story фотосессия пары, фотостудия MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            <img src="photos/12.webp" alt="Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — кадр из портфолио" width="800" height="1000" loading="lazy" decoding="async">
+            </div>
+          </noscript>
+
         </div>
+
+        <div class="pf-cta reveal">
+          <a href="portfolio.html" class="btn btn-ghost">Смотреть всё портфолио →</a>
+        </div>
+
       </div>
     </section>
-
-
-    <!-- Лайтбокс — открывается по клику на любое фото портфолио -->
-    <!-- Лайтбокс получил роль диалога, aria-modal и aria-hidden в закрытом
-       состоянии: скринридер больше не зачитывает скрытые кнопки, а пустой
-       атрибут src="" (он провоцировал лишний запрос к самой странице)
-       убран — адрес подставляется скриптом при открытии. -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии портфолио"
-      aria-hidden="true">
-      <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Закрыть просмотр">✕</button>
-      <button class="lightbox-nav prev" type="button" id="lightboxPrev" aria-label="Предыдущее фото">‹</button>
-      <img id="lightboxImg" alt="" decoding="async">
-      <button class="lightbox-nav next" type="button" id="lightboxNext" aria-label="Следующее фото">›</button>
-      <div class="lightbox-count" id="lightboxCount" aria-live="polite"></div>
-    </div>
 
     <!-- ===== 6. PACKAGES — Пакеты услуг =====
        РЕДАКТИРУЙТЕ ЗДЕСЬ: цены, пункты списков и вступительные строки .pkg-intro -->
@@ -3534,8 +3216,7 @@
             <span class="pkg-bonus">★ Бесплатная консультация по образу</span>
             <h3>Gold</h3>
             <div class="price">14 000<sup>₽</sup></div>
-            <p class="pkg-intro">Самый сбалансированный формат: вдвое больше времени и кадров, чем в Silver, плюс
-              готовое
+            <p class="pkg-intro">Самый сбалансированный формат: вдвое больше времени и кадров, чем в Silver, плюс готовое
               видео Reels. Оптимально по соотношению цены и результата — его выбирают чаще всего.</p>
             <hr>
             <p class="pkg-label">В пакет входит</p>
@@ -3647,8 +3328,7 @@
         <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
           <p class="eyebrow" style="justify-content:center;">Отзывы</p>
           <h2>Что говорят клиенты</h2>
-          <p style="margin-left:auto;margin-right:auto;">Живые впечатления людей, которые уже снимались у нас — от
-            первой
+          <p style="margin-left:auto;margin-right:auto;">Живые впечатления людей, которые уже снимались у нас — от первой
             заявки до готовых фотографий.</p>
         </div>
         <div class="testimonials-grid reveal">
@@ -3926,20 +3606,18 @@
       <div class="footer-grid">
         <div>
           <a href="/" class="logo" aria-label="MOMENTA — фотостудия в Москве, на главную">MOMENTA</a>
-          <p>Фотостудия MOMENTA в Москве: портреты, Love Story и праздничные съёмки. 8 лет опыта, сильное портфолио и
-            авторская обработка. Съёмка в студии и на выезде по всей Москве.</p>
+          <p>Фотостудия MOMENTA в Москве: портреты, Love Story и праздничные съёмки в студии и на выезде. Помогаем с
+            образом и снимаем без скованности.</p>
           <!-- Иконки соцсетей и мессенджеров. РЕДАКТИРУЙТЕ ЗДЕСЬ: подставьте
              свои реальные ссылки. Битые/пустые ссылки лучше убрать. -->
           <div class="footer-social">
             <a href="https://t.me/raed1f" target="_blank" rel="noopener" aria-label="Telegram">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M9.8 15.6 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.9c.7.4 1.2.2 1.4-.7l2.6-12.1c.2-1-.4-1.4-1.1-1.2L3.6 9.9c-1 .4-1 .9-.2 1.2l4.1 1.3 9.6-6c.4-.3.8-.1.5.2z" />
+                <path d="M9.8 15.6 9.6 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.9c.7.4 1.2.2 1.4-.7l2.6-12.1c.2-1-.4-1.4-1.1-1.2L3.6 9.9c-1 .4-1 .9-.2 1.2l4.1 1.3 9.6-6c.4-.3.8-.1.5.2z" />
               </svg></a>
-            <a href="https://wa.me/+79891156946" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <a href="https://wa.me/89891156946" target="_blank" rel="noopener" aria-label="WhatsApp">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.7-2.7-.2-.3A8 8 0 1 1 12 20zm4.5-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3.2-.5v-.4c-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.9 3 1.4 1.4 2.9 2.1 4 2.4 1 .3 1.9.1 2.5-.4.4-.3.7-.8.8-1.3.1-.3.1-.5 0-.6l-.3-.1z" />
+                <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.7-2.7-.2-.3A8 8 0 1 1 12 20zm4.5-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.1-.3.2-.5v-.4c-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.9 3 1.4 1.4 2.9 2.1 4 2.4 1 .3 1.9.1 2.5-.4.4-.3.7-.8.8-1.3.1-.3.1-.5 0-.6l-.3-.1z" />
               </svg></a>
             <a href="https://instagram.com/raed_photo1" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
@@ -3947,10 +3625,9 @@
                 <circle cx="12" cy="12" r="4" />
                 <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
               </svg></a>
-            <a href="https://vk.com/raed.photo1" target="_blank" rel="noopener" aria-label="ВКонтакте">
+            <a href="https://vk.com/momentaphoto" target="_blank" rel="noopener" aria-label="ВКонтакте">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M12.8 16.3c-5 0-8-3.5-8.2-9.3h2.6c.1 4.3 2 6.1 3.5 6.5V7h2.4v3.7c1.5-.2 3-1.8 3.6-3.7h2.4c-.4 2.3-2 3.9-3.1 4.6 1.1.6 2.9 2 3.6 4.7h-2.7c-.5-1.7-1.9-3-3.8-3.2v3.2z" />
+                <path d="M12.8 16.3c-5 0-8-3.5-8.2-9.3h2.6c.1 4.3 2 6.1 3.5 6.5V7h2.4v3.7c1.5-.2 3-1.8 3.6-3.7h2.4c-.4 2.3-2 3.9-3.1 4.6 1.1.6 2.9 2 3.6 4.7h-2.7c-.5-1.7-1.9-3-3.8-3.2v3.2z" />
               </svg></a>
           </div>
         </div>
@@ -3963,7 +3640,7 @@
           <ul>
             <li><a href="#about">О студии</a></li>
             <li><a href="#services">Направления съёмки</a></li>
-            <li><a href="#portfolio">Портфолио</a></li>
+            <li><a href="portfolio.html">Портфолио</a></li>
             <li><a href="#packages">Пакеты и цены</a></li>
             <li><a href="#reviews">Отзывы</a></li>
             <li><a href="#faq">Вопросы и ответы</a></li>
@@ -3976,8 +3653,8 @@
             <div class="footer-contacts">
               <a href="tel:+79891156946">+7 (989) 115-69-46</a>
               <a href="mailto:info@momentaphoto.ru">info@momentaphoto.ru</a>
-              <a href="https://t.me/raed1f" target="_blank" rel="noopener">Telegram: @raed1f</a>
-              <a href="https://wa.me/+79891156946" target="_blank" rel="noopener">WhatsApp</a>
+              <a href="https://t.me/momentaphoto" target="_blank" rel="noopener">Telegram: @momentaphoto</a>
+              <a href="https://wa.me/79891156946" target="_blank" rel="noopener">WhatsApp</a>
               <span>Съёмка по всей Москве и области</span>
             </div>
           </address>
@@ -4045,20 +3722,14 @@
     }, { threshold: 0.15 });
     revealItems.forEach(item => revealObserver.observe(item));
 
-    /* ---------- Фильтры портфолио ----------
-       Скрывают карточки не выбранной категории (и их клоны). Категория берётся
-       из data-cat. Работает и с дублированными для анимации карточками. */
-    const pfButtons = document.querySelectorAll('.pf-btn');
-    pfButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
-        pfButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.portfolio-frame').forEach(frame => {
-          const show = filter === 'all' || frame.dataset.cat === filter;
-          frame.classList.toggle('is-hidden', !show);
-        });
-      });
+    /* ---------- Практичная защита фото в ленте портфолио ----------
+       Запрет контекстного меню и перетаскивания только на изображениях
+       портфолио. Остальная страница не затрагивается. */
+    document.addEventListener('contextmenu', e => {
+      if (e.target.tagName === 'IMG' && e.target.closest('#portfolio')) e.preventDefault();
+    });
+    document.addEventListener('dragstart', e => {
+      if (e.target.tagName === 'IMG' && e.target.closest('#portfolio')) e.preventDefault();
     });
 
     /* ---------- FAQ-аккордеон ----------
@@ -4192,96 +3863,181 @@
     });
 
     /* =====================================================================
-       ПОРТФОЛИО — дублирование ленты + обработчики
-       Сами карточки лежат в HTML (см. секцию #portfolio) — так их видят
-       поисковые роботы. Скрипт лишь копирует набор второй раз, чтобы
-       marquee-анимация зацикливалась без шва, и вешает обработчики.
-       РЕДАКТИРУЙТЕ ЗДЕСЬ: если меняете количество фото — правьте разметку
-       в секции #portfolio и переменную TOTAL_IMAGES ниже.
+       ПОРТФОЛИО — кинематографичная витрина: логика показа по одному кадру.
+       • ровно 12 кадров, переход по клику/клавише/свайпу (без автоплей);
+       • текущий кадр уходит влево, следующий входит справа (transform+opacity);
+       • грузим только текущий кадр и предзагружаем следующий;
+       • guard-флаг против «двойных» переходов и гонок при быстрых кликах;
+       • перед анимацией ждём decode() — исключаем показ пустого кадра.
+       РЕДАКТИРУЙТЕ ЗДЕСЬ: DATA — категория, локация и alt для каждого кадра. 
        ===================================================================== */
-    const GALLERY_FOLDER = "photos/";
-    const TOTAL_IMAGES = 25;
+    (function () {
+      const stage = document.getElementById('pfStage');
+      if (!stage) return;
 
-    const row1 = document.getElementById('portfolioRow1');
-    const row2 = document.getElementById('portfolioRow2');
+      const FOLDER = 'photos/';
+      const CATS = [
+        { cat: 'Портрет',       loc: 'Москва · Студия',   alt: 'Портретная съёмка в студии MOMENTA, Москва — кадр из портфолио' },
+        { cat: 'Love Story',    loc: 'Москва · Студия',   alt: 'Love Story фотосессия пары, фотостудия MOMENTA, Москва — кадр из портфолио' },
+        { cat: 'День рождения', loc: 'Москва · Праздник', alt: 'Праздничная фотосъёмка дня рождения, студия MOMENTA, Москва — кадр из портфолио' }
+      ];
+      // 12 кадров: категории циклически (1-портрет, 2-love story, 3-праздник, …)
+      const DATA = [];
+      for (let i = 0; i < 12; i++) DATA.push(CATS[i % 3]);
 
-    // Подписи для лайтбокса берём из alt уже существующих карточек —
-    // отдельного списка текстов держать не нужно.
-    const ALT_BY_INDEX = {};
-    document.querySelectorAll('.portfolio-frame img').forEach(img => {
-      const idx = img.closest('.portfolio-frame').dataset.index;
-      if (idx && !ALT_BY_INDEX[idx]) ALT_BY_INDEX[idx] = img.getAttribute('alt') || '';
-    });
+      const frameA = stage.querySelector('.pf-frame.is-active');
+      const frameB = stage.querySelector('.pf-frame:not(.is-active)');
+      const imgA = document.getElementById('pfImgA');
+      const imgB = document.getElementById('pfImgB');
+      const pfMeta = document.getElementById('pfMeta');
+      const pfCat = document.getElementById('pfCat');
+      const pfLoc = document.getElementById('pfLoc');
+      const pfCur = document.getElementById('pfCur');
+      const pfBar = document.getElementById('pfBar');
+      const pfPrevImg = document.getElementById('pfPrevImg');
+      const btnPrev = document.getElementById('pfPrev');
+      const btnNext = document.getElementById('pfNext');
+      const btnPreview = document.getElementById('pfPreview');
+      const cursor = stage.querySelector('.pf-cursor');
 
-    function duplicateRow(row) {
-      if (!row) return;
-      // aria-hidden на копиях: контент дублируется только ради анимации,
-      // скринридеру и поисковой системе он не нужен второй раз.
-      Array.from(row.children).forEach(frame => {
-        const clone = frame.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        clone.dataset.clone = 'true';
-        row.appendChild(clone);
+      const reduce = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const DRIFT = 6; // % горизонтального сдвига при переходе
+
+      let index = 0;
+      let activeIsA = true;
+      let busy = false;
+
+      // страховка: если файл не найден — подставляем гарантированный кадр
+      [imgA, imgB, pfPrevImg].forEach(function (im) {
+        im.addEventListener('error', function () {
+          if (im.dataset.fb) return;
+          im.dataset.fb = '1';
+          im.setAttribute('src', FOLDER + '1.webp');
+        });
       });
-    }
-    duplicateRow(row1);
-    duplicateRow(row2);
 
-    // Делегирование событий: один обработчик на всю ленту вместо 50 —
-    // меньше слушателей, меньше нагрузка на главный поток.
-    document.querySelectorAll('.portfolio-row').forEach(row => {
-      row.addEventListener('click', function (e) {
-        const frame = e.target.closest('.portfolio-frame');
-        if (frame && frame.dataset.index) openLightbox(parseInt(frame.dataset.index, 10));
+      const mod = n => ((n % 12) + 12) % 12;
+      const pad = n => (n < 10 ? '0' : '') + n;
+
+      function src(i) { return FOLDER + (i + 1) + '.webp'; }
+
+      function preload(i) { const im = new Image(); im.src = src(mod(i)); }
+
+      function paintMeta(i) { pfCat.textContent = DATA[i].cat; pfLoc.textContent = DATA[i].loc; }
+      function paintCounter(i) { pfCur.textContent = pad(i + 1); pfBar.style.width = ((i + 1) / 12 * 100) + '%'; }
+      function paintPreview(i) { const ni = mod(i + 1); pfPrevImg.setAttribute('src', src(ni)); }
+
+      // начальное состояние
+      paintMeta(0); paintCounter(0); paintPreview(0); preload(1);
+
+      function go(dir) {
+        if (busy) return;                 // защита от двойных переходов
+        const target = mod(index + dir);
+        if (target === index) return;
+        busy = true;
+
+        const cur = activeIsA ? frameA : frameB;
+        const inc = activeIsA ? frameB : frameA;
+        const incImg = activeIsA ? imgB : imgA;
+
+        incImg.setAttribute('src', src(target));
+        incImg.setAttribute('alt', DATA[target].alt);
+
+        // счётчик/шкала обновляем сразу; метаданные — с короткой сменой
+        paintCounter(target);
+        pfMeta.classList.add('pf-fade');
+        window.setTimeout(function () { paintMeta(target); pfMeta.classList.remove('pf-fade'); }, 180);
+
+        const run = function () {
+          if (reduce) {
+            // без движения — простое проявление
+            inc.classList.add('is-active');
+            cur.classList.remove('is-active');
+            settle(cur, inc);
+            return;
+          }
+          // стартовые позиции входящего кадра (без анимации)
+          inc.style.transition = 'none';
+          inc.style.opacity = '0';
+          inc.style.transform = 'translateX(' + (dir > 0 ? DRIFT : -DRIFT) + '%)';
+          void inc.offsetWidth;                       // reflow
+          inc.style.transition = '';
+          inc.classList.add('is-active');
+
+          // запускаем встречное движение
+          inc.style.opacity = '1';
+          inc.style.transform = 'translateX(0)';
+          cur.style.opacity = '0';
+          cur.style.transform = 'translateX(' + (dir > 0 ? -DRIFT : DRIFT) + '%)';
+
+          let done = false;
+          const finish = function () {
+            if (done) return; done = true;
+            cur.classList.remove('is-active');
+            settle(cur, inc);
+          };
+          inc.addEventListener('transitionend', finish, { once: true });
+          window.setTimeout(finish, 1000);            // страховка
+        };
+
+        // ждём готовности картинки, чтобы не мелькнул пустой кадр
+        if (incImg.decode) { incImg.decode().then(run).catch(run); }
+        else if (incImg.complete) { run(); }
+        else { incImg.onload = run; incImg.onerror = run; }
+
+        function settle(curF, incF) {
+          [curF, incF].forEach(function (f) { f.style.transition = 'none'; });
+          curF.style.opacity = ''; curF.style.transform = '';
+          incF.style.opacity = ''; incF.style.transform = '';
+          void stage.offsetWidth;
+          [curF, incF].forEach(function (f) { f.style.transition = ''; });
+          activeIsA = !activeIsA;
+          index = target;
+          paintPreview(index);
+          preload(index + 1);
+          busy = false;
+        }
+      }
+
+      btnNext.addEventListener('click', function () { go(1); });
+      btnPrev.addEventListener('click', function () { go(-1); });
+      btnPreview.addEventListener('click', function () { go(1); });
+
+      // клавиатура: ← → когда фокус внутри секции
+      stage.closest('#portfolio').addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
       });
-    });
-    document.querySelectorAll('.portfolio-frame img').forEach(img => {
-      img.addEventListener('error', function () { img.closest('.portfolio-frame').classList.add('img-missing'); });
-    });
 
-    /* ---- Лайтбокс ---- */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCount = document.getElementById('lightboxCount');
-    let lightboxIndex = 1;
+      // простой свайп на тач-экранах (без сложных жестов)
+      let tx = 0, ty = 0, tracking = false;
+      stage.addEventListener('touchstart', function (e) {
+        const t = e.changedTouches[0]; tx = t.clientX; ty = t.clientY; tracking = true;
+      }, { passive: true });
+      stage.addEventListener('touchend', function (e) {
+        if (!tracking) return; tracking = false;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - tx, dy = t.clientY - ty;
+        if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          e.preventDefault();                 // это горизонтальный свайп, не скролл
+          go(dx < 0 ? 1 : -1);
+        }
+      }, { passive: false });
 
-    let lastFocused = null;
-
-    function updateLightbox() {
-      lightboxImg.src = GALLERY_FOLDER + lightboxIndex + '.webp';
-      // Осмысленный alt вместо общего «увеличенное фото» — берём описание
-      // того самого кадра, который открыт.
-      lightboxImg.alt = ALT_BY_INDEX[lightboxIndex] || ('Фотография из портфолио MOMENTA — кадр ' + lightboxIndex);
-      lightboxCount.textContent = lightboxIndex + ' / ' + TOTAL_IMAGES;
-    }
-    function openLightbox(n) {
-      lastFocused = document.activeElement;
-      lightboxIndex = n;
-      updateLightbox();
-      lightbox.classList.add('open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      document.getElementById('lightboxClose').focus();
-    }
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
-    }
-    function showPrev() { lightboxIndex = (lightboxIndex === 1 ? TOTAL_IMAGES : lightboxIndex - 1); updateLightbox(); }
-    function showNext() { lightboxIndex = (lightboxIndex === TOTAL_IMAGES ? 1 : lightboxIndex + 1); updateLightbox(); }
-
-    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-    document.getElementById('lightboxPrev').addEventListener('click', function (e) { e.stopPropagation(); showPrev(); });
-    document.getElementById('lightboxNext').addEventListener('click', function (e) { e.stopPropagation(); showNext(); });
-    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function (e) {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
-    });
+      // кастомный круглый курсор «Смотреть» (только тонкий указатель)
+      if (cursor && window.matchMedia &&
+          window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduce) {
+        stage.style.cursor = 'none';
+        stage.addEventListener('mousemove', function (e) {
+          const r = stage.getBoundingClientRect();
+          cursor.style.transform = 'translate(' + (e.clientX - r.left) + 'px,' + (e.clientY - r.top) + 'px) scale(1)';
+        });
+      } else if (cursor) {
+        cursor.style.display = 'none';
+        stage.style.cursor = 'pointer';
+      }
+    })();
 
     /* =====================================================================
        СВЕТОВОЕ ПЯТНО ЗА КУРСОРОМ — лёгкий фоновый эффект

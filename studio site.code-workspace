@@ -2,9 +2,9 @@
 	"folders": [
 		{
 			"path": "."
-		}
+		},
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "files (2)"
+		"liveServer.settings.multiRootWorkspaceName": "studio site"
 	}
 }
