@@ -5,6 +5,7 @@
 		},
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "studio site"
+		"liveServer.settings.multiRootWorkspaceName": "studio site",
+		"liveServer.settings.port": 5501
 	}
 }
